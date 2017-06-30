@@ -1,0 +1,11 @@
+﻿关键字：
+ReadKey,Console,钢琴,Player,Media,COM,播放器
+
+目标：
+通过键盘按键，用MediaPlayer播放现有音乐文件
+
+知识点：
+1、添加COM组件：选中项目右键，添加引用，选择COM，添加Microsoft Media Player，在Program.cs中可以通过var player = new WMPLib.WindowsMediaPlayer()实例化播放器
+2、API学习：String函数PadLeft，int.TryParse，Environment.CurrentDirectory，Console成员学习
+3、异常处理try{}catch{}学习
+
