@@ -1,0 +1,10 @@
+﻿目标：
+实现登录三次验证
+
+知识点：
+1、常用运算符：>,==,+=,三元运算符?:
+2、Console.ReadKey的灵活使用（实现掩码）
+3、登录方法，密码录入方法定义（体会功能单一职责）
+4、基础API:Console.ForegroundColor,ConsoleColor,Console.Title,Console.Write和Console.WriteLine
+5、常用ASCll码
+

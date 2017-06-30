@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleLogin", "ConsoleLogin\ConsoleLogin.csproj", "{12509514-B1D0-4F24-B975-ABDF3F3BB2BE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CSharp", "CSharp", "{32920DB2-134A-42D7-92AC-62879B219FA7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DeskTop", "DeskTop", "{E89DBC1A-6347-4F54-82B4-DEAE610B9886}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{D8D065AF-073F-4814-9290-03FF8EF7CF8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{BE9AA0D8-0DB8-4FC2-B6CA-7F988C76DDFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleLogin", "CSharp\ConsoleLogin\ConsoleLogin.csproj", "{12509514-B1D0-4F24-B975-ABDF3F3BB2BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +26,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{12509514-B1D0-4F24-B975-ABDF3F3BB2BE} = {32920DB2-134A-42D7-92AC-62879B219FA7}
 	EndGlobalSection
 EndGlobal
