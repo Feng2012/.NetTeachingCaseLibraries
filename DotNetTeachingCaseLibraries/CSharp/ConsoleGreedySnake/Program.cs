@@ -7,22 +7,55 @@ using System.Threading.Tasks;
 
 namespace ConsoleGreedySnake
 {
+    /// <summary>
+    /// 坐标点
+    /// </summary>
     class Point
     {
+        /// <summary>
+        /// 行
+        /// </summary>
         public int R { get; set; }
+        /// <summary>
+        /// 列
+        /// </summary>
         public int C { get; set; }
     }
     class Program
     {
-
+        /// <summary>
+        /// 全局方向变量
+        /// </summary>
         static char mark = 'w';
+        /// <summary>
+        /// 全豆坐标
+        /// </summary>
+        static Point bean;
         static void Main(string[] args)
         {
             new Thread(Go).Start();
+            //控制蛇的方向
             while (true)
             {
-                mark = Console.ReadKey(true).KeyChar;
+                //判断方向按键是否与运行方向相向，只有90度方向起作用
+                var newmark = Console.ReadKey(true).KeyChar;
+                if (((mark == 'w' || mark == 's') && (newmark == 'a' || newmark == 'd')) || ((newmark == 'w' || newmark == 's') && (mark == 'a' || mark == 'd')))
+                {
+                    mark = newmark;
+                }
             }
+        }
+        /// <summary>
+        /// 获取随机的豆豆
+        /// </summary>
+        /// <param name="board">底板</param>
+        /// <returns></returns>
+        static Point GetBean(string[,] board)
+        {
+            var random = new Random();
+            var r = random.Next(1, board.GetLength(0) - 1);
+            var c = random.Next(1, board.GetLength(1) - 1);
+            return new Point() { R = r, C = c };
         }
         /// <summary>
         /// 蛇自动走步
@@ -30,7 +63,7 @@ namespace ConsoleGreedySnake
         static void Go()
         {
             var snake = new List<Point>();
-            snake.Add(new Point { C = 12, R = 20 });
+
             snake.Add(new Point { C = 12, R = 21 });
             snake.Add(new Point { C = 12, R = 22 });
             snake.Add(new Point { C = 12, R = 23 });
@@ -38,8 +71,10 @@ namespace ConsoleGreedySnake
             {
                 //创建底板和蛇数组
                 var board = CreateBoard(snake);
+
                 //显示
                 ShowBoard(board);
+                var endPoint = new Point() { R = snake[snake.Count - 1].R, C = snake[snake.Count - 1].C };
                 //把蛇除头外的其他坐标前移一个坐标
                 for (int i = snake.Count - 1; i > 0; i--)
                 {
@@ -50,7 +85,6 @@ namespace ConsoleGreedySnake
                 switch (mark)
                 {
                     case 's':
-                    case 'S':
                         snake[0].R++;
                         if (snake[0].R > board.GetLength(0) - 2)
                         {
@@ -58,7 +92,6 @@ namespace ConsoleGreedySnake
                         }
                         break;
                     case 'w':
-                    case 'W':
                         snake[0].R--;
                         if (snake[0].R < 1)
                         {
@@ -66,7 +99,6 @@ namespace ConsoleGreedySnake
                         }
                         break;
                     case 'a':
-                    case 'A':
                         snake[0].C--;
                         if (snake[0].C < 1)
                         {
@@ -74,7 +106,6 @@ namespace ConsoleGreedySnake
                         }
                         break;
                     case 'd':
-                    case 'D':
                         snake[0].C++;
                         if (snake[0].C > board.GetLength(1) - 2)
                         {
@@ -82,8 +113,55 @@ namespace ConsoleGreedySnake
                         }
                         break;
                 }
+                //判断蛇是否撞到自己
+                if (IsBumpSelf(snake))
+                {
+
+                    Console.WriteLine($"游戏结束！蛇长{snake.Count}");
+                    break;
+                }
+                //判断是否吃到豆
+                var result = IsEatBean(snake[0]);
+                if (result)
+                {
+                    //吃到豆后蛇长加一
+                    snake.Add(endPoint);
+                    //生成新豆
+                    bean = GetBean(board);
+                }
                 Thread.Sleep(500);
             }
+        }
+        static bool IsBumpSelf(List<Point> snake)
+        {
+            for (int i = 1; i < snake.Count; i++)
+            {
+                if (snake[0].R == snake[i].R && snake[0].C == snake[i].C)
+                {
+                    return true;
+                }
+            }
+            return false;
+
+        }
+
+        /// <summary>
+        /// 是否吃到豆
+        /// </summary>
+        /// <param name="point">蛇头最新位置</param>
+        /// <returns></returns>
+        static bool IsEatBean(Point point)
+        {
+            //蛇头位置和豆的位置是否相同
+            if (bean.C == point.C && bean.R == point.R)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
         /// <summary>
         /// 显示空底板和蛇
@@ -149,6 +227,11 @@ namespace ConsoleGreedySnake
             {
                 board[p.R, p.C] = "█";
             }
+            if (bean == null)
+            {
+                bean = GetBean(board);
+            }
+            board[bean.R, bean.C] = "☉";
             return board;
         }
     }
