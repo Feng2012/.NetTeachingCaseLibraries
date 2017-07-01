@@ -132,8 +132,14 @@ namespace ConsoleGreedySnake
                 Thread.Sleep(500);
             }
         }
+        /// <summary>
+        /// 蛇头是否撞到自己
+        /// </summary>
+        /// <param name="snake"></param>
+        /// <returns></returns>
         static bool IsBumpSelf(List<Point> snake)
         {
+            //判断蛇中是否撞到自己身体的节点
             for (int i = 1; i < snake.Count; i++)
             {
                 if (snake[0].R == snake[i].R && snake[0].C == snake[i].C)
@@ -142,7 +148,6 @@ namespace ConsoleGreedySnake
                 }
             }
             return false;
-
         }
 
         /// <summary>
