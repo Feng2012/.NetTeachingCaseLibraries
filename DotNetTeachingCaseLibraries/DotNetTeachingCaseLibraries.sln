@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleGreedySnake", "CShar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsolePiano", "CSharp\ConsolePiano\ConsolePiano.csproj", "{6A121630-169D-4AD8-A8C8-DD24A002836B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleVendingMachine", "ConsoleVendingMachine\ConsoleVendingMachine.csproj", "{9D99BDAA-4EB1-47B2-A470-2AE691135059}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{6A121630-169D-4AD8-A8C8-DD24A002836B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A121630-169D-4AD8-A8C8-DD24A002836B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A121630-169D-4AD8-A8C8-DD24A002836B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D99BDAA-4EB1-47B2-A470-2AE691135059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D99BDAA-4EB1-47B2-A470-2AE691135059}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D99BDAA-4EB1-47B2-A470-2AE691135059}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D99BDAA-4EB1-47B2-A470-2AE691135059}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +56,6 @@ Global
 		{A5BAE9D1-4259-43DA-B80F-4A5961A94753} = {32920DB2-134A-42D7-92AC-62879B219FA7}
 		{DBC53DAC-7EE6-452E-8105-8EF249E30BBD} = {32920DB2-134A-42D7-92AC-62879B219FA7}
 		{6A121630-169D-4AD8-A8C8-DD24A002836B} = {32920DB2-134A-42D7-92AC-62879B219FA7}
+		{9D99BDAA-4EB1-47B2-A470-2AE691135059} = {32920DB2-134A-42D7-92AC-62879B219FA7}
 	EndGlobalSection
 EndGlobal
