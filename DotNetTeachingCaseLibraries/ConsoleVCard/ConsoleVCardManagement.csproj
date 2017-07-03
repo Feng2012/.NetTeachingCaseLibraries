@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{EC8C5566-9935-493A-951D-7AED0DF0C80B}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ConsoleVCard</RootNamespace>
-    <AssemblyName>ConsoleVCard</AssemblyName>
+    <RootNamespace>ConsoleVCardManagement</RootNamespace>
+    <AssemblyName>ConsoleVCardManagement</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
