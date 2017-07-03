@@ -44,11 +44,12 @@ namespace ConsoleVCard
 
         public override string ToString()
         {
+            //把名片拼接成圆角名片的形式
             var namePostion = Name + "  " + Position;
             //横线20个长度
             var line = "————————————————————";
             Console.WriteLine(GetLength(line));
-            var content = $@"╭{line}╮
+            var content = $@"╭NO：{No.ToString("0000")}————————————————╮
 ∣{Company.PadRight(GetLength(line) - (GetLength(Company) - Company.Length))}∣
 ∣{(namePostion).PadRight(GetLength(line) - (GetLength(namePostion) - namePostion.Length))}∣
 ∣{(Address).PadRight(GetLength(line) - (GetLength(Address) - Address.Length))}∣

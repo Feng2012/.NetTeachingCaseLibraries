@@ -32,7 +32,7 @@ namespace ConsoleVCard
             set
             {
                 //电话正则
-                var regex = new Regex("^(0[0-9]{2,3}-)?([2-9][0-9]{6,7})+(-[0-9]{1,4})?$");
+                var regex = new Regex(@"^0\d{2,3}[- ]?\d{8}$");
                 if (regex.IsMatch(value))
                 {
                     _contactNo = value;
