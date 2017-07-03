@@ -13,11 +13,11 @@ namespace ConsoleVendingMachine
         }
         static void Start()
         {
+            //上货
+            var goodses = Restock();
             while (true)
             {
-                Console.Clear();
-                //上货
-                var goodses = Restock();
+                Console.Clear();               
                 //显示商品
                 ShowGoodses(goodses);
                 //处理结果
@@ -108,7 +108,7 @@ namespace ConsoleVendingMachine
                   
                 }
                 Console.WriteLine("欢迎下次使用！");
-
+                selectGoods.Quantity -= quantity;
                 System.Threading.Thread.Sleep(3000);
 
             }
