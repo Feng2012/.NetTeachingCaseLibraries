@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleVendingMachine", "Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleVCardManagement", "ConsoleVCard\ConsoleVCardManagement.csproj", "{EC8C5566-9935-493A-951D-7AED0DF0C80B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleCodeCount", "ConsoleFileQuery\ConsoleCodeCount.csproj", "{7C2993E6-A899-4145-8D4E-AC981CDBB942}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{EC8C5566-9935-493A-951D-7AED0DF0C80B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC8C5566-9935-493A-951D-7AED0DF0C80B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC8C5566-9935-493A-951D-7AED0DF0C80B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C2993E6-A899-4145-8D4E-AC981CDBB942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C2993E6-A899-4145-8D4E-AC981CDBB942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C2993E6-A899-4145-8D4E-AC981CDBB942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C2993E6-A899-4145-8D4E-AC981CDBB942}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +70,6 @@ Global
 		{6A121630-169D-4AD8-A8C8-DD24A002836B} = {32920DB2-134A-42D7-92AC-62879B219FA7}
 		{9D99BDAA-4EB1-47B2-A470-2AE691135059} = {32920DB2-134A-42D7-92AC-62879B219FA7}
 		{EC8C5566-9935-493A-951D-7AED0DF0C80B} = {32920DB2-134A-42D7-92AC-62879B219FA7}
+		{7C2993E6-A899-4145-8D4E-AC981CDBB942} = {32920DB2-134A-42D7-92AC-62879B219FA7}
 	EndGlobalSection
 EndGlobal
