@@ -6,6 +6,8 @@ using System.Net.Sockets;
 using System.Configuration;
 using System.IO;
 using System.Threading;
+using System.Runtime.Serialization.Formatters.Binary;
+using Common;
 
 namespace Client
 {
@@ -16,7 +18,6 @@ namespace Client
         {
             Console.WriteLine("请输入昵称：");
             name = Console.ReadLine();
-
         }
 
         static void Start()
@@ -29,8 +30,6 @@ namespace Client
             new Thread(WriteMessage).Start(stream);
             //读的代码
             ReadMessage(stream);
-
-
         }
         /// <summary>
         /// 读取消息
@@ -38,11 +37,18 @@ namespace Client
         /// <param name="stream">网络流</param>
         static void ReadMessage(NetworkStream stream)
         {
+            var formater = new BinaryFormatter();
             while (true)
             {
-                var reader = new StreamReader(stream);
-                var content = reader.ReadLine();
-                Console.WriteLine(content);
+                var package = formater.Deserialize(stream) as Package;
+                Package acceptPackage = null;
+                switch (package.PackageType)
+                {
+                    case PackageType.Message:
+                        acceptPackage = package as MessagePackage;
+                        break;
+                }
+                Console.WriteLine(acceptPackage);
             }
         }
         /// <summary>
@@ -52,14 +58,15 @@ namespace Client
         static void WriteMessage(object obj)
         {
             var stream = obj as NetworkStream;
+            var formater = new BinaryFormatter();
             while (true)
             {
-                var writer = new StreamWriter(stream);
-                var content = $"{name}:{Console.ReadLine()}";
-                writer.WriteLine(content);
+                Console.WriteLine("输入发送内容：");
+                var content = Console.ReadLine();
+                 var messagePackage = new MessagePackage { Content = content, Sender = name, SendTime = DateTime.Now };
+                formater.Serialize(stream, messagePackage);             
                 Console.WriteLine(content);
             }
-
         }
     }
 }
