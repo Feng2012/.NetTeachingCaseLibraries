@@ -16,8 +16,7 @@ namespace Client
         static string name;
         static void Main(string[] args)
         {
-            Console.WriteLine("请输入昵称：");
-            name = Console.ReadLine();
+            Start();
         }
 
         static void Start()
@@ -26,17 +25,47 @@ namespace Client
             var port = Convert.ToInt32(ConfigurationManager.AppSettings["port"]);
             var client = new TcpClient(hostname, port);
             var stream = client.GetStream();
-            //开始写线程
-            new Thread(WriteMessage).Start(stream);
-            //读的代码
-            ReadMessage(stream);
+            Login(stream);
         }
+        static void Login(NetworkStream stream)
+        {
+            var formater = new BinaryFormatter();
+
+            Console.Write("帐号：");
+            var account = Console.ReadLine();
+            Console.Write("密码：");
+            var password = Console.ReadLine();
+            var loginPackage = new LoginPackage { Account = account, Password = password };
+            formater.Serialize(stream, loginPackage);
+
+            var loginResultPackage = formater.Deserialize(stream) as LoginResultPackage;
+            if (loginResultPackage.Result)
+            {
+                Console.WriteLine("登录成功!");
+                Console.WriteLine("我的朋友");
+                foreach(var friend in loginResultPackage.Frinds)
+                {
+                    Console.WriteLine(friend);
+                }
+                //读的代码
+                new Thread(ReadMessage).Start(stream);
+                //开始写线程
+                WriteMessage(stream);
+            }
+            else
+            {
+                Console.WriteLine(loginResultPackage.Message);
+            }
+
+        }
+
         /// <summary>
         /// 读取消息
         /// </summary>
         /// <param name="stream">网络流</param>
-        static void ReadMessage(NetworkStream stream)
+        static void ReadMessage(object obj)
         {
+            var stream = obj as NetworkStream;
             var formater = new BinaryFormatter();
             while (true)
             {
@@ -55,16 +84,17 @@ namespace Client
         /// 写网络流
         /// </summary>
         /// <param name="obj">网络流</param>
-        static void WriteMessage(object obj)
+        static void WriteMessage(NetworkStream stream)
         {
-            var stream = obj as NetworkStream;
             var formater = new BinaryFormatter();
             while (true)
             {
+                Console.WriteLine("请输入朋友名字：");
+                var friendName = Console.ReadLine();
                 Console.WriteLine("输入发送内容：");
                 var content = Console.ReadLine();
-                 var messagePackage = new MessagePackage { Content = content, Sender = name, SendTime = DateTime.Now };
-                formater.Serialize(stream, messagePackage);             
+                var messagePackage = new MessagePackage { Content = content, Sender = name, SendTime = DateTime.Now, Accepter = friendName };
+                formater.Serialize(stream, messagePackage);
                 Console.WriteLine(content);
             }
         }

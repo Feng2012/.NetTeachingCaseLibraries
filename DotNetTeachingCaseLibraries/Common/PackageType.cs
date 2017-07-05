@@ -9,8 +9,11 @@ namespace Common
     /// <summary>
     /// 报文类型
     /// </summary>
+    [Serializable]
     public enum PackageType
     {
+        Login,
+        LoginResult,
         Message,
     }
 }

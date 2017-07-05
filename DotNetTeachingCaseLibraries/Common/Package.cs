@@ -9,6 +9,7 @@ namespace Common
     /// <summary>
     /// 发送报文抽象父类
     /// </summary>
+    [Serializable]
     public abstract class Package
     {     
         /// <summary>

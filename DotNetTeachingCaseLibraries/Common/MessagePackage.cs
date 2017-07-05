@@ -9,6 +9,7 @@ namespace Common
     /// <summary>
     /// 消息报文
     /// </summary>
+    [Serializable]
     public class MessagePackage : Package
     {
         public override PackageType PackageType
@@ -31,6 +32,12 @@ namespace Common
         /// 发送内容
         /// </summary>
         public string Content
+        { get; set; }
+
+        /// <summary>
+        /// 接收好友
+        /// </summary>
+        public string Accepter
         { get; set; }
 
         /// <summary>

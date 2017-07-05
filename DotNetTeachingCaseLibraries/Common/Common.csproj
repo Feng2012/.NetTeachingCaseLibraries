@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoginPackage.cs" />
+    <Compile Include="LoginResultPackage.cs" />
     <Compile Include="MessagePackage.cs" />
     <Compile Include="Package.cs" />
     <Compile Include="PackageType.cs" />
