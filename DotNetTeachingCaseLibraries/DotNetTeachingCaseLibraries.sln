@@ -31,7 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "CSharp\聊天程�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "CSharp\聊天程序\Server\Server.csproj", "{A8F3516A-A7CA-4359-BB9D-FD9D8D96A5D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{CF74E71C-DB63-4FFF-9F7F-0E6D456C338E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "CSharp\聊天程序\Common\Common.csproj", "{CF74E71C-DB63-4FFF-9F7F-0E6D456C338E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

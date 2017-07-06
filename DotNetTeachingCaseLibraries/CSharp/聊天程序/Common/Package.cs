@@ -17,5 +17,19 @@ namespace Common
         /// </summary>
         public abstract PackageType PackageType
         { get;  }
+
+        /// <summary>
+        /// 重写tostring方法，显示本身的属性和值
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            var content = "";
+            foreach(var pro in this.GetType().GetProperties())
+            {
+                content += $"{pro.Name}:{pro.GetValue(this)}  ";
+            }
+            return content;
+        }
     }
 }

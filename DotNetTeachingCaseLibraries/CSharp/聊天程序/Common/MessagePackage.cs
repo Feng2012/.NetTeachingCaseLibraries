@@ -46,9 +46,10 @@ namespace Common
         /// <returns></returns>
         public override string ToString()
         {
-            var content = $@"{Sender}:{SendTime.ToString("yyyy-MM-dd HH:mm:ss")}
+            var content = $@"-------------------接收到的消息-开始--------------------
+{Sender}:{SendTime.ToString("yyyy-MM-dd HH:mm:ss")}
 {Content}
-";
+--------------------接收到的消息-结束-------------------";
             return content;
         }
     }

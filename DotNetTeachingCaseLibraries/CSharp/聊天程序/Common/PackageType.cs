@@ -12,8 +12,17 @@ namespace Common
     [Serializable]
     public enum PackageType
     {
+        /// <summary>
+        /// 登录
+        /// </summary>
         Login,
+        /// <summary>
+        /// 登录结果
+        /// </summary>
         LoginResult,
+        /// <summary>
+        /// 消息
+        /// </summary>
         Message,
     }
 }
