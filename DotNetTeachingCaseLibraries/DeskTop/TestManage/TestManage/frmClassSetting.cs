@@ -16,5 +16,10 @@ namespace TestManage
         {
             InitializeComponent();
         }
+
+        private void frmClassSetting_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

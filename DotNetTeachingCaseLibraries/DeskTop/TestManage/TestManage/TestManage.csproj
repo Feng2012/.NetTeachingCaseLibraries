@@ -32,8 +32,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,6 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DDL\Answer.cs" />
+    <Compile Include="DDL\Class.cs" />
+    <Compile Include="DDL\ClassTest.cs" />
+    <Compile Include="DDL\Question.cs" />
+    <Compile Include="DDL\Score.cs" />
+    <Compile Include="DDL\Student.cs" />
+    <Compile Include="DDL\Subject.cs" />
+    <Compile Include="DDL\Test.cs" />
+    <Compile Include="DDL\TestManageModel.cs" />
     <Compile Include="frmClassSetting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +129,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -126,13 +145,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BLL\" />
-    <Folder Include="DDL\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Add.png" />
     <Content Include="Images\Del.png" />
     <Content Include="Images\Edit.png" />
     <Content Include="Images\MB_0015_reload.png" />
+    <Content Include="TestManageDB.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
