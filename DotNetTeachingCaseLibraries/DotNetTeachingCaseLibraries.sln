@@ -38,6 +38,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "文档", "文档", "{87E8BD
 		CSharp\聊天程序\文档\案例说明.txt = CSharp\聊天程序\文档\案例说明.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleReader", "CSharp\ConsoleReader\ConsoleReader.csproj", "{51319146-3F89-497B-9E74-6BA759E29CA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,6 +86,10 @@ Global
 		{CF74E71C-DB63-4FFF-9F7F-0E6D456C338E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF74E71C-DB63-4FFF-9F7F-0E6D456C338E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF74E71C-DB63-4FFF-9F7F-0E6D456C338E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51319146-3F89-497B-9E74-6BA759E29CA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51319146-3F89-497B-9E74-6BA759E29CA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51319146-3F89-497B-9E74-6BA759E29CA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51319146-3F89-497B-9E74-6BA759E29CA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,5 +107,6 @@ Global
 		{A8F3516A-A7CA-4359-BB9D-FD9D8D96A5D3} = {8A435DBD-ECA4-4592-8EC5-2AA78D7D2655}
 		{CF74E71C-DB63-4FFF-9F7F-0E6D456C338E} = {8A435DBD-ECA4-4592-8EC5-2AA78D7D2655}
 		{87E8BD44-7CE9-4943-8362-20EFAC7D6091} = {8A435DBD-ECA4-4592-8EC5-2AA78D7D2655}
+		{51319146-3F89-497B-9E74-6BA759E29CA8} = {32920DB2-134A-42D7-92AC-62879B219FA7}
 	EndGlobalSection
 EndGlobal
