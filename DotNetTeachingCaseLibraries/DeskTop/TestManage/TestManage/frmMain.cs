@@ -16,5 +16,15 @@ namespace TestManage
         {
             InitializeComponent();
         }
+        public frmMain(IService server)
+        {
+            InitializeComponent();
+            server.F();
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
