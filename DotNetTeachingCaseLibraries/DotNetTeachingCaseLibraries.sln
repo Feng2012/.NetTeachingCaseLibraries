@@ -33,6 +33,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "CSharp\聊天程�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "CSharp\聊天程序\Common\Common.csproj", "{CF74E71C-DB63-4FFF-9F7F-0E6D456C338E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "文档", "文档", "{87E8BD44-7CE9-4943-8362-20EFAC7D6091}"
+	ProjectSection(SolutionItems) = preProject
+		CSharp\聊天程序\文档\案例说明.txt = CSharp\聊天程序\文档\案例说明.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,5 +100,6 @@ Global
 		{7485B284-E289-4AF0-BA87-692CAC1E92E7} = {8A435DBD-ECA4-4592-8EC5-2AA78D7D2655}
 		{A8F3516A-A7CA-4359-BB9D-FD9D8D96A5D3} = {8A435DBD-ECA4-4592-8EC5-2AA78D7D2655}
 		{CF74E71C-DB63-4FFF-9F7F-0E6D456C338E} = {8A435DBD-ECA4-4592-8EC5-2AA78D7D2655}
+		{87E8BD44-7CE9-4943-8362-20EFAC7D6091} = {8A435DBD-ECA4-4592-8EC5-2AA78D7D2655}
 	EndGlobalSection
 EndGlobal
