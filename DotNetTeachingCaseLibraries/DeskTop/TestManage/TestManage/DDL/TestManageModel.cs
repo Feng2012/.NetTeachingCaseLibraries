@@ -9,8 +9,7 @@ namespace TestManage.DDL
     {
         public TestManageModel()
             : base("name=TestManageModel")
-        {
-            var ff = 11;
+        { 
         }
 
         public virtual DbSet<Answer> Answers { get; set; }

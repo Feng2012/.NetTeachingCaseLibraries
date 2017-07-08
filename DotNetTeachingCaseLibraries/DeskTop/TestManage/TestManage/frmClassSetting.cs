@@ -14,23 +14,17 @@ namespace TestManage
 {
     public partial class frmClassSetting : Form
     {
-        IClassRepository _classBll;
-        //public frmClassSetting(IClassRepository classBll = null)
-        //{
-        //    InitializeComponent();
-        //    _classBll = CreateInt.Create(classBll);
-
-        //}
-        public frmClassSetting(IClassRepository classBll)
+        IClassRepository _classRepository;
+        public frmClassSetting(IClassRepository classRepository)
         {
             InitializeComponent();
-            _classBll = classBll;
+            _classRepository = classRepository;
 
         }
 
         private void frmClassSetting_Load(object sender, EventArgs e)
         {
-
+            dgvData.DataSource = _classRepository.GetClasses();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -38,7 +32,12 @@ namespace TestManage
             var cls = new Class();
             cls.ClassName = txbClassName.Text;
             cls.Memo = txbMemo.Text;
-            _classBll.AddClass(cls);
+            _classRepository.AddClass(cls);
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -12,5 +12,11 @@ namespace TestManage.BLL
     {
          bool AddClass(Class cls);
 
+        bool RemoveClass(int id);
+
+        bool ModifyClass(Class cls);
+
+        List<Class> GetClasses();
+
     }
 }
