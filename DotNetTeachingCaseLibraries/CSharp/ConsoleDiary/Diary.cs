@@ -34,5 +34,15 @@ namespace ConsoleDiary
         /// </summary>
         public string Content
         { get; set; }
+        /// <summary>
+        /// 重写日志ToString
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            var content = $@"{CreateTime.ToString("yyyy-MM-dd")} {Week} {Weather}
+{Content}";
+            return content;
+        }
     }
 }
