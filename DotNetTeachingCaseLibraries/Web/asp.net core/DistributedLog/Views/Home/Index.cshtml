@@ -2,13 +2,13 @@
     ViewData["Title"] = "Home Page";
 }
 <textarea id="message" rows="10" cols="30"></textarea>
-<input type="button" onclick="sava()" value="提交" />
+<input type="button" onclick="log()" value="写日志" />
 @section Scripts{
     <script>
-        function sava() {
+        function log() {
 
             $.get("/writelog", { sendmessage: $("#message").val() }, function (result) {
-
+              console.log(result)
             })
         }
     </script>

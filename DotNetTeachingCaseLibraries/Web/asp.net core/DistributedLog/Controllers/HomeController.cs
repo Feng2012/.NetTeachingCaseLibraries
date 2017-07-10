@@ -22,8 +22,8 @@ namespace DistributedLog.Controllers
             {
                 using (var channel = connection.CreateModel())
                 {
-                    //创建一个名叫"hello"的消息队列
-                    channel.QueueDeclare(queue: "hello",
+                    //创建一个名叫"log"的消息队列
+                    channel.QueueDeclare(queue: "log",
        durable: false,
        exclusive: false,
        autoDelete: false,
@@ -34,10 +34,10 @@ namespace DistributedLog.Controllers
 
                     //向该消息队列发送消息message
                     channel.BasicPublish(exchange: "",
-       routingKey: "hello",
+       routingKey: "log",
        basicProperties: null,
        body: body);
-                    Console.WriteLine(" [x] Sent {0}", message);
+                    Console.WriteLine("发送日志：{0}", message);
                 }
 
             }
