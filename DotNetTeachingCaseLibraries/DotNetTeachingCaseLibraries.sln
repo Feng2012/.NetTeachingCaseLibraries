@@ -52,6 +52,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DistributedLog", "Web\asp.n
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DistributedLogWriter", "Web\asp.net core\RabbitMQ_Log\DistributedLogWriter\DistributedLogWriter.csproj", "{72468BBC-5836-4C12-A350-6C063DD82771}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "文档", "文档", "{E4863922-1445-4847-8F9E-337A5B8A93C2}"
+	ProjectSection(SolutionItems) = preProject
+		Web\asp.net core\RabbitMQ_Log\文档\案例说明.txt = Web\asp.net core\RabbitMQ_Log\文档\案例说明.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -138,5 +143,6 @@ Global
 		{87FABE1F-EAD7-45C4-B123-69CDB72D372F} = {5E9D9D36-A077-4F91-AA2B-68FA0156C56D}
 		{708AD335-1E64-4B9B-AC5A-52DEA8FCF938} = {87FABE1F-EAD7-45C4-B123-69CDB72D372F}
 		{72468BBC-5836-4C12-A350-6C063DD82771} = {87FABE1F-EAD7-45C4-B123-69CDB72D372F}
+		{E4863922-1445-4847-8F9E-337A5B8A93C2} = {87FABE1F-EAD7-45C4-B123-69CDB72D372F}
 	EndGlobalSection
 EndGlobal

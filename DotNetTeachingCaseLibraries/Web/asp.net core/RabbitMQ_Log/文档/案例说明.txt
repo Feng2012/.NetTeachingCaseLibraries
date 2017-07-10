@@ -1,0 +1,14 @@
+﻿要求：
+1、http://www.erlang.org/ 下载Erlang安装
+2、http://www.rabbitmq.com/ 下载RabbitMQ服务端安装
+3、Nuget安装RabbitMQ.Client包
+
+关键字：
+RabbitMQ,总线
+
+目标：
+分布式日志
+
+知识点：
+1、分布式
+2、RabbitMQ使用
