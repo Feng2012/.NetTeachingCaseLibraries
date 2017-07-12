@@ -57,6 +57,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "文档", "文档", "{E48639
 		Web\asp.net core\RabbitMQ_Log\文档\案例说明.txt = Web\asp.net core\RabbitMQ_Log\文档\案例说明.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SimpleAccountBook", "SimpleAccountBook", "{5574FD84-69FE-4FEF-9F4A-A40010E047EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleAccountBook", "DeskTop\SimpleAccountBook\SimpleAccountBook.csproj", "{D3F5EB3D-2708-4AB3-B6AF-303237EB4B28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -119,6 +123,10 @@ Global
 		{72468BBC-5836-4C12-A350-6C063DD82771}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72468BBC-5836-4C12-A350-6C063DD82771}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72468BBC-5836-4C12-A350-6C063DD82771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3F5EB3D-2708-4AB3-B6AF-303237EB4B28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3F5EB3D-2708-4AB3-B6AF-303237EB4B28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3F5EB3D-2708-4AB3-B6AF-303237EB4B28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3F5EB3D-2708-4AB3-B6AF-303237EB4B28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -144,5 +152,7 @@ Global
 		{708AD335-1E64-4B9B-AC5A-52DEA8FCF938} = {87FABE1F-EAD7-45C4-B123-69CDB72D372F}
 		{72468BBC-5836-4C12-A350-6C063DD82771} = {87FABE1F-EAD7-45C4-B123-69CDB72D372F}
 		{E4863922-1445-4847-8F9E-337A5B8A93C2} = {87FABE1F-EAD7-45C4-B123-69CDB72D372F}
+		{5574FD84-69FE-4FEF-9F4A-A40010E047EF} = {E89DBC1A-6347-4F54-82B4-DEAE610B9886}
+		{D3F5EB3D-2708-4AB3-B6AF-303237EB4B28} = {5574FD84-69FE-4FEF-9F4A-A40010E047EF}
 	EndGlobalSection
 EndGlobal
