@@ -77,6 +77,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "文档", "文档", "{28FE0D
 		DeskTop\SimpleAccountBook\文档\案例说明.docx = DeskTop\SimpleAccountBook\文档\案例说明.docx
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FlashLight", "FlashLight", "{98722963-7276-488A-A586-C48D53791189}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Android_FlashLight", "Other\FlashLight\Android_FlashLight\Android_FlashLight.csproj", "{4F61ED65-360E-474F-A94B-E22CFA22EFE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -151,6 +155,12 @@ Global
 		{67C9B264-5D64-4107-8D69-C27710E6B20F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67C9B264-5D64-4107-8D69-C27710E6B20F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67C9B264-5D64-4107-8D69-C27710E6B20F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F61ED65-360E-474F-A94B-E22CFA22EFE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F61ED65-360E-474F-A94B-E22CFA22EFE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F61ED65-360E-474F-A94B-E22CFA22EFE9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4F61ED65-360E-474F-A94B-E22CFA22EFE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F61ED65-360E-474F-A94B-E22CFA22EFE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F61ED65-360E-474F-A94B-E22CFA22EFE9}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -183,5 +193,7 @@ Global
 		{67C9B264-5D64-4107-8D69-C27710E6B20F} = {ACAE713E-DCAC-42E6-8CD2-7FFF5F00F5E9}
 		{AD1D126C-2368-43B1-B3B9-DCFBCD563AEF} = {ACAE713E-DCAC-42E6-8CD2-7FFF5F00F5E9}
 		{28FE0DFF-8E01-4E44-A756-A307FDA8D77B} = {5574FD84-69FE-4FEF-9F4A-A40010E047EF}
+		{98722963-7276-488A-A586-C48D53791189} = {BE9AA0D8-0DB8-4FC2-B6CA-7F988C76DDFA}
+		{4F61ED65-360E-474F-A94B-E22CFA22EFE9} = {98722963-7276-488A-A586-C48D53791189}
 	EndGlobalSection
 EndGlobal
