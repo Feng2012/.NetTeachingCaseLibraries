@@ -1,20 +1,19 @@
-﻿using System;
+﻿using Package;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
-using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using System.Threading;
-using Package;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace Server
+namespace Client
 {
     public partial class frmMain : Form
     {
@@ -24,22 +23,18 @@ namespace Server
             //设置跨线程访问控件
             CheckForIllegalCrossThreadCalls = false;
         }
-        //网络流
-        NetworkStream stream;
+        /// <summary>
+        /// 网络流
+        /// </summary>
+        NetworkStream _stream;
         private void frmMain_Load(object sender, EventArgs e)
         {
-            //定义IP地址
-            var ip = IPAddress.Parse("127.0.0.1");
-            //监听器定义
-            var server = new TcpListener(ip, 8888);
-            //开始监听
-            server.Start();
-            //接收客户端连接
-            var client = server.AcceptTcpClient();
-            //获取客户端网络流
-            stream = client.GetStream();
+            //定义客户端
+            var client = new TcpClient("127.0.0.1", 8888);
+            //获取客户端流
+            _stream = client.GetStream();
             //启动读流信息线程
-            new Thread(Read).Start(stream);
+            new Thread(Read).Start(_stream);
         }
         /// <summary>
         /// 接收信息
@@ -102,7 +97,7 @@ namespace Server
             //定义格式化器
             var formater = new BinaryFormatter();
             //序列化到网络流，即发送信息
-            formater.Serialize(stream, textPackage);
+            formater.Serialize(_stream, textPackage);
             //历史信息显示
             txbHis.Text += "自己说：" + txbSend.Text + "\r\n";
             //清空发送文本框

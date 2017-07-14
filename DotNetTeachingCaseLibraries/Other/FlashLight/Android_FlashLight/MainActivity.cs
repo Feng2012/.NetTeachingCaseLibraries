@@ -31,6 +31,8 @@ namespace Android_FlashLight
 			{
 				try
 				{
+                   
+
                     //实例化镜头
                     if (camera == null)
 					{
