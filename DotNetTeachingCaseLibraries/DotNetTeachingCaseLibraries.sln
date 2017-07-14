@@ -96,6 +96,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "文档", "文档", "{68F3D3
 		DeskTop\Chat\文档\案例说明.txt = DeskTop\Chat\文档\案例说明.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "文档", "文档", "{22ADCAC5-E1F7-4107-B973-166A840C406D}"
+	ProjectSection(SolutionItems) = preProject
+		Other\FlashLight\文档\案例说明.txt = Other\FlashLight\文档\案例说明.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -414,5 +419,6 @@ Global
 		{2B9C2128-7E03-4B2C-B097-4FC0682D3184} = {D6093D6C-C701-4FD1-A44B-03DE5BB926E9}
 		{5BBBFDA6-E3F8-4A63-A0AC-B0610542EA00} = {D6093D6C-C701-4FD1-A44B-03DE5BB926E9}
 		{68F3D364-81BE-41E5-9C49-64D01C3C0EA1} = {D6093D6C-C701-4FD1-A44B-03DE5BB926E9}
+		{22ADCAC5-E1F7-4107-B973-166A840C406D} = {98722963-7276-488A-A586-C48D53791189}
 	EndGlobalSection
 EndGlobal
