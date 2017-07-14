@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
+
 
 namespace SimpleAccountBook
 {
@@ -24,10 +26,19 @@ namespace SimpleAccountBook
             txbPassword.Clear();
             txbUserName.Focus();
         }
+        /// <summary>
+        /// 用户姓名
+        /// </summary>
+        public string LoginName
+        {
+            get;
+            private set;
+        }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-
+            var bllHandler = new BllHandler();
+            LoginName = bllHandler.Login(txbUserName.Text, txbPassword.Text);
         }
     }
 }

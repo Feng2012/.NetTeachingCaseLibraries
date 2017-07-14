@@ -12,9 +12,16 @@ namespace SimpleAccountBook
 {
     public partial class frmMain : Form
     {
-        public frmMain()
+        string _loginName;
+        public frmMain(string loginName)
         {
             InitializeComponent();
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            tslLoginName.Text = _loginName;
+
         }
     }
 }
