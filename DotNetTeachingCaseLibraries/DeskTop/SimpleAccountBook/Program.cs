@@ -21,7 +21,7 @@ namespace SimpleAccountBook
             //判断登录是否成功
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
-                Application.Run(new frmMain(loginForm.UserName));
+                Application.Run(new frmMain(loginForm.LoginName));
             }
         }
     }

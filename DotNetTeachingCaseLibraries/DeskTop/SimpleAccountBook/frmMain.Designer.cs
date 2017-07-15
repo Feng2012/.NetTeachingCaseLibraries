@@ -30,9 +30,9 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.sstBar = new System.Windows.Forms.StatusStrip();
-            this.tslLoginName = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsbDateTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tslLoginName = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -45,7 +45,8 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1483, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 1, 0, 1);
+            this.menuStrip1.Size = new System.Drawing.Size(742, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -56,11 +57,24 @@
             this.tsbDateTime,
             this.toolStripStatusLabel1,
             this.tslLoginName});
-            this.sstBar.Location = new System.Drawing.Point(0, 930);
+            this.sstBar.Location = new System.Drawing.Point(0, 459);
             this.sstBar.Name = "sstBar";
-            this.sstBar.Size = new System.Drawing.Size(1483, 40);
+            this.sstBar.Padding = new System.Windows.Forms.Padding(0, 0, 7, 0);
+            this.sstBar.Size = new System.Drawing.Size(742, 26);
             this.sstBar.TabIndex = 1;
             this.sstBar.Text = "statusStrip1";
+            // 
+            // tsbDateTime
+            // 
+            this.tsbDateTime.Name = "tsbDateTime";
+            this.tsbDateTime.Size = new System.Drawing.Size(60, 21);
+            this.tsbDateTime.Text = "2017-1-1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(639, 21);
+            this.toolStripStatusLabel1.Spring = true;
             // 
             // tslLoginName
             // 
@@ -70,20 +84,8 @@
             this.tslLoginName.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner;
             this.tslLoginName.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tslLoginName.Name = "tslLoginName";
-            this.tslLoginName.Size = new System.Drawing.Size(66, 35);
+            this.tslLoginName.Size = new System.Drawing.Size(36, 21);
             this.tslLoginName.Text = "张三";
-            // 
-            // tsbDateTime
-            // 
-            this.tsbDateTime.Name = "tsbDateTime";
-            this.tsbDateTime.Size = new System.Drawing.Size(118, 35);
-            this.tsbDateTime.Text = "2017-1-1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1284, 35);
-            this.toolStripStatusLabel1.Spring = true;
             // 
             // tabControl1
             // 
@@ -93,42 +95,47 @@
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("宋体", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1483, 906);
+            this.tabControl1.Size = new System.Drawing.Size(742, 435);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
             // 
-            this.tabPage1.Location = new System.Drawing.Point(48, 4);
+            this.tabPage1.Location = new System.Drawing.Point(28, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1431, 898);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Size = new System.Drawing.Size(710, 427);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "收入";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(48, 4);
+            this.tabPage2.Location = new System.Drawing.Point(28, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1431, 898);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Size = new System.Drawing.Size(710, 445);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "支出";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1483, 970);
+            this.ClientSize = new System.Drawing.Size(742, 485);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.sstBar);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Simaple小帐本";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.sstBar.ResumeLayout(false);

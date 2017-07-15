@@ -39,6 +39,15 @@ namespace SimpleAccountBook
         {
             var bllHandler = new BllHandler();
             LoginName = bllHandler.Login(txbUserName.Text, txbPassword.Text);
+            if(LoginName!=null)
+            {
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("用户名或密码不正确！");
+            }
         }
     }
 }

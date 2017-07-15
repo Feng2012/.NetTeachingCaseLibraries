@@ -31,7 +31,7 @@ namespace SimpleAccountBook
         /// <returns>用户姓名</returns>
         public string Login(string userName, string password)
         {
-            var sql = "select name from username=@username and password=@password";
+            var sql = "select name from users where username=@username and password=@password";
             var usernamePar = new OleDbParameter() { ParameterName = "@username", Value = userName };
             var passwordPar = new OleDbParameter() { ParameterName = "@password", Value = password };
 

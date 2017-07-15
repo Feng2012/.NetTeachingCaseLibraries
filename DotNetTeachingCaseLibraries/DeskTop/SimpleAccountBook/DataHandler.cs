@@ -22,8 +22,8 @@ namespace SimpleAccountBook
         /// 构造函数
         /// </summary>
         public DataHandler()
-        {
-            _connectionString = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+        {            
+            _connectionString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={System.IO.Directory.GetCurrentDirectory()+"//" +ConfigurationManager.AppSettings["database"]};" ;
         }
 
         /// <summary>
@@ -75,6 +75,7 @@ namespace SimpleAccountBook
             using (var con = new OleDbConnection(_connectionString))
             {
                 var cmd = new OleDbCommand();
+                cmd.Connection = con;
                 cmd.CommandText = sql;
                 cmd.Parameters.AddRange(pars);
                 con.Open();
