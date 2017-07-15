@@ -39,6 +39,7 @@ namespace SimpleAccountBook
                 var cmd = new OleDbCommand();
                 cmd.CommandText = sql;
                 cmd.Parameters.AddRange(pars);
+                cmd.Connection = con;
                 con.Open();
                 var table = new DataTable();
                 var reader = cmd.ExecuteReader();
@@ -52,11 +53,12 @@ namespace SimpleAccountBook
         /// <param name="sql">语句</param>
         /// <param name="pars">参数列表</param>
         /// <returns></returns>
-        public int ChangeDate(string sql, params OleDbCommand[] pars)
+        public int ChangeDate(string sql, params OleDbParameter[] pars)
         {
             using (var con = new OleDbConnection(_connectionString))
             {
                 var cmd = new OleDbCommand();
+                cmd.Connection = con;
                 cmd.CommandText = sql;
                 cmd.Parameters.AddRange(pars);
                 con.Open();

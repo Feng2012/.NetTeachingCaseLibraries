@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Text;
@@ -36,6 +37,56 @@ namespace SimpleAccountBook
             var passwordPar = new OleDbParameter() { ParameterName = "@password", Value = password };
 
             return _dataHandle.GetValue(sql, usernamePar, passwordPar)?.ToString();
+        }
+
+        /// <summary>
+        /// 查询财务类型
+        /// </summary>
+        /// <returns>财务类型集合</returns>
+        public List<dynamic> GetFinanceTypes()
+        {
+            var sql = "select id,typename,pid from financialtypes";
+            var list = new List<dynamic>();
+            foreach (DataRow row in _dataHandle.GetTable(sql).Rows)
+            {
+                list.Add(new { id = Convert.ToInt32(row["id"]), typename = row["typename"].ToString(), pid = Convert.ToInt32(row["pid"]) });
+            }
+            return list;
+        }
+        /// <summary>
+        /// 添加财务类型
+        /// </summary>
+        /// <param name="typeName">类型名称</param>
+        /// <param name="pid">父ID</param>
+        /// <returns>类型ID</returns>
+        public int AddFinanceType(string typeName, int pid)
+        {
+            var sql = "insert into financialtypes(typename,pid) values(@typename,@pid)";
+
+            var typeNamePar = new OleDbParameter() { ParameterName = "@typename", Value = typeName };
+            var pidPar = new OleDbParameter() { ParameterName = "@pid", Value = pid };
+            var result = _dataHandle.ChangeDate(sql, typeNamePar, pidPar);
+            if (result > 0)
+            {
+                sql = "select max(id) from financialtypes";
+                var obj = _dataHandle.GetValue(sql);
+                return Convert.ToInt32(obj);
+            }
+            else
+            {
+                throw new Exception("操作失败！");
+            }
+        }
+        /// <summary>
+        /// 按ID删除类型
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns>删除影响行数</returns>
+        public bool DeleteFinanceType(int id)
+        {
+            var sql = "delete from financialtypes where id=@id";
+            var idPar = new OleDbParameter() { ParameterName = "@id", Value = id };
+            return _dataHandle.ChangeDate(sql, idPar)>0;
         }
     }
 }
