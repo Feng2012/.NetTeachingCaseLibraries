@@ -200,6 +200,7 @@
             this.btnSelectFinanceType.TabIndex = 0;
             this.btnSelectFinanceType.Text = "选择财务类型";
             this.btnSelectFinanceType.UseVisualStyleBackColor = true;
+            this.btnSelectFinanceType.Click += new System.EventHandler(this.btnSelectFinanceType_Click);
             // 
             // txbFinanceType
             // 
@@ -276,6 +277,7 @@
             this.btnModify.TabIndex = 9;
             this.btnModify.Text = "修改";
             this.btnModify.UseVisualStyleBackColor = true;
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // btnRemove
             // 

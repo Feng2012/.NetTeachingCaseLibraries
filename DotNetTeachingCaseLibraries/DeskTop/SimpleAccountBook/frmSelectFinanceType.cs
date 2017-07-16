@@ -51,7 +51,24 @@ namespace SimpleAccountBook
 
         private void trvFinanceType_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-
+            FinaceTypeID = Convert.ToInt32(e.Node.Name);
+            FinaceTypeName = e.Node.Text;
+        }
+        /// <summary>
+        /// 类型编号
+        /// </summary>
+        public int FinaceTypeID
+        {
+            get;
+            private set;
+        }
+        /// <summary>
+        /// 类开名称
+        /// </summary>
+        public string FinaceTypeName
+        {
+            get;
+            private set;
         }
     }
 }
