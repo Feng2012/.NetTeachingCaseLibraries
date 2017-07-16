@@ -23,7 +23,7 @@ namespace SimpleAccountBook
         /// </summary>
         public DataHandler()
         {            
-            _connectionString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={System.IO.Directory.GetCurrentDirectory()+"//" +ConfigurationManager.AppSettings["database"]};" ;
+            _connectionString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={System.IO.Directory.GetCurrentDirectory()+"\\" +ConfigurationManager.AppSettings["database"]};" ;
         }
 
         /// <summary>

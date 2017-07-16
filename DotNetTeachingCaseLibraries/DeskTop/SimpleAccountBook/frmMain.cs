@@ -24,10 +24,12 @@ namespace SimpleAccountBook
             tslLoginName.Text = _loginName;
             _bllHandler = new BllHandler();
             //加载用户下拉列表
-            cmbSpendUser.DataSource= _bllHandler.GetUsers();
+            cmbSpendUser.DataSource = _bllHandler.GetUsers();
             cmbSpendUser.DisplayMember = "name";
             cmbSpendUser.ValueMember = "id";
             cmbSpendUser.Text = _loginName;
+            //查询财务信息
+            dgvIncome.DataSource = _bllHandler.GetAccounts();
         }
 
         private void 财务类型设置ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -68,6 +70,14 @@ namespace SimpleAccountBook
         private void btnModify_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvIncome_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+              
+            }
         }
     }
 }

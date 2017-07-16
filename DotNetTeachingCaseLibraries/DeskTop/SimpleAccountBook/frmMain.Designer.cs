@@ -35,26 +35,21 @@
             this.tsbDateTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tslLoginName = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvIncome = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnSelectFinanceType = new System.Windows.Forms.Button();
-            this.txbFinanceType = new System.Windows.Forms.TextBox();
-            this.txbAmout = new System.Windows.Forms.TextBox();
-            this.labAmout = new System.Windows.Forms.Label();
-            this.cmbSpendUser = new System.Windows.Forms.ComboBox();
-            this.labSpendUser = new System.Windows.Forms.Label();
-            this.txbMemo = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnSava = new System.Windows.Forms.Button();
-            this.btnModify = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
+            this.btnModify = new System.Windows.Forms.Button();
+            this.btnSava = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txbMemo = new System.Windows.Forms.TextBox();
+            this.labSpendUser = new System.Windows.Forms.Label();
+            this.cmbSpendUser = new System.Windows.Forms.ComboBox();
+            this.labAmout = new System.Windows.Forms.Label();
+            this.txbAmout = new System.Windows.Forms.TextBox();
+            this.txbFinanceType = new System.Windows.Forms.TextBox();
+            this.btnSelectFinanceType = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.sstBar.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -67,7 +62,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(742, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(683, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -96,7 +91,7 @@
             this.sstBar.Location = new System.Drawing.Point(0, 459);
             this.sstBar.Name = "sstBar";
             this.sstBar.Padding = new System.Windows.Forms.Padding(0, 0, 7, 0);
-            this.sstBar.Size = new System.Drawing.Size(742, 26);
+            this.sstBar.Size = new System.Drawing.Size(683, 26);
             this.sstBar.TabIndex = 1;
             this.sstBar.Text = "statusStrip1";
             // 
@@ -123,43 +118,19 @@
             this.tslLoginName.Size = new System.Drawing.Size(36, 21);
             this.tslLoginName.Text = "张三";
             // 
-            // tabControl1
-            // 
-            this.tabControl1.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("宋体", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 24);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.tabControl1.Multiline = true;
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(742, 435);
-            this.tabControl1.TabIndex = 2;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.dgvIncome);
-            this.tabPage1.Controls.Add(this.panel1);
-            this.tabPage1.Location = new System.Drawing.Point(28, 4);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(710, 427);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "收入";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
             // dgvIncome
             // 
+            this.dgvIncome.AllowUserToAddRows = false;
             this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvIncome.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvIncome.Location = new System.Drawing.Point(2, 129);
+            this.dgvIncome.Location = new System.Drawing.Point(0, 151);
             this.dgvIncome.Name = "dgvIncome";
+            this.dgvIncome.ReadOnly = true;
             this.dgvIncome.RowTemplate.Height = 23;
-            this.dgvIncome.Size = new System.Drawing.Size(706, 296);
-            this.dgvIncome.TabIndex = 1;
+            this.dgvIncome.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvIncome.Size = new System.Drawing.Size(683, 308);
+            this.dgvIncome.TabIndex = 4;
+            this.dgvIncome.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIncome_CellDoubleClick);
             // 
             // panel1
             // 
@@ -176,98 +147,19 @@
             this.panel1.Controls.Add(this.btnSelectFinanceType);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.panel1.Location = new System.Drawing.Point(2, 2);
+            this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(706, 127);
-            this.panel1.TabIndex = 0;
+            this.panel1.Size = new System.Drawing.Size(683, 127);
+            this.panel1.TabIndex = 3;
             // 
-            // tabPage2
+            // btnRemove
             // 
-            this.tabPage2.Location = new System.Drawing.Point(28, 4);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(710, 427);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "支出";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // btnSelectFinanceType
-            // 
-            this.btnSelectFinanceType.Location = new System.Drawing.Point(156, 8);
-            this.btnSelectFinanceType.Name = "btnSelectFinanceType";
-            this.btnSelectFinanceType.Size = new System.Drawing.Size(75, 23);
-            this.btnSelectFinanceType.TabIndex = 0;
-            this.btnSelectFinanceType.Text = "选择财务类型";
-            this.btnSelectFinanceType.UseVisualStyleBackColor = true;
-            this.btnSelectFinanceType.Click += new System.EventHandler(this.btnSelectFinanceType_Click);
-            // 
-            // txbFinanceType
-            // 
-            this.txbFinanceType.Location = new System.Drawing.Point(26, 9);
-            this.txbFinanceType.Name = "txbFinanceType";
-            this.txbFinanceType.Size = new System.Drawing.Size(127, 21);
-            this.txbFinanceType.TabIndex = 1;
-            // 
-            // txbAmout
-            // 
-            this.txbAmout.Location = new System.Drawing.Point(319, 9);
-            this.txbAmout.Name = "txbAmout";
-            this.txbAmout.Size = new System.Drawing.Size(127, 21);
-            this.txbAmout.TabIndex = 2;
-            // 
-            // labAmout
-            // 
-            this.labAmout.AutoSize = true;
-            this.labAmout.Location = new System.Drawing.Point(278, 13);
-            this.labAmout.Name = "labAmout";
-            this.labAmout.Size = new System.Drawing.Size(41, 12);
-            this.labAmout.TabIndex = 3;
-            this.labAmout.Text = "金额：";
-            // 
-            // cmbSpendUser
-            // 
-            this.cmbSpendUser.FormattingEnabled = true;
-            this.cmbSpendUser.Location = new System.Drawing.Point(543, 8);
-            this.cmbSpendUser.Name = "cmbSpendUser";
-            this.cmbSpendUser.Size = new System.Drawing.Size(121, 20);
-            this.cmbSpendUser.TabIndex = 4;
-            // 
-            // labSpendUser
-            // 
-            this.labSpendUser.AutoSize = true;
-            this.labSpendUser.Location = new System.Drawing.Point(490, 13);
-            this.labSpendUser.Name = "labSpendUser";
-            this.labSpendUser.Size = new System.Drawing.Size(53, 12);
-            this.labSpendUser.TabIndex = 5;
-            this.labSpendUser.Text = "花费人：";
-            // 
-            // txbMemo
-            // 
-            this.txbMemo.Location = new System.Drawing.Point(26, 48);
-            this.txbMemo.Multiline = true;
-            this.txbMemo.Name = "txbMemo";
-            this.txbMemo.Size = new System.Drawing.Size(638, 45);
-            this.txbMemo.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "金额：";
-            // 
-            // btnSava
-            // 
-            this.btnSava.Location = new System.Drawing.Point(589, 99);
-            this.btnSava.Name = "btnSava";
-            this.btnSava.Size = new System.Drawing.Size(75, 23);
-            this.btnSava.TabIndex = 8;
-            this.btnSava.Text = "添加";
-            this.btnSava.UseVisualStyleBackColor = true;
-            this.btnSava.Click += new System.EventHandler(this.btnSava_Click);
+            this.btnRemove.Location = new System.Drawing.Point(427, 99);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnRemove.TabIndex = 10;
+            this.btnRemove.Text = "删除";
+            this.btnRemove.UseVisualStyleBackColor = true;
             // 
             // btnModify
             // 
@@ -279,21 +171,90 @@
             this.btnModify.UseVisualStyleBackColor = true;
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
-            // btnRemove
+            // btnSava
             // 
-            this.btnRemove.Location = new System.Drawing.Point(427, 99);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(75, 23);
-            this.btnRemove.TabIndex = 10;
-            this.btnRemove.Text = "删除";
-            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnSava.Location = new System.Drawing.Point(589, 99);
+            this.btnSava.Name = "btnSava";
+            this.btnSava.Size = new System.Drawing.Size(75, 23);
+            this.btnSava.TabIndex = 8;
+            this.btnSava.Text = "添加";
+            this.btnSava.UseVisualStyleBackColor = true;
+            this.btnSava.Click += new System.EventHandler(this.btnSava_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(24, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "金额：";
+            // 
+            // txbMemo
+            // 
+            this.txbMemo.Location = new System.Drawing.Point(26, 48);
+            this.txbMemo.Multiline = true;
+            this.txbMemo.Name = "txbMemo";
+            this.txbMemo.Size = new System.Drawing.Size(638, 45);
+            this.txbMemo.TabIndex = 6;
+            // 
+            // labSpendUser
+            // 
+            this.labSpendUser.AutoSize = true;
+            this.labSpendUser.Location = new System.Drawing.Point(490, 13);
+            this.labSpendUser.Name = "labSpendUser";
+            this.labSpendUser.Size = new System.Drawing.Size(53, 12);
+            this.labSpendUser.TabIndex = 5;
+            this.labSpendUser.Text = "花费人：";
+            // 
+            // cmbSpendUser
+            // 
+            this.cmbSpendUser.FormattingEnabled = true;
+            this.cmbSpendUser.Location = new System.Drawing.Point(543, 8);
+            this.cmbSpendUser.Name = "cmbSpendUser";
+            this.cmbSpendUser.Size = new System.Drawing.Size(121, 20);
+            this.cmbSpendUser.TabIndex = 4;
+            // 
+            // labAmout
+            // 
+            this.labAmout.AutoSize = true;
+            this.labAmout.Location = new System.Drawing.Point(278, 13);
+            this.labAmout.Name = "labAmout";
+            this.labAmout.Size = new System.Drawing.Size(41, 12);
+            this.labAmout.TabIndex = 3;
+            this.labAmout.Text = "金额：";
+            // 
+            // txbAmout
+            // 
+            this.txbAmout.Location = new System.Drawing.Point(319, 9);
+            this.txbAmout.Name = "txbAmout";
+            this.txbAmout.Size = new System.Drawing.Size(127, 21);
+            this.txbAmout.TabIndex = 2;
+            // 
+            // txbFinanceType
+            // 
+            this.txbFinanceType.Location = new System.Drawing.Point(26, 9);
+            this.txbFinanceType.Name = "txbFinanceType";
+            this.txbFinanceType.Size = new System.Drawing.Size(127, 21);
+            this.txbFinanceType.TabIndex = 1;
+            // 
+            // btnSelectFinanceType
+            // 
+            this.btnSelectFinanceType.Location = new System.Drawing.Point(156, 8);
+            this.btnSelectFinanceType.Name = "btnSelectFinanceType";
+            this.btnSelectFinanceType.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectFinanceType.TabIndex = 0;
+            this.btnSelectFinanceType.Text = "选择财务类型";
+            this.btnSelectFinanceType.UseVisualStyleBackColor = true;
+            this.btnSelectFinanceType.Click += new System.EventHandler(this.btnSelectFinanceType_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(742, 485);
-            this.Controls.Add(this.tabControl1);
+            this.ClientSize = new System.Drawing.Size(683, 485);
+            this.Controls.Add(this.dgvIncome);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.sstBar);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -306,8 +267,6 @@
             this.menuStrip1.PerformLayout();
             this.sstBar.ResumeLayout(false);
             this.sstBar.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -323,9 +282,6 @@
         private System.Windows.Forms.ToolStripStatusLabel tslLoginName;
         private System.Windows.Forms.ToolStripStatusLabel tsbDateTime;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 财务类型设置ToolStripMenuItem;
         private System.Windows.Forms.DataGridView dgvIncome;

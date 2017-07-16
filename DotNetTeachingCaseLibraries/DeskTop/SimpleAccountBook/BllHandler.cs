@@ -153,5 +153,17 @@ namespace SimpleAccountBook
             var result = _dataHandle.ChangeDate(sql, idPar);
             return result > 0;
         }
+
+        /// <summary>
+        /// 查询当前的信息
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetAccounts()
+        {
+            var sql = "select accounts.id as 编号,financetypeid as 财务类型编号,typename as 财务类型名称, amount as 金额,spenduser as 财务人,createby as 记帐人,createon as 记帐时间 from accounts join financetypes on accounts.financetypeid=financetypes.id where createon>@begintime and createon<@endtime";
+            var beginTimePar= new OleDbParameter() { ParameterName = "@begintime", Value = DateTime .Now.ToString("yyyy-MM-dd 00:00:00") };
+            var endTimePar = new OleDbParameter() { ParameterName = "@endtime", Value = DateTime.Now.ToString("yyyy-MM-dd 23:59:59") };
+            return _dataHandle.GetTable(sql, beginTimePar, endTimePar);
+        }
     }
 }
