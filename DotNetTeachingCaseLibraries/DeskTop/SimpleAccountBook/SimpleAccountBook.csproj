@@ -48,6 +48,12 @@
   <ItemGroup>
     <Compile Include="BllHandler.cs" />
     <Compile Include="DataHandler.cs" />
+    <Compile Include="frmSelectFinanceType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectFinanceType.Designer.cs">
+      <DependentUpon>frmSelectFinanceType.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmFinanceType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmSelectFinanceType.resx">
+      <DependentUpon>frmSelectFinanceType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmFinanceType.resx">
       <DependentUpon>frmFinanceType.cs</DependentUpon>
     </EmbeddedResource>

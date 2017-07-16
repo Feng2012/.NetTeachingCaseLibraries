@@ -22,9 +22,16 @@ namespace SimpleAccountBook
         {
             tslLoginName.Text = _loginName;
 
+
         }
 
         private void 财务类型设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var finaceTypeForm = new frmFinanceType();
+            finaceTypeForm.ShowDialog();
+        }
+
+        private void btnSava_Click(object sender, EventArgs e)
         {
 
         }

@@ -86,7 +86,72 @@ namespace SimpleAccountBook
         {
             var sql = "delete from financialtypes where id=@id";
             var idPar = new OleDbParameter() { ParameterName = "@id", Value = id };
-            return _dataHandle.ChangeDate(sql, idPar)>0;
+            return _dataHandle.ChangeDate(sql, idPar) > 0;
+        }
+
+        /// <summary>
+        /// 获取全部用户
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetUsers()
+        {
+            var sql = "select id,name from users";
+            return _dataHandle.GetTable(sql);
+        }
+        /// <summary>
+        /// 添加帐户
+        /// </summary>
+        /// <param name="finceTypeID">财务类型</param>
+        /// <param name="amount">金额</param>
+        /// <param name="spendUser">花销人</param>
+        /// <param name="createUser">添加人</param>
+        /// <param name="memo">备注</param>
+        /// <returns>是否成功</returns>
+        public bool AddAccount(int finceTypeID, decimal amount, string spendUser, string createUser, string memo)
+        {
+            var sql = "insert into accounts(financetypeid,amount,spenduser,createon,createby,memo) values(@financetypeid,@amount,@spenduser,@createon,@createby,@memo)";
+            var financeTypeIDPar = new OleDbParameter() { ParameterName = "@financetypeid", Value = finceTypeID };
+            var amountPar = new OleDbParameter() { ParameterName = "@amount", Value = amount };
+            var spenduserPar = new OleDbParameter() { ParameterName = "@spenduser", Value = spendUser };
+            var createUserPar = new OleDbParameter() { ParameterName = "@createby", Value = createUser };
+            var memoPar = new OleDbParameter() { ParameterName = "@memo", Value = memo };
+            var createonPar = new OleDbParameter() { ParameterName = "@createon", Value = DateTime.Now };
+            var result=_dataHandle.ChangeDate(sql, financeTypeIDPar, amountPar, spenduserPar, createUserPar, memoPar, createonPar);
+            return result > 0;
+        }
+
+        /// <summary>
+        /// 修改帐户
+        /// </summary>
+        /// <param name="id">编号</param>
+        /// <param name="finceTypeID">财务类型</param>
+        /// <param name="amount">金额</param>
+        /// <param name="spendUser">花销人</param>
+        /// <param name="memo">备注</param>
+        /// <returns>是否成功</returns>
+        public bool UpdateAccount(int id,int finceTypeID, decimal amount, string spendUser,string memo)
+        {
+            var sql = "update accounts set financetypeid=@financetypeid,amount=@amount,spenduser=@spenduser,memo=@memo where id=@id";
+            var financeTypeIDPar = new OleDbParameter() { ParameterName = "@financetypeid", Value = finceTypeID };
+            var amountPar = new OleDbParameter() { ParameterName = "@amount", Value = amount };
+            var spenduserPar = new OleDbParameter() { ParameterName = "@spenduser", Value = spendUser };
+            var memoPar = new OleDbParameter() { ParameterName = "@memo", Value = memo };
+            var idPar = new OleDbParameter() { ParameterName = "@id", Value = id };
+            var result = _dataHandle.ChangeDate(sql, financeTypeIDPar, amountPar, spenduserPar, idPar, memoPar);
+            return result > 0;
+        }
+
+        /// <summary>
+        /// 修改帐户
+        /// </summary>
+        /// <param name="id">编号</param>
+        /// <returns>是否成功</returns>
+        public bool RemoveAccount(int id)
+        {
+            var sql = "delete from accounts  where id=@id";
+            var idPar = new OleDbParameter() { ParameterName = "@id", Value = id };
+            var result = _dataHandle.ChangeDate(sql, idPar);
+            return result > 0;
         }
     }
 }

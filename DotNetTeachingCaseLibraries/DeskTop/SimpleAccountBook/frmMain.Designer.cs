@@ -29,22 +29,34 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.财务类型设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sstBar = new System.Windows.Forms.StatusStrip();
             this.tsbDateTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tslLoginName = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.dgvIncome = new System.Windows.Forms.DataGridView();
-            this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.财务类型设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnSelectFinanceType = new System.Windows.Forms.Button();
+            this.txbFinanceType = new System.Windows.Forms.TextBox();
+            this.txbAmout = new System.Windows.Forms.TextBox();
+            this.labAmout = new System.Windows.Forms.Label();
+            this.cmbSpendUser = new System.Windows.Forms.ComboBox();
+            this.labSpendUser = new System.Windows.Forms.Label();
+            this.txbMemo = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnSava = new System.Windows.Forms.Button();
+            this.btnModify = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.sstBar.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -58,6 +70,21 @@
             this.menuStrip1.Size = new System.Drawing.Size(742, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // 设置ToolStripMenuItem
+            // 
+            this.设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.财务类型设置ToolStripMenuItem});
+            this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(44, 22);
+            this.设置ToolStripMenuItem.Text = "设置";
+            // 
+            // 财务类型设置ToolStripMenuItem
+            // 
+            this.财务类型设置ToolStripMenuItem.Name = "财务类型设置ToolStripMenuItem";
+            this.财务类型设置ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.财务类型设置ToolStripMenuItem.Text = "财务类型设置";
+            this.财务类型设置ToolStripMenuItem.Click += new System.EventHandler(this.财务类型设置ToolStripMenuItem_Click);
             // 
             // sstBar
             // 
@@ -124,6 +151,36 @@
             this.tabPage1.Text = "收入";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // dgvIncome
+            // 
+            this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvIncome.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvIncome.Location = new System.Drawing.Point(2, 129);
+            this.dgvIncome.Name = "dgvIncome";
+            this.dgvIncome.RowTemplate.Height = 23;
+            this.dgvIncome.Size = new System.Drawing.Size(706, 296);
+            this.dgvIncome.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnRemove);
+            this.panel1.Controls.Add(this.btnModify);
+            this.panel1.Controls.Add(this.btnSava);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.txbMemo);
+            this.panel1.Controls.Add(this.labSpendUser);
+            this.panel1.Controls.Add(this.cmbSpendUser);
+            this.panel1.Controls.Add(this.labAmout);
+            this.panel1.Controls.Add(this.txbAmout);
+            this.panel1.Controls.Add(this.txbFinanceType);
+            this.panel1.Controls.Add(this.btnSelectFinanceType);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.panel1.Location = new System.Drawing.Point(2, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(706, 127);
+            this.panel1.TabIndex = 0;
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(28, 4);
@@ -135,38 +192,99 @@
             this.tabPage2.Text = "支出";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // btnSelectFinanceType
             // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(2, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(706, 86);
-            this.panel1.TabIndex = 0;
+            this.btnSelectFinanceType.Location = new System.Drawing.Point(156, 8);
+            this.btnSelectFinanceType.Name = "btnSelectFinanceType";
+            this.btnSelectFinanceType.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectFinanceType.TabIndex = 0;
+            this.btnSelectFinanceType.Text = "选择财务类型";
+            this.btnSelectFinanceType.UseVisualStyleBackColor = true;
             // 
-            // dgvIncome
+            // txbFinanceType
             // 
-            this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIncome.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvIncome.Location = new System.Drawing.Point(2, 88);
-            this.dgvIncome.Name = "dgvIncome";
-            this.dgvIncome.RowTemplate.Height = 23;
-            this.dgvIncome.Size = new System.Drawing.Size(706, 337);
-            this.dgvIncome.TabIndex = 1;
+            this.txbFinanceType.Location = new System.Drawing.Point(26, 9);
+            this.txbFinanceType.Name = "txbFinanceType";
+            this.txbFinanceType.Size = new System.Drawing.Size(127, 21);
+            this.txbFinanceType.TabIndex = 1;
             // 
-            // 设置ToolStripMenuItem
+            // txbAmout
             // 
-            this.设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.财务类型设置ToolStripMenuItem});
-            this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(44, 22);
-            this.设置ToolStripMenuItem.Text = "设置";
+            this.txbAmout.Location = new System.Drawing.Point(319, 9);
+            this.txbAmout.Name = "txbAmout";
+            this.txbAmout.Size = new System.Drawing.Size(127, 21);
+            this.txbAmout.TabIndex = 2;
             // 
-            // 财务类型设置ToolStripMenuItem
+            // labAmout
             // 
-            this.财务类型设置ToolStripMenuItem.Name = "财务类型设置ToolStripMenuItem";
-            this.财务类型设置ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.财务类型设置ToolStripMenuItem.Text = "财务类型设置";
-            this.财务类型设置ToolStripMenuItem.Click += new System.EventHandler(this.财务类型设置ToolStripMenuItem_Click);
+            this.labAmout.AutoSize = true;
+            this.labAmout.Location = new System.Drawing.Point(278, 13);
+            this.labAmout.Name = "labAmout";
+            this.labAmout.Size = new System.Drawing.Size(41, 12);
+            this.labAmout.TabIndex = 3;
+            this.labAmout.Text = "金额：";
+            // 
+            // cmbSpendUser
+            // 
+            this.cmbSpendUser.FormattingEnabled = true;
+            this.cmbSpendUser.Location = new System.Drawing.Point(543, 8);
+            this.cmbSpendUser.Name = "cmbSpendUser";
+            this.cmbSpendUser.Size = new System.Drawing.Size(121, 20);
+            this.cmbSpendUser.TabIndex = 4;
+            // 
+            // labSpendUser
+            // 
+            this.labSpendUser.AutoSize = true;
+            this.labSpendUser.Location = new System.Drawing.Point(490, 13);
+            this.labSpendUser.Name = "labSpendUser";
+            this.labSpendUser.Size = new System.Drawing.Size(53, 12);
+            this.labSpendUser.TabIndex = 5;
+            this.labSpendUser.Text = "花费人：";
+            // 
+            // txbMemo
+            // 
+            this.txbMemo.Location = new System.Drawing.Point(26, 48);
+            this.txbMemo.Multiline = true;
+            this.txbMemo.Name = "txbMemo";
+            this.txbMemo.Size = new System.Drawing.Size(638, 45);
+            this.txbMemo.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(24, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "金额：";
+            // 
+            // btnSava
+            // 
+            this.btnSava.Location = new System.Drawing.Point(589, 99);
+            this.btnSava.Name = "btnSava";
+            this.btnSava.Size = new System.Drawing.Size(75, 23);
+            this.btnSava.TabIndex = 8;
+            this.btnSava.Text = "添加";
+            this.btnSava.UseVisualStyleBackColor = true;
+            this.btnSava.Click += new System.EventHandler(this.btnSava_Click);
+            // 
+            // btnModify
+            // 
+            this.btnModify.Location = new System.Drawing.Point(508, 99);
+            this.btnModify.Name = "btnModify";
+            this.btnModify.Size = new System.Drawing.Size(75, 23);
+            this.btnModify.TabIndex = 9;
+            this.btnModify.Text = "修改";
+            this.btnModify.UseVisualStyleBackColor = true;
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(427, 99);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnRemove.TabIndex = 10;
+            this.btnRemove.Text = "删除";
+            this.btnRemove.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
@@ -189,6 +307,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,6 +328,17 @@
         private System.Windows.Forms.ToolStripMenuItem 财务类型设置ToolStripMenuItem;
         private System.Windows.Forms.DataGridView dgvIncome;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Button btnModify;
+        private System.Windows.Forms.Button btnSava;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txbMemo;
+        private System.Windows.Forms.Label labSpendUser;
+        private System.Windows.Forms.ComboBox cmbSpendUser;
+        private System.Windows.Forms.Label labAmout;
+        private System.Windows.Forms.TextBox txbAmout;
+        private System.Windows.Forms.TextBox txbFinanceType;
+        private System.Windows.Forms.Button btnSelectFinanceType;
     }
 }
 
