@@ -72,12 +72,25 @@ namespace SimpleAccountBook
 
         }
 
+        int _financeTypeID;
+        int _id;
         private void dgvIncome_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
             {
-              
+                _id = Convert.ToInt32(dgvIncome.Rows[e.RowIndex].Cells["编号"].Value);
+                txbFinanceType.Text = dgvIncome.Rows[e.RowIndex].Cells["财务类型名称"].Value.ToString();
+                _financeTypeID= Convert.ToInt32(dgvIncome.Rows[e.RowIndex].Cells["财务类型编号"].Value);
+                txbAmout.Text= dgvIncome.Rows[e.RowIndex].Cells["金额"].Value.ToString();
+                cmbSpendUser.Text= dgvIncome.Rows[e.RowIndex].Cells["财务人"].Value.ToString();
+                txbMemo.Text = dgvIncome.Rows[e.RowIndex].Cells["备注"].Value.ToString(); 
+
             }
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

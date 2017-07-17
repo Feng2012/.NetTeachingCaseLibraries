@@ -16,8 +16,8 @@ namespace SimpleAccountBook
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmFinanceType());
-            return;
+            //Application.Run(new frmFinanceType());
+            //return;
             //实例化登录窗体
             var loginForm = new frmLogin();
             //判断登录是否成功

@@ -104,7 +104,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(639, 21);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(580, 21);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // tslLoginName
@@ -160,6 +160,7 @@
             this.btnRemove.TabIndex = 10;
             this.btnRemove.Text = "删除";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnModify
             // 
