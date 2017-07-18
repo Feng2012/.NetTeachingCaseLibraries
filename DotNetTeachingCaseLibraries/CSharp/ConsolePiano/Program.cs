@@ -59,8 +59,14 @@ namespace ConsolePiano
             var path = Environment.CurrentDirectory;
             //实例化播放器
             var player = new WMPLib.WindowsMediaPlayer();
+            
             //设定播放器播放音乐文件，分别为1到7的文件名，扩展名为.wma
             player.URL = $"{path}/media/{key}.wma";
+           
+            //获取音乐文件时长（秒）
+            Console.WriteLine(player.newMedia($"{path}/media/{key}.wma").duration);
+
+           
         }
     }
 }
