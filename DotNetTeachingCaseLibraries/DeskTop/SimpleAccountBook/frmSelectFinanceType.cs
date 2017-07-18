@@ -53,6 +53,7 @@ namespace SimpleAccountBook
         {
             FinaceTypeID = Convert.ToInt32(e.Node.Name);
             FinaceTypeName = e.Node.Text;
+            this.Close();
         }
         /// <summary>
         /// 类型编号
