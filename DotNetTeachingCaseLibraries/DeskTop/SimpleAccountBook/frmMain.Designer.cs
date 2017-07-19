@@ -189,7 +189,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 7;
-            this.label1.Text = "金额：";
+            this.label1.Text = "备注：";
             // 
             // txbMemo
             // 
@@ -210,6 +210,7 @@
             // 
             // cmbSpendUser
             // 
+            this.cmbSpendUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSpendUser.FormattingEnabled = true;
             this.cmbSpendUser.Location = new System.Drawing.Point(543, 8);
             this.cmbSpendUser.Name = "cmbSpendUser";

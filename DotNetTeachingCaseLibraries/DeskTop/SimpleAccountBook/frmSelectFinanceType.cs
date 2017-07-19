@@ -24,6 +24,8 @@ namespace SimpleAccountBook
 
             //递归加载树形菜单
             AddNode(0, trvFinanceType.Nodes, list);
+
+            trvFinanceType.ExpandAll();
         }
         /// <summary>
         /// 递归加载树形菜单
@@ -43,7 +45,7 @@ namespace SimpleAccountBook
         {
             //获取选中的节点的名称作为id
             var id = Convert.ToInt32(trvFinanceType.SelectedNode.Name);
-            if( _bllHandler.DeleteFinanceType(id))
+            if (_bllHandler.DeleteFinanceType(id))
             {
                 trvFinanceType.SelectedNode.Remove();
             }
@@ -51,6 +53,10 @@ namespace SimpleAccountBook
 
         private void trvFinanceType_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+            if (e.Node.Nodes.Count > 0)
+            {
+                return;
+            }
             FinaceTypeID = Convert.ToInt32(e.Node.Name);
             FinaceTypeName = e.Node.Text;
             this.Close();

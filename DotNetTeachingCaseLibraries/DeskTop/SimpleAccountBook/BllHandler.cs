@@ -109,14 +109,8 @@ namespace SimpleAccountBook
         /// <returns>是否成功</returns>
         public bool AddAccount(int finceTypeID, decimal amount, string spendUser, string createUser, string memo)
         {
-            var sql = "insert into accounts(financetypeid,amount,spenduser,createon,createby,memo) values(@financetypeid,@amount,@spenduser,@createon,@createby,@memo)";
-            var financeTypeIDPar = new OleDbParameter() { ParameterName = "@financetypeid", Value = finceTypeID };
-            var amountPar = new OleDbParameter() { ParameterName = "@amount", Value = amount };
-            var spenduserPar = new OleDbParameter() { ParameterName = "@spenduser", Value = spendUser };
-            var createUserPar = new OleDbParameter() { ParameterName = "@createby", Value = createUser };
-            var memoPar = new OleDbParameter() { ParameterName = "@memo", Value = memo };
-            var createonPar = new OleDbParameter() { ParameterName = "@createon", Value = DateTime.Now };
-            var result=_dataHandle.ChangeDate(sql, financeTypeIDPar, amountPar, spenduserPar, createUserPar, memoPar, createonPar);
+            var sql = $@"insert into accounts(financetypeid,amount,spenduser,createby,createon,[memo]) values({finceTypeID},{amount},'{spendUser}','{createUser}','{DateTime .Now.ToString("yyyy-MM-dd HH:mm:ss")}','{memo}')";       
+            var result=_dataHandle.ChangeDate(sql);
             return result > 0;
         }
 

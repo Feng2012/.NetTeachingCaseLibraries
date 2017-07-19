@@ -15,6 +15,7 @@ namespace SimpleAccountBook
         string _loginName;
         public frmMain(string loginName)
         {
+            _loginName = loginName;
             InitializeComponent();
         }
         //业务处理类型
@@ -51,7 +52,7 @@ namespace SimpleAccountBook
             }
             else
             {
-                _bllHandler.AddAccount(_finaceTypeID, amout, cmbSpendUser.SelectedText, _loginName, txbMemo.Text);
+                _bllHandler.AddAccount(_finaceTypeID, amout, cmbSpendUser.Text, _loginName, txbMemo.Text);
             }
         }
         /// <summary>
