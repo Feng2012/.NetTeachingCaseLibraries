@@ -85,7 +85,7 @@ namespace SimpleAccountBook
         /// <summary>
         /// 根据父id获取下面的所有最底级子id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">父ID</param>
         /// <returns></returns>
         string GetChildFinceTypeID(int id, List<dynamic> financeTypes)
         {
