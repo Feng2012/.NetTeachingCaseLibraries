@@ -24,7 +24,7 @@ namespace SimpleAccountBook
 
             //递归加载树形菜单
             AddNode(0, trvFinanceType.Nodes, list);
-
+            //展开树形控件
             trvFinanceType.ExpandAll();
         }
         /// <summary>
@@ -53,6 +53,7 @@ namespace SimpleAccountBook
 
         private void trvFinanceType_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+            //判断双击是否为最底级菜单
             if (e.Node.Nodes.Count > 0)
             {
                 return;

@@ -62,7 +62,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(683, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(873, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -91,7 +91,7 @@
             this.sstBar.Location = new System.Drawing.Point(0, 459);
             this.sstBar.Name = "sstBar";
             this.sstBar.Padding = new System.Windows.Forms.Padding(0, 0, 7, 0);
-            this.sstBar.Size = new System.Drawing.Size(683, 26);
+            this.sstBar.Size = new System.Drawing.Size(873, 26);
             this.sstBar.TabIndex = 1;
             this.sstBar.Text = "statusStrip1";
             // 
@@ -104,7 +104,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(580, 21);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(770, 21);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // tslLoginName
@@ -128,19 +128,19 @@
             this.dgvIncome.ReadOnly = true;
             this.dgvIncome.RowTemplate.Height = 23;
             this.dgvIncome.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvIncome.Size = new System.Drawing.Size(683, 308);
+            this.dgvIncome.Size = new System.Drawing.Size(873, 308);
             this.dgvIncome.TabIndex = 4;
             this.dgvIncome.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIncome_CellDoubleClick);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cmbSpendUser);
             this.panel1.Controls.Add(this.btnRemove);
             this.panel1.Controls.Add(this.btnModify);
             this.panel1.Controls.Add(this.btnSava);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txbMemo);
             this.panel1.Controls.Add(this.labSpendUser);
-            this.panel1.Controls.Add(this.cmbSpendUser);
             this.panel1.Controls.Add(this.labAmout);
             this.panel1.Controls.Add(this.txbAmout);
             this.panel1.Controls.Add(this.txbFinanceType);
@@ -149,12 +149,12 @@
             this.panel1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(683, 127);
+            this.panel1.Size = new System.Drawing.Size(873, 127);
             this.panel1.TabIndex = 3;
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(427, 99);
+            this.btnRemove.Location = new System.Drawing.Point(624, 99);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(75, 23);
             this.btnRemove.TabIndex = 10;
@@ -164,7 +164,7 @@
             // 
             // btnModify
             // 
-            this.btnModify.Location = new System.Drawing.Point(508, 99);
+            this.btnModify.Location = new System.Drawing.Point(705, 99);
             this.btnModify.Name = "btnModify";
             this.btnModify.Size = new System.Drawing.Size(75, 23);
             this.btnModify.TabIndex = 9;
@@ -174,7 +174,7 @@
             // 
             // btnSava
             // 
-            this.btnSava.Location = new System.Drawing.Point(589, 99);
+            this.btnSava.Location = new System.Drawing.Point(786, 99);
             this.btnSava.Name = "btnSava";
             this.btnSava.Size = new System.Drawing.Size(75, 23);
             this.btnSava.TabIndex = 8;
@@ -196,13 +196,13 @@
             this.txbMemo.Location = new System.Drawing.Point(26, 48);
             this.txbMemo.Multiline = true;
             this.txbMemo.Name = "txbMemo";
-            this.txbMemo.Size = new System.Drawing.Size(638, 45);
+            this.txbMemo.Size = new System.Drawing.Size(835, 45);
             this.txbMemo.TabIndex = 6;
             // 
             // labSpendUser
             // 
             this.labSpendUser.AutoSize = true;
-            this.labSpendUser.Location = new System.Drawing.Point(490, 13);
+            this.labSpendUser.Location = new System.Drawing.Point(657, 13);
             this.labSpendUser.Name = "labSpendUser";
             this.labSpendUser.Size = new System.Drawing.Size(53, 12);
             this.labSpendUser.TabIndex = 5;
@@ -212,15 +212,15 @@
             // 
             this.cmbSpendUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSpendUser.FormattingEnabled = true;
-            this.cmbSpendUser.Location = new System.Drawing.Point(543, 8);
+            this.cmbSpendUser.Location = new System.Drawing.Point(705, 9);
             this.cmbSpendUser.Name = "cmbSpendUser";
-            this.cmbSpendUser.Size = new System.Drawing.Size(121, 20);
+            this.cmbSpendUser.Size = new System.Drawing.Size(156, 20);
             this.cmbSpendUser.TabIndex = 4;
             // 
             // labAmout
             // 
             this.labAmout.AutoSize = true;
-            this.labAmout.Location = new System.Drawing.Point(278, 13);
+            this.labAmout.Location = new System.Drawing.Point(363, 13);
             this.labAmout.Name = "labAmout";
             this.labAmout.Size = new System.Drawing.Size(41, 12);
             this.labAmout.TabIndex = 3;
@@ -228,21 +228,21 @@
             // 
             // txbAmout
             // 
-            this.txbAmout.Location = new System.Drawing.Point(319, 9);
+            this.txbAmout.Location = new System.Drawing.Point(404, 9);
             this.txbAmout.Name = "txbAmout";
-            this.txbAmout.Size = new System.Drawing.Size(127, 21);
+            this.txbAmout.Size = new System.Drawing.Size(186, 21);
             this.txbAmout.TabIndex = 2;
             // 
             // txbFinanceType
             // 
             this.txbFinanceType.Location = new System.Drawing.Point(26, 9);
             this.txbFinanceType.Name = "txbFinanceType";
-            this.txbFinanceType.Size = new System.Drawing.Size(127, 21);
+            this.txbFinanceType.Size = new System.Drawing.Size(188, 21);
             this.txbFinanceType.TabIndex = 1;
             // 
             // btnSelectFinanceType
             // 
-            this.btnSelectFinanceType.Location = new System.Drawing.Point(156, 8);
+            this.btnSelectFinanceType.Location = new System.Drawing.Point(217, 8);
             this.btnSelectFinanceType.Name = "btnSelectFinanceType";
             this.btnSelectFinanceType.Size = new System.Drawing.Size(75, 23);
             this.btnSelectFinanceType.TabIndex = 0;
@@ -254,7 +254,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(683, 485);
+            this.ClientSize = new System.Drawing.Size(873, 485);
             this.Controls.Add(this.dgvIncome);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.sstBar);

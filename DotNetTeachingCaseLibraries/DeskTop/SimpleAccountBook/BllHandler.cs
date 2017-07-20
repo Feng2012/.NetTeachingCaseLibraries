@@ -125,13 +125,8 @@ namespace SimpleAccountBook
         /// <returns>是否成功</returns>
         public bool UpdateAccount(int id,int finceTypeID, decimal amount, string spendUser,string memo)
         {
-            var sql = "update accounts set financetypeid=@financetypeid,amount=@amount,spenduser=@spenduser,memo=@memo where id=@id";
-            var financeTypeIDPar = new OleDbParameter() { ParameterName = "@financetypeid", Value = finceTypeID };
-            var amountPar = new OleDbParameter() { ParameterName = "@amount", Value = amount };
-            var spenduserPar = new OleDbParameter() { ParameterName = "@spenduser", Value = spendUser };
-            var memoPar = new OleDbParameter() { ParameterName = "@memo", Value = memo };
-            var idPar = new OleDbParameter() { ParameterName = "@id", Value = id };
-            var result = _dataHandle.ChangeDate(sql, financeTypeIDPar, amountPar, spenduserPar, idPar, memoPar);
+            var sql = $"update accounts set financetypeid={finceTypeID},amount={amount},spenduser='{spendUser}',[memo]='{memo}' where id={id}";           
+            var result = _dataHandle.ChangeDate(sql);
             return result > 0;
         }
 
@@ -154,11 +149,10 @@ namespace SimpleAccountBook
         /// <returns></returns>
         public DataTable GetAccounts()
         {
-            var sql = $@"SELECT Accounts.ID AS 编号, Accounts.FinanceTypeID  AS 财务类型编号, FinancialTypes.TypeName AS 财务类型名称,Accounts.Amount AS 金额, Accounts.SpendUser AS 财务人, Accounts.CreateBy AS 记帐人,Accounts.CreateOn AS 记帐时间, Accounts.[Memo] AS 备注 FROM(Accounts INNER JOIN   FinancialTypes ON Accounts.FinanceTypeID = FinancialTypes.ID) where Accounts.[CreateOn]>@begintime and Accounts.[CreateOn]<endtime";
-            var beginTimePar = new OleDbParameter() { ParameterName = "@begintime", Value = DateTime.Now.ToString("yyyy-MM-dd 00:00:00"), OleDbType = OleDbType.Date };
-            var endTimePar = new OleDbParameter() { ParameterName = "@endtime", Value = DateTime.Now.ToString("yyyy-MM-dd 23:59:59"), OleDbType = OleDbType.Date };
-            return _dataHandle.GetTable(sql, beginTimePar, endTimePar);
-            //return _dataHandle.GetTable(sql);
+            var sql = $@"SELECT Accounts.ID AS 编号, Accounts.FinanceTypeID  AS 财务类型编号, FinancialTypes.TypeName AS 财务类型名称,Accounts.Amount AS 金额, Accounts.SpendUser AS 财务人, Accounts.CreateBy AS 记帐人,Accounts.CreateOn AS 记帐时间, Accounts.[Memo] AS 备注 FROM(Accounts INNER JOIN   FinancialTypes ON Accounts.FinanceTypeID = FinancialTypes.ID)";
+            return _dataHandle.GetTable(sql);         
         }
+
+      
     }
 }

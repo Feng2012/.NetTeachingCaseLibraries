@@ -37,9 +37,16 @@ namespace SimpleAccountBook
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            Login();
+        }
+        /// <summary>
+        /// 登录
+        /// </summary>
+        void Login()
+        {
             var bllHandler = new BllHandler();
             LoginName = bllHandler.Login(txbUserName.Text, txbPassword.Text);
-            if(LoginName!=null)
+            if (LoginName != null)
             {
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -47,6 +54,24 @@ namespace SimpleAccountBook
             else
             {
                 MessageBox.Show("用户名或密码不正确！");
+            }
+        }
+
+        private void txbUserName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //回车焦点跳转
+            if (e.KeyChar == 13)
+            {
+                txbPassword.Focus();
+            }
+        }
+
+        private void txbPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //回车登录
+            if (e.KeyChar == 13)
+            {
+                Login();
             }
         }
     }
