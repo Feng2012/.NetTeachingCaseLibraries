@@ -54,6 +54,28 @@ namespace SimpleAccountBook
             return list;
         }
         /// <summary>
+        /// 查询帐务信息
+        /// </summary>
+        /// <param name="beginTime">开始时间</param>
+        /// <param name="endTime">结束时间</param>
+        /// <param name="financeType">财务类型</param>
+        /// <param name="spendUser">花销人</param>
+        /// <returns></returns>
+        internal object QueryAccount(DateTime beginTime, DateTime endTime, string ids, string spendUser)
+        {
+            var sql = $@"SELECT Accounts.ID AS 编号, Accounts.FinanceTypeID  AS 财务类型编号, FinancialTypes.TypeName AS 财务类型名称,Accounts.Amount AS 金额, Accounts.SpendUser AS 财务人, Accounts.CreateBy AS 记帐人,Accounts.CreateOn AS 记帐时间, Accounts.[Memo] AS 备注 FROM(Accounts INNER JOIN   FinancialTypes ON Accounts.FinanceTypeID = FinancialTypes.ID) where Accounts.CreateOn>='{beginTime.ToString("yyyy-MM-dd 00:00:00")}' and Accounts.CreateOn<='{endTime.ToString("yyyy-MM-dd 23:59:59")}'";
+            if(!string.IsNullOrEmpty(ids))
+            {
+                sql += $" and  Accounts.FinanceTypeID in ({ids})";
+            }
+            if (!string.IsNullOrEmpty(spendUser) && spendUser!="全部")
+            {
+                sql += $" and Accounts.SpendUser='{spendUser}'";
+            }
+            return _dataHandle.GetTable(sql);
+        }
+
+        /// <summary>
         /// 添加财务类型
         /// </summary>
         /// <param name="typeName">类型名称</param>

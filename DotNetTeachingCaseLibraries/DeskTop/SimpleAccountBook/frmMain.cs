@@ -79,6 +79,7 @@ namespace SimpleAccountBook
                         dgvIncome.DataSource = _bllHandler.GetAccounts();
                     }
                 }
+                ClearText();
             }
             catch (Exception exc)
             {
@@ -94,7 +95,7 @@ namespace SimpleAccountBook
             try
             {
                 //选择财务类型
-                var selectFinanceType = new frmSelectFinanceType();
+                var selectFinanceType = new frmSelectFinanceType(FinceTypeSelect.MinLevel);
                 selectFinanceType.ShowDialog();
                 txbFinanceType.Text = selectFinanceType.FinaceTypeName;
                 _finaceTypeID = selectFinanceType.FinaceTypeID;
@@ -203,6 +204,12 @@ namespace SimpleAccountBook
             {
                 MessageBox.Show(exc.Message);
             }
+        }
+
+        private void 查询统计ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var queryForm = new frmQueryMain();
+            queryForm.ShowDialog();
         }
     }
 }

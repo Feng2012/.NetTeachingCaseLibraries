@@ -48,6 +48,13 @@
   <ItemGroup>
     <Compile Include="BllHandler.cs" />
     <Compile Include="DataHandler.cs" />
+    <Compile Include="FinceTypeSelect.cs" />
+    <Compile Include="frmQueryMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQueryMain.Designer.cs">
+      <DependentUpon>frmQueryMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSelectFinanceType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +81,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmQueryMain.resx">
+      <DependentUpon>frmQueryMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSelectFinanceType.resx">
       <DependentUpon>frmSelectFinanceType.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,7 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database.mdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

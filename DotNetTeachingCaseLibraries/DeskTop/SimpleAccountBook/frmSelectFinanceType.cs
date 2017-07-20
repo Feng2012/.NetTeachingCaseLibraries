@@ -12,8 +12,13 @@ namespace SimpleAccountBook
 {
     public partial class frmSelectFinanceType : Form
     {
-        public frmSelectFinanceType()
+        /// <summary>
+        /// 财务类型树形控件中的选择级别
+        /// </summary>
+        FinceTypeSelect _finceTypeSelect;
+        public frmSelectFinanceType(FinceTypeSelect finceTypeSelect)
         {
+            _finceTypeSelect = finceTypeSelect;
             InitializeComponent();
         }
         BllHandler _bllHandler;
@@ -54,7 +59,7 @@ namespace SimpleAccountBook
         private void trvFinanceType_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             //判断双击是否为最底级菜单
-            if (e.Node.Nodes.Count > 0)
+            if (_finceTypeSelect==FinceTypeSelect.MinLevel&& e.Node.Nodes.Count > 0)
             {
                 return;
             }

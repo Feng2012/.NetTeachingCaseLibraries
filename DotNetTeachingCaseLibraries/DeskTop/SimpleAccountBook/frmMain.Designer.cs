@@ -37,17 +37,18 @@
             this.tslLoginName = new System.Windows.Forms.ToolStripStatusLabel();
             this.dgvIncome = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbSpendUser = new System.Windows.Forms.ComboBox();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnModify = new System.Windows.Forms.Button();
             this.btnSava = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txbMemo = new System.Windows.Forms.TextBox();
             this.labSpendUser = new System.Windows.Forms.Label();
-            this.cmbSpendUser = new System.Windows.Forms.ComboBox();
             this.labAmout = new System.Windows.Forms.Label();
             this.txbAmout = new System.Windows.Forms.TextBox();
             this.txbFinanceType = new System.Windows.Forms.TextBox();
             this.btnSelectFinanceType = new System.Windows.Forms.Button();
+            this.查询统计ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.sstBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
@@ -58,7 +59,8 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.设置ToolStripMenuItem});
+            this.设置ToolStripMenuItem,
+            this.查询统计ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 1, 0, 1);
@@ -152,6 +154,15 @@
             this.panel1.Size = new System.Drawing.Size(873, 127);
             this.panel1.TabIndex = 3;
             // 
+            // cmbSpendUser
+            // 
+            this.cmbSpendUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSpendUser.FormattingEnabled = true;
+            this.cmbSpendUser.Location = new System.Drawing.Point(705, 9);
+            this.cmbSpendUser.Name = "cmbSpendUser";
+            this.cmbSpendUser.Size = new System.Drawing.Size(156, 20);
+            this.cmbSpendUser.TabIndex = 4;
+            // 
             // btnRemove
             // 
             this.btnRemove.Location = new System.Drawing.Point(624, 99);
@@ -208,15 +219,6 @@
             this.labSpendUser.TabIndex = 5;
             this.labSpendUser.Text = "花费人：";
             // 
-            // cmbSpendUser
-            // 
-            this.cmbSpendUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSpendUser.FormattingEnabled = true;
-            this.cmbSpendUser.Location = new System.Drawing.Point(705, 9);
-            this.cmbSpendUser.Name = "cmbSpendUser";
-            this.cmbSpendUser.Size = new System.Drawing.Size(156, 20);
-            this.cmbSpendUser.TabIndex = 4;
-            // 
             // labAmout
             // 
             this.labAmout.AutoSize = true;
@@ -249,6 +251,13 @@
             this.btnSelectFinanceType.Text = "选择财务类型";
             this.btnSelectFinanceType.UseVisualStyleBackColor = true;
             this.btnSelectFinanceType.Click += new System.EventHandler(this.btnSelectFinanceType_Click);
+            // 
+            // 查询统计ToolStripMenuItem
+            // 
+            this.查询统计ToolStripMenuItem.Name = "查询统计ToolStripMenuItem";
+            this.查询统计ToolStripMenuItem.Size = new System.Drawing.Size(68, 22);
+            this.查询统计ToolStripMenuItem.Text = "查询统计";
+            this.查询统计ToolStripMenuItem.Click += new System.EventHandler(this.查询统计ToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -299,6 +308,7 @@
         private System.Windows.Forms.TextBox txbAmout;
         private System.Windows.Forms.TextBox txbFinanceType;
         private System.Windows.Forms.Button btnSelectFinanceType;
+        private System.Windows.Forms.ToolStripMenuItem 查询统计ToolStripMenuItem;
     }
 }
 
