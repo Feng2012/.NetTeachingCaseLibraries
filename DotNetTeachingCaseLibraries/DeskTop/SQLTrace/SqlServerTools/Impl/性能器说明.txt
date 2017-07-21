@@ -1,0 +1,76 @@
+﻿一、创建跟踪 https://msdn.microsoft.com/zh-cn/library/ms190362(v=sql.110).aspx
+sp_trace_create：创建跟踪定义。  新的跟踪将处于停止状态。 
+语法：sp_trace_create [ @traceid = ] trace_id OUTPUT 
+          , [ @options = ] option_value  
+          , [ @tracefile = ] 'trace_file' 
+     [ , [ @maxfilesize = ] max_file_size ]
+     [ , [ @stoptime = ] 'stop_time' ]
+     [ , [ @filecount = ] 'max_rollover_files' ]
+
+[ @traceid= ] trace_id ：
+Microsoft SQL Server 为新跟踪分配的编号。  用户提供的任何输入都被忽略。 trace_id 的数据类型为 int，默认值为 NULL。 用户使用 trace_id 值标识、修改和控制此存储过程定义的跟踪
+[ @options= ] option_value 
+指定为跟踪设置的选项。  option_value 的数据类型为 int，无默认值。 用户可以通过指定所选出选项之和来选择这些选项的组合。 例如，若要启用 TRACE_FILE_ROLLOVER 和 SHUTDOWN_ON_ERROR，请为 option_value 指定 6。
+
+TRACE_FILE_ROLLOVER : 2
+指定当达到 max_file_size 时，将关闭当前跟踪文件并创建新文件。  所有新记录都将写入新文件。 新文件将与前一个文件同名，但是在文件名后将附加一个整数以指示其序列。 例如，如果命名原始跟踪文件为 filename.trc，则命名下个跟踪文件为 filename_1.trc，命名再下一个跟踪文件为 filename_2.trc，等等。 
+随着更多滚动更新跟踪文件的创建，附加到文件名的整数值继续增加。  
+如果指定该选项时未指定 max_file_size 的值，则 SQL Server 使用 max_file_size 的默认值 (5 MB)。  
+
+SHUTDOWN_ON_ERROR  :4   
+指定无论任何原因，如果不能将跟踪写入文件，则 SQL Server 将关闭。  执行安全审核跟踪时，该选项很有用。 
+
+TRACE_PRODUCE_BLACKBOX :8   
+指定服务器产生的最后 5 MB 跟踪信息记录将由服务器保存。  TRACE_PRODUCE_BLACKBOX 与所有其他选项不兼容。
+ 
+[ @tracefile= ] 'trace_file' 
+指定跟踪将写入的位置和文件名。  trace_file 的数据类型为 nvarchar(245)，无默认值。 trace_file 可以是本地目录(例如 N 'C:\MSSQL\Trace\trace.trc')，或共享或路径的 UNC (N'\\Servername\Sharename\Directory\trace.trc')。 
+SQL Server 会将 .trc 扩展名附加到所有的跟踪文件名。  如果已指定 TRACE_FILE_ROLLOVER 选项和 max_file_size，则当原始跟踪文件增长到其最大值时，SQL Server 将创建新的跟踪文件。 新文件与原始文件同名，但是在其后附加 _n 以指示它的序列，序列从 1 开始。 例如，如果第一个跟踪文件名为 filename.trc，则将第二个跟踪文件命名为 filename_1.trc。 
+如果您使用 TRACE_FILE_ROLLOVER 选项，我们建议您在原始跟踪文件名中不要使用下划线字符。  如果您使用了下划线，则会发生以下行为： 
+• SQL Server Profiler 不自动加载或者提示您加载滚动更新文件（如果配置了上述文件滚动更新选项之一）。  
+• fn_trace_gettable 函数将不会加载原始文件名以下划线和数值结尾的滚动更新文件（在通过使用 number_files 参数指定时）。  （这不适用于在文件滚动更新时自动追加的下划线和数字。） 
+
+[ @maxfilesize= ] max_file_size 
+指定跟踪文件可以增长到的最大文件大小 (MB)。  max_file_size 的数据类型为 bigint，默认值为 5。 
+如果指定该参数时未带有 TRACE_FILE_ROLLOVER 选项，则当使用的磁盘空间超过 max_file_size 指定的空间量时跟踪将停止对文件的记录。  
+
+[ @stoptime= ] 'stop_time' 
+指定停止跟踪的日期和时间。  stop_time 的数据类型为 datetime，默认值为 NULL。 如果为 NULL，该跟踪将一直运行，直到它被手动停止或服务器关闭。 
+如果同时指定 stop_time 和 max_file_size，但不指定 TRACE_FILE_ROLLOVER，则当达到指定停止时间或最大文件大小时跟踪将停止。  如果同时指定了 stop_time、max_file_size 和 TRACE_FILE_ROLLOVER，并假设跟踪未填满驱动器，则跟踪将在指定停止时间停止。 
+
+[ @filecount= ] 'max_rollover_files' 
+指定使用同一基准文件名维护的最大跟踪文件数。  max_rollover_files 的数据类型为 int，其值大于 1。 此参数仅在指定了 TRACE_FILE_ROLLOVER 选项时有效。 指定 max_rollover_files 后，SQL Server 会在打开新的跟踪文件前删除最旧的跟踪文件，以便维护不超过 max_rollover_files 个跟踪文件。 SQL Server 通过向基准文件名追加数字来跟踪跟踪文件的新旧程度。 
+例如，将 trace_file 参数指定为“c:\mytrace”时，名为“c:\mytrace_123.trc”的文件比名为“c:\mytrace_124.trc”的文件旧。  如果 max_rollover_files 设置为 2，则 SQL Server 在创建跟踪文件“c:\mytrace_125.trc”前删除文件“c:\mytrace_123.trc”。 
+请注意，SQL Server 一次仅尝试删除一个文件，且不能删除另一进程正在使用的文件。  因此，如果在跟踪运行时另一应用程序正在使用跟踪文件，则 SQL Server 会将这些跟踪文件保留在文件系统中。
+
+返回值：
+0 ：没有错误。  
+1 ：未知错误。  
+10 ：无效选项。  指定的选项不兼容时返回此代码。 
+12 ：文件未创建。  
+13 ：内存不足。  在没有足够内存执行指定的操作时返回此代码。 
+14 ：无效停止时间。  在指定的停止时间已发生时返回此代码。 
+15 ：参数无效。  在用户已提供不兼容的参数时返回此代码。
+ 
+
+
+二、修改跟踪 https://msdn.microsoft.com/library/aa260311.aspx
+sp_trace_setstatus：修改指定跟踪的当前状态。
+语法：sp_trace_setstatus [ @traceid = ] trace_id , [ @status = ] status  
+
+status可取值：
+0 停止指定的跟踪。 
+1 启动指定的跟踪。 
+2 关闭指定的跟踪并从服务器中删除其定义 。
+
+返回值：
+0 没有错误。
+1 未知错误。  
+8 指定的状态无效。  
+9 指定的跟踪句柄无效。  
+13 内存不足。  在没有足够内存执行指定的操作时返回此代码。
+ 
+三、查询跟踪
+首先得开始跟踪，才能进行查询，查询前首先创建跟踪文件c:\master.mdf..2016.06.21.10.00.23.trc
+select * from (select ROW_NUMBER() OVER (order by StartTime) as RowNum, * from fn_trace_gettable('c:\master.mdf..2016.06.21.10.00.23.trc', default)) as dt where RowNum > 0 ORDER BY RowNum
+
