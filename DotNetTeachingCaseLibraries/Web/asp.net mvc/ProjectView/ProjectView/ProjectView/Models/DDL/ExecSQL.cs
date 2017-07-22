@@ -8,6 +8,9 @@ using System.Data;
 
 namespace ProjectView.Models.DDL
 {
+    /// <summary>
+    /// 导出Excel类
+    /// </summary>
     public class ExecSQL
     {
         public DataTable GetSumGrade(int projectid, int classid)

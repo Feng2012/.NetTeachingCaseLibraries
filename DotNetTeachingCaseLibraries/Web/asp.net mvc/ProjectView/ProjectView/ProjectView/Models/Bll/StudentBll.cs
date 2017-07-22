@@ -6,10 +6,16 @@ using System.Web;
 
 namespace ProjectView.Models.Bll
 {
+    /// <summary>
+    /// 学生业务类
+    /// </summary>
     public class StudentBll
     {
-        ProjectReviewDBEntities PRDB = new ProjectReviewDBEntities();
-
+        ProjectReviewDBEntities PRDB;
+        public StudentBll()
+        {
+            PRDB = new ProjectReviewDBEntities();
+        }
         /// <summary>
         /// 验证用户名
         /// </summary>
@@ -27,7 +33,7 @@ namespace ProjectView.Models.Bll
         /// <returns></returns>
         public bool ValidateUser(UserModel user, out object backuser)
         {
-            StudentUser stu = PRDB.StudentUsers.SingleOrDefault(su => su.StuNoUserName == user.UserName && su.Password == user.Password);
+            var stu = PRDB.StudentUsers.SingleOrDefault(su => su.StuNoUserName == user.UserName && su.Password == user.Password);
             if (stu != null)
             {
                 backuser = stu;
@@ -35,7 +41,7 @@ namespace ProjectView.Models.Bll
             }
             else
             {
-                TeacherUser tu = PRDB.TeacherUsers.SingleOrDefault(tea => tea.UserName == user.UserName && tea.Password == user.Password);
+                var tu = PRDB.TeacherUsers.SingleOrDefault(tea => tea.UserName == user.UserName && tea.Password == user.Password);
                 if (tu != null)
                 {
                     backuser = tu;
@@ -48,30 +54,43 @@ namespace ProjectView.Models.Bll
                 }
             }
         }
-
+        /// <summary>
+        /// 获取学生用户类
+        /// </summary>
+        /// <param name="stuno"></param>
+        /// <returns></returns>
         public StudentUserModel GetStudentUser(string stuno)
         {
-
-            StudentUser su = PRDB.StudentUsers.SingleOrDefault(stuuser => stuuser.StuNoUserName == stuno);
-            StudentUserModel SUM = new StudentUserModel();
+            var su = PRDB.StudentUsers.SingleOrDefault(stuuser => stuuser.StuNoUserName == stuno);
+            var SUM = new StudentUserModel();
             SUM.UserName = su.StuNoUserName;
             SUM.Password = su.Password;
             return SUM;
         }
+        /// <summary>
+        /// 按学生编号获取学生
+        /// </summary>
+        /// <param name="stuno">学生编号</param>
+        /// <returns></returns>
         public StudentModel GetStudent(string stuno)
         {
-            Student su = PRDB.Students.SingleOrDefault(stu => stu.StuNo == stuno);
-            StudentModel SUM = new StudentModel();
+            var su = PRDB.Students.SingleOrDefault(stu => stu.StuNo == stuno);
+            var SUM = new StudentModel();
             SUM.StuNo = su.StuNo;
             SUM.StuName = su.StuName;
             return SUM;
         }
-
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="sum">学生用户</param>
+        /// <param name="Message">修改结果消息</param>
+        /// <returns></returns>
         public bool ModeifyPassword(StudentUserModel sum, out string Message)
         {
             try
             {
-                StudentUser studentuser = PRDB.StudentUsers.SingleOrDefault(su => su.StuNoUserName == sum.UserName);
+                var studentuser = PRDB.StudentUsers.SingleOrDefault(su => su.StuNoUserName == sum.UserName);
                 if (studentuser.Password == sum.OldPassword)
                 {
                     studentuser.Password = sum.NewPassword;
@@ -91,13 +110,16 @@ namespace ProjectView.Models.Bll
                 return false;
             }
         }
-
+        /// <summary>
+        /// 获取学生
+        /// </summary>
+        /// <returns></returns>
         public List<StudentModel> GetStudentModels()
         {
-            List<StudentModel> sms = new List<StudentModel>();
-            foreach (Student student in PRDB.Students.OrderBy(stu=>stu.StuNo))
+            var sms = new List<StudentModel>();
+            foreach (var student in PRDB.Students.OrderBy(stu => stu.StuNo))
             {
-                StudentModel sm = new StudentModel();
+                var sm = new StudentModel();
                 sm.StuNo = student.StuNo;
                 sm.StuName = student.StuName;
                 if (student.Sex.HasValue && student.Sex.Value)
@@ -120,12 +142,17 @@ namespace ProjectView.Models.Bll
             }
             return sms;
         }
+        /// <summary>
+        /// 按班级获取学生
+        /// </summary>
+        /// <param name="classid">班级ID</param>
+        /// <returns></returns>
         public List<StudentModel> GetStudentModels(int classid)
         {
-            List<StudentModel> sms = new List<StudentModel>();
-            foreach (Student student in PRDB.Students.Where(stu => stu.ClassID == classid).OrderBy(stu=>stu.StuNo))
+            var sms = new List<StudentModel>();
+            foreach (var student in PRDB.Students.Where(stu => stu.ClassID == classid).OrderBy(stu => stu.StuNo))
             {
-                StudentModel sm = new StudentModel();
+                var sm = new StudentModel();
                 sm.StuNo = student.StuNo;
                 sm.StuName = student.StuName;
                 if (student.Sex.HasValue && student.Sex.Value)
@@ -148,12 +175,16 @@ namespace ProjectView.Models.Bll
             }
             return sms;
         }
-
+        /// <summary>
+        /// 添加学生
+        /// </summary>
+        /// <param name="sm">学生</param>
+        /// <returns></returns>
         public bool AddStudent(StudentModel sm)
         {
             try
             {
-                Student student = new Student();
+                var student = new Student();
                 student.StuNo = sm.StuNo;
                 student.StuName = sm.StuName;
                 if (sm.Sex == "男")
@@ -177,14 +208,19 @@ namespace ProjectView.Models.Bll
                 return false;
             }
         }
+        /// <summary>
+        /// 按编号获取学生
+        /// </summary>
+        /// <param name="stuno">学生编号</param>
+        /// <returns></returns>
         public StudentModel GetStudentModel(string stuno)
         {
             try
             {
-                Student student = PRDB.Students.SingleOrDefault(stu => stu.StuNo == stuno);
+                var student = PRDB.Students.SingleOrDefault(stu => stu.StuNo == stuno);
                 if (student != null)
                 {
-                    StudentModel sm = new StudentModel();
+                    var sm = new StudentModel();
                     sm.StuNo = student.StuNo;
                     sm.StuName = student.StuName;
                     if (student.Sex.HasValue && student.Sex.Value)
@@ -215,12 +251,16 @@ namespace ProjectView.Models.Bll
                 return null;
             }
         }
-
+        /// <summary>
+        /// 修改学生
+        /// </summary>
+        /// <param name="sm">学生</param>
+        /// <returns></returns>
         public bool ModifyStudent(StudentModel sm)
         {
             try
             {
-                Student student = PRDB.Students.SingleOrDefault(stu => stu.StuNo == sm.StuNo);
+                var student = PRDB.Students.SingleOrDefault(stu => stu.StuNo == sm.StuNo);
                 if (student != null)
                 {
                     student.StuName = sm.StuName;
@@ -250,12 +290,16 @@ namespace ProjectView.Models.Bll
                 return false;
             }
         }
-
+        /// <summary>
+        /// 移除学生
+        /// </summary>
+        /// <param name="sm">学生</param>
+        /// <returns></returns>
         public bool RemoveStudent(StudentModel sm)
         {
             try
             {
-                Student student = PRDB.Students.SingleOrDefault(stu => stu.StuNo == sm.StuNo);
+                var student = PRDB.Students.SingleOrDefault(stu => stu.StuNo == sm.StuNo);
                 if (student != null)
                 {
                     PRDB.Students.Remove(student);

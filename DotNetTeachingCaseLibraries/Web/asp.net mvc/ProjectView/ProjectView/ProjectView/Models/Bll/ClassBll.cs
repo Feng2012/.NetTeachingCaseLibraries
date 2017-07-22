@@ -18,7 +18,10 @@ namespace ProjectView.Models.Bll
         {
             PRDB = new ProjectReviewDBEntities();
         }
-
+        /// <summary>
+        /// 获取全部班级
+        /// </summary>
+        /// <returns></returns>
         public List<ClassModel> GetClasses()
         {
             var cms = new List<ClassModel>();
@@ -32,6 +35,11 @@ namespace ProjectView.Models.Bll
             }
             return cms;
         }
+        /// <summary>
+        /// 添加班级
+        /// </summary>
+        /// <param name="cm">班级</param>
+        /// <returns></returns>
         public bool AddClass(ClassModel cm)
         {
             try
@@ -48,6 +56,11 @@ namespace ProjectView.Models.Bll
                 return false;
             }
         }
+        /// <summary>
+        /// 按ID获取班级
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ClassModel GetClassByID(int id)
         {
             try
@@ -71,6 +84,11 @@ namespace ProjectView.Models.Bll
                 return null;
             }
         }
+        /// <summary>
+        /// 修改班级
+        /// </summary>
+        /// <param name="cm">班级</param>
+        /// <returns></returns>
         public bool ModifyClass(ClassModel cm)
         {
             try
@@ -93,6 +111,11 @@ namespace ProjectView.Models.Bll
                 return false;
             }
         }
+        /// <summary>
+        /// 移除班级
+        /// </summary>
+        /// <param name="cm">班级</param>
+        /// <returns></returns>
         public bool RemoveClass(ClassModel cm)
         {
             try

@@ -16,6 +16,10 @@ namespace ProjectView.Models.Bll
         {
             PRDB = new ProjectReviewDBEntities();
         }
+        /// <summary>
+        /// 得到评语
+        /// </summary>
+        /// <returns></returns>
         public List<RemarkModel> GetRemarkModels()
         {
             var cms = new List<RemarkModel>();
@@ -40,6 +44,11 @@ namespace ProjectView.Models.Bll
             }
             return cms;
         }
+        /// <summary>
+        /// 按班级ID获取评语
+        /// </summary>
+        /// <param name="classid">项目ID</param>
+        /// <returns></returns>
         public List<RemarkModel> GetRemarkModels(int classid)
         {
             var cms = new List<RemarkModel>();
@@ -64,7 +73,12 @@ namespace ProjectView.Models.Bll
             }
             return cms;
         }
-
+        /// <summary>
+        /// 按班级ID和项目ID获取评语
+        /// </summary>
+        /// <param name="classid">班级ID</param>
+        /// <param name="projectid">项目ID</param>
+        /// <returns></returns>
         public List<RemarkModel> GetRemarkModels(int classid, int projectid)
         {
             var cms = new List<RemarkModel>();
@@ -90,6 +104,11 @@ namespace ProjectView.Models.Bll
             }
             return cms;
         }
+        /// <summary>
+        /// 添加评语
+        /// </summary>
+        /// <param name="rm">评语</param>
+        /// <returns></returns>
         public bool AddRemark(RemarkModel rm)
         {
             try
@@ -112,6 +131,11 @@ namespace ProjectView.Models.Bll
             }
 
         }
+        /// <summary>
+        /// 修改评语
+        /// </summary>
+        /// <param name="rm">评语</param>
+        /// <returns></returns>
         public bool ModifyRemark(RemarkModel rm)
         {
             try
@@ -139,6 +163,11 @@ namespace ProjectView.Models.Bll
                 return false;
             }
         }
+        /// <summary>
+        /// 移除评语
+        /// </summary>
+        /// <param name="rm">评语</param>
+        /// <returns></returns>
         public bool RemoveRemark(RemarkModel rm)
         {
             try
@@ -160,7 +189,12 @@ namespace ProjectView.Models.Bll
                 return false;
             }
         }
-
+        /// <summary>
+        /// 按照ID获取评语
+        /// </summary>
+        /// <param name="id">评语ID</param>
+        /// <param name="classid">出参，班级ID</param>
+        /// <returns></returns>
         public RemarkModel GetReamrkModelByID(int id, out int classid)
         {
             try

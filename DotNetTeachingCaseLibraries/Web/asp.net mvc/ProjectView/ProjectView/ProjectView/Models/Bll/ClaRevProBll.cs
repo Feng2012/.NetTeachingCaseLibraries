@@ -16,7 +16,10 @@ namespace ProjectView.Models.Bll
         {
             PRDB = new ProjectReviewDBEntities();
         }
-
+        /// <summary>
+        /// 获取班级评审类
+        /// </summary>
+        /// <returns></returns>
         public List<ClaRevProModel> GetClaRevProModels()
         {
             var CRPMS = new List<ClaRevProModel>();
@@ -36,7 +39,11 @@ namespace ProjectView.Models.Bll
             }
             return CRPMS;
         }
-
+        /// <summary>
+        /// 修改班级评审类
+        /// </summary>
+        /// <param name="crpm"></param>
+        /// <returns></returns>
         public bool ModifyCRP(ClaRevProModel crpm)
         {
             try
@@ -60,6 +67,11 @@ namespace ProjectView.Models.Bll
             }
 
         }
+        /// <summary>
+        /// 按ID获取班级项目
+        /// </summary>
+        /// <param name="id">班级评审ID</param>
+        /// <returns></returns>
         public ClaRevProModel GetCRPByID(int id)
         {
             try

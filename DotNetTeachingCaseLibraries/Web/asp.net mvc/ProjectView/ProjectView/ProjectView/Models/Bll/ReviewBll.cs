@@ -11,9 +11,20 @@ using System.Web;
 
 namespace ProjectView.Models.Bll
 {
+    /// <summary>
+    /// 评审业务类
+    /// </summary>
     public class ReviewBll
     {
-        ProjectReviewDBEntities PRDBEntity = new ProjectReviewDBEntities();
+        ProjectReviewDBEntities PRDBEntity;
+        ExecSQL esql;
+
+        public ReviewBll()
+        {
+            PRDBEntity = new ProjectReviewDBEntities();
+            esql = new ExecSQL();
+        }
+
         /// <summary>
         /// 利用学号得到项目评审业面的学生和项目子项信息
         /// </summary>
@@ -21,19 +32,19 @@ namespace ProjectView.Models.Bll
         /// <returns></returns>
         public ReviewModel GetReview(string stuno)
         {
-            ReviewModel rm = new ReviewModel();
+            var rm = new ReviewModel();
             rm.StuNo = stuno;
-            Student student = PRDBEntity.Students.SingleOrDefault(stu => stu.StuNo == stuno);
+            var student = PRDBEntity.Students.SingleOrDefault(stu => stu.StuNo == stuno);
             rm.StuName = student.StuName;
             if (student != null)
             {
                 int classid = student.ClassID;
-                ClassReviewProject crp = PRDBEntity.ClassReviewProjects.SingleOrDefault(cla => cla.ClassID == classid);
+                var crp = PRDBEntity.ClassReviewProjects.SingleOrDefault(cla => cla.ClassID == classid);
                 if (crp != null)
                 {
                     rm.ProjectName = crp.Project.ProjectName;
                     int num = 1;
-                    foreach (ProjectItem pi in crp.Project.ProjectItems)
+                    foreach (var pi in crp.Project.ProjectItems)
                     {
                         rm.Items.Add(new ProjectItemModel { Number = num++, ID = pi.ID, ProjectItemName = pi.ItemName, Grade = pi.Grade });
                     }
@@ -41,19 +52,24 @@ namespace ProjectView.Models.Bll
             }
             return rm;
         }
-
+        /// <summary>
+        /// 保存成绩
+        /// </summary>
+        /// <param name="stuno">学生编号</param>
+        /// <param name="reviewstuno">评审学生编号</param>
+        /// <param name="items">项目评审子项</param>
+        /// <returns></returns>
         public bool SaveGrade(string stuno, string reviewstuno, List<ProjectItemModel> items)
         {
-            DbConnection con = PRDBEntity.Database.Connection;
+            var con = PRDBEntity.Database.Connection;
             con.Open();
-            // DbTransaction tran = con.BeginTransaction();
-            using (TransactionScope tran = new TransactionScope())
+            using (var tran = new TransactionScope())
             {
                 try
                 {
-                    foreach (ProjectItemModel pi in items)
+                    foreach (var pi in items)
                     {
-                        ProjectGrade pg = new ProjectGrade();
+                        var pg = new ProjectGrade();
                         pg.ProjectItemID = pi.ID;
                         pg.Grade = pi.Grade;
                         pg.StuNo = stuno;
@@ -75,20 +91,24 @@ namespace ProjectView.Models.Bll
                     con.Close();
                 }
             }
-
-
-
-
         }
-
+        /// <summary>
+        /// 获取全部项目
+        /// </summary>
+        /// <returns></returns>
         public List<Project> GetProjects()
         {
             return PRDBEntity.Projects.ToList();
         }
+        /// <summary>
+        /// 按学生编号获取本班学生
+        /// </summary>
+        /// <param name="stuno">学生编号</param>
+        /// <returns></returns>
         public IEnumerable<Student> GetStudents(string stuno)
         {
-            Student student = PRDBEntity.Students.SingleOrDefault(stu => stu.StuNo == stuno);
-            return student.Class.Students.Where(st => st.StuNo != stuno).OrderBy(st=>st.StuNo);//把自己从评审的学生中除掉，自己不能给自己评分
+            var student = PRDBEntity.Students.SingleOrDefault(stu => stu.StuNo == stuno);
+            return student.Class.Students.Where(st => st.StuNo != stuno).OrderBy(st => st.StuNo);//把自己从评审的学生中除掉，自己不能给自己评分
 
         }
         /// <summary>
@@ -99,51 +119,55 @@ namespace ProjectView.Models.Bll
         /// <returns></returns>
         public DataTable GetSumGrade(int projectid, string stuno)
         {
-            Student student = PRDBEntity.Students.SingleOrDefault(stu => stu.StuNo == stuno);
+            var student = PRDBEntity.Students.SingleOrDefault(stu => stu.StuNo == stuno);
             if (student != null)
             {
-                int claid = student.ClassID;
-                ExecSQL esql = new ExecSQL();
-                DataTable dt = esql.GetSumGrade(projectid, claid);
+                var claid = student.ClassID;
+                var dt = esql.GetSumGrade(projectid, claid);
                 return dt;
             }
             else
             {
                 return null;
             }
-
         }
 
-
+        /// <summary>
+        /// 获取项目评审成绩统计结果
+        /// </summary>
+        /// <param name="projectid">项目ID</param>
+        /// <param name="classid">班级ID</param>
+        /// <returns></returns>
         public DataTable GetSumGrade(int projectid, int classid)
         {
-            ExecSQL esql = new ExecSQL();
-            DataTable dt = esql.GetSumGrade(projectid, classid);
+            var dt = esql.GetSumGrade(projectid, classid);
             return dt;
         }
 
         public DataTable GetSumGradeOrder(int projectid, string stuno)
         {
-            Student student = PRDBEntity.Students.SingleOrDefault(stu => stu.StuNo == stuno);
+            var student = PRDBEntity.Students.SingleOrDefault(stu => stu.StuNo == stuno);
             if (student != null)
             {
-                int claid = student.ClassID;
-                ExecSQL esql = new ExecSQL();
-                DataTable dt = esql.GetSumGradeOrder(projectid, claid);
+                var claid = student.ClassID;
+                var dt = esql.GetSumGradeOrder(projectid, claid);
                 return dt;
             }
             else
             {
                 return null;
             }
-
         }
-
+        /// <summary>
+        /// 获取项目评审成绩统计结果
+        /// </summary>
+        /// <param name="projectid">项目ID</param>
+        /// <param name="classid">班级ID</param>
+        /// <returns></returns>
 
         public DataTable GetSumGradeOrder(int projectid, int classid)
         {
-            ExecSQL esql = new ExecSQL();
-            DataTable dt = esql.GetSumGradeOrder(projectid, classid);
+            var dt = esql.GetSumGradeOrder(projectid, classid);
             return dt;
         }
     }

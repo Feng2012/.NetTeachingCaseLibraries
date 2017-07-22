@@ -16,11 +16,14 @@ namespace ProjectView.Models.Bll
         {
             PRDB = new ProjectReviewDBEntities();
         }
-
+        /// <summary>
+        /// 获取项目子项
+        /// </summary>
+        /// <returns></returns>
         public List<ProjectItemModel> GetProjectItems()
         {
             var pros = new List<ProjectItemModel>();
-            foreach (ProjectItem pi in PRDB.ProjectItems.OrderBy(item => item.ID))
+            foreach (var pi in PRDB.ProjectItems.OrderBy(item => item.ID))
             {
                 var pim = new ProjectItemModel();
                 pim.ID = pi.ID;
@@ -32,10 +35,15 @@ namespace ProjectView.Models.Bll
             }
             return pros;
         }
+        /// <summary>
+        /// 按项目ID获取项目子项
+        /// </summary>
+        /// <param name="projectid">项目ID</param>
+        /// <returns></returns>
         public List<ProjectItemModel> GetProjectItems(int projectid)
         {
             var pros = new List<ProjectItemModel>();
-            foreach (ProjectItem pi in PRDB.ProjectItems.Where(pi => pi.ProjectID == projectid).OrderBy(ite => ite.ID))
+            foreach (var pi in PRDB.ProjectItems.Where(pi => pi.ProjectID == projectid).OrderBy(ite => ite.ID))
             {
                 var pim = new ProjectItemModel();
                 pim.ID = pi.ID;
@@ -47,6 +55,11 @@ namespace ProjectView.Models.Bll
             }
             return pros;
         }
+        /// <summary>
+        /// 获取项目子项
+        /// </summary>
+        /// <param name="id">项目子项ID</param>
+        /// <returns></returns>
         public ProjectItemModel GetProjectItem(int id)
         {
             var pi = PRDB.ProjectItems.SingleOrDefault(pis => pis.ID == id);
@@ -63,6 +76,11 @@ namespace ProjectView.Models.Bll
             return null;
 
         }
+        /// <summary>
+        /// 添加项目子项
+        /// </summary>
+        /// <param name="pim">项目子项</param>
+        /// <returns></returns>
         public bool AddProjectItem(ProjectItemModel pim)
         {
             try
@@ -80,6 +98,11 @@ namespace ProjectView.Models.Bll
                 return false;
             }
         }
+        /// <summary>
+        /// 修改项目子项
+        /// </summary>
+        /// <param name="pim">项目子项</param>
+        /// <returns></returns>
         public bool ModifyProjectItem(ProjectItemModel pim)
         {
             try
@@ -103,6 +126,11 @@ namespace ProjectView.Models.Bll
                 return false;
             }
         }
+        /// <summary>
+        /// 移除项目子项
+        /// </summary>
+        /// <param name="id">项目子项ID</param>
+        /// <returns></returns>
         public bool RemoveProjectItem(int id)
         {
             try
