@@ -119,6 +119,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectView", "ProjectView"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectView", "Web\asp.net mvc\ProjectView\ProjectView\ProjectView\ProjectView.csproj", "{C74EE696-624B-4625-85F0-D39505183030}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "文档", "文档", "{7A2FCC84-7510-4E92-B862-0EF78B80A5B0}"
+	ProjectSection(SolutionItems) = preProject
+		Web\asp.net mvc\ProjectView\文档\数据库.docx = Web\asp.net mvc\ProjectView\文档\数据库.docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -493,5 +498,6 @@ Global
 		{FB3B337B-31A7-4C21-B8E2-ED9469B73ECC} = {96707C27-5BF5-4EE7-B76C-19B2C5CAA2C4}
 		{7D82006B-F031-4FDE-B211-9F0B9E59F865} = {7996F428-0563-406F-A512-3154BE0860CF}
 		{C74EE696-624B-4625-85F0-D39505183030} = {7D82006B-F031-4FDE-B211-9F0B9E59F865}
+		{7A2FCC84-7510-4E92-B862-0EF78B80A5B0} = {7D82006B-F031-4FDE-B211-9F0B9E59F865}
 	EndGlobalSection
 EndGlobal
