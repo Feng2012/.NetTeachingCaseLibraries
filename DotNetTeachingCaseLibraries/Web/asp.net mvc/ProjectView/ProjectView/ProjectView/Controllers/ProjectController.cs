@@ -10,15 +10,24 @@ using ProjectView.App_Start;
 
 namespace ProjectView.Controllers
 {
+    /// <summary>
+    /// 项目
+    /// </summary>
     [TeacherLoginFilter]
     public class ProjectController : Controller
     {
-        //
-        // GET: /Project/
+        /// <summary>
+        /// 项目业务类
+        /// </summary>
+        ProjectBll pb;
+        public ProjectController()
+        {
+            pb = new ProjectBll();
+        }
 
         public ActionResult Create()
         {
-            ProjectModel pm = new ProjectModel();
+            var pm = new ProjectModel();
             return View(pm);
         }
         [HttpPost]
@@ -31,19 +40,19 @@ namespace ProjectView.Controllers
             else
             {
                 ModelState.AddModelError("Error", "添加项目失败！");
-                ProjectModel temppm = pb.GetProjectByID(pm.ID);
+                var temppm = pb.GetProjectByID(pm.ID);
                 return View(temppm);
-            }         
+            }
         }
         public ActionResult Index()
         {
-            List<ProjectModel> pros = pb.GetProjects();
+            var pros = pb.GetProjects();
             return View(pros);
         }
-        ProjectBll pb = new ProjectBll();
+
         public ActionResult Edit(int id)
         {
-            ProjectModel pm = pb.GetProjectByID(id);
+            var pm = pb.GetProjectByID(id);
             return View(pm);
         }
 
@@ -57,18 +66,18 @@ namespace ProjectView.Controllers
             else
             {
                 ModelState.AddModelError("Error", "修改项目失败！");
-                 ProjectModel temppm = pb.GetProjectByID(pm.ID);
-                 return View(temppm);
+                var temppm = pb.GetProjectByID(pm.ID);
+                return View(temppm);
             }
         }
 
         public ActionResult Delete(int id)
         {
-            ProjectModel pm = pb.GetProjectByID(id);
+            var pm = pb.GetProjectByID(id);
             return View(pm);
         }
         [HttpPost]
-        public ActionResult Delete(ProjectModel pm,int id)
+        public ActionResult Delete(ProjectModel pm, int id)
         {
             if (pb.DeleteProject(id))
             {
@@ -77,7 +86,7 @@ namespace ProjectView.Controllers
             else
             {
                 ModelState.AddModelError("Error", "删除项目失败！");
-                ProjectModel temppm = pb.GetProjectByID(id);
+                var temppm = pb.GetProjectByID(id);
                 return View(temppm);
             }
         }

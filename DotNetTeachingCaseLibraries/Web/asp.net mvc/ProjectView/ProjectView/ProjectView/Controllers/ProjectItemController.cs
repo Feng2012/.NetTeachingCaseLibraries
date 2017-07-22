@@ -9,27 +9,40 @@ using System.Web.Mvc;
 
 namespace ProjectView.Controllers
 {
+    /// <summary>
+    /// 项目子项
+    /// </summary>
     [TeacherLoginFilter]
     public class ProjectItemController : Controller
     {
-        //
-        // GET: /ProjectItem/
+        /// <summary>
+        /// 项目业务类
+        /// </summary>
+        ProjectBll pb;
+        /// <summary>
+        /// 项目子项业务类
+        /// </summary>
+        ProjectItemBll pib;
+
+        public ProjectItemController()
+        {
+            pb = new ProjectBll();
+            pib = new ProjectItemBll();
+        }
 
         public ActionResult Index()
         {
-            List<ProjectItemModel> pros = pib.GetProjectItems();
+            var pros = pib.GetProjectItems();
             return View(pros);
         }
 
         public ActionResult Create()
         {
-            List<ProjectModel> projects = pb.GetProjects();
+            var projects = pb.GetProjects();
             ViewBag.ProjectID = new SelectList(projects, "ID", "ProjectName");
             return View();
         }
-        ProjectBll pb = new ProjectBll();
 
-        ProjectItemBll pib = new ProjectItemBll();
         [HttpPost]
         public ActionResult Create(ProjectItemModel pim)
         {
@@ -41,7 +54,7 @@ namespace ProjectView.Controllers
             else
             {
                 ModelState.AddModelError("Error", "添加项目子项失败！");
-                List<ProjectModel> projects = pb.GetProjects();
+                var projects = pb.GetProjects();
                 ViewBag.ProjectID = new SelectList(projects, "ID", "ProjectName");
                 return View();
             }
@@ -49,8 +62,8 @@ namespace ProjectView.Controllers
 
         public ActionResult Edit(int id)
         {
-            ProjectItemModel pim = pib.GetProjectItem(id);
-            List<ProjectModel> projects = pb.GetProjects();
+            var pim = pib.GetProjectItem(id);
+            var projects = pb.GetProjects();
             ViewBag.ProjectID = new SelectList(projects, "ID", "ProjectName", pim.ProjectID);
             if (pim != null)
             {
@@ -70,16 +83,16 @@ namespace ProjectView.Controllers
             }
             else
             {
-                List<ProjectModel> projects = pb.GetProjects();
+                var projects = pb.GetProjects();
                 ViewBag.ProjectID = new SelectList(projects, "ID", "ProjectName", pim.ProjectID);
-                ProjectItemModel newpim = pib.GetProjectItem(pim.ID);
+                var newpim = pib.GetProjectItem(pim.ID);
                 return View(newpim);
             }
         }
 
         public ActionResult Delete(int id)
         {
-            ProjectItemModel pim = pib.GetProjectItem(id);
+            var pim = pib.GetProjectItem(id);
             if (pim != null)
             {
                 return View(pim);

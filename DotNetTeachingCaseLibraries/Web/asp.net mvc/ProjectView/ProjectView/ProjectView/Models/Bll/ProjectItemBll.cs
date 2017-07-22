@@ -6,15 +6,23 @@ using System.Web;
 
 namespace ProjectView.Models.Bll
 {
+    /// <summary>
+    /// 项目子项业务类
+    /// </summary>
     public class ProjectItemBll
     {
-        ProjectReviewDBEntities PRDB = new ProjectReviewDBEntities();
+        ProjectReviewDBEntities PRDB;
+        public ProjectItemBll()
+        {
+            PRDB = new ProjectReviewDBEntities();
+        }
+
         public List<ProjectItemModel> GetProjectItems()
         {
-            List<ProjectItemModel> pros = new List<ProjectItemModel>();
+            var pros = new List<ProjectItemModel>();
             foreach (ProjectItem pi in PRDB.ProjectItems.OrderBy(item => item.ID))
             {
-                ProjectItemModel pim = new ProjectItemModel();
+                var pim = new ProjectItemModel();
                 pim.ID = pi.ID;
                 pim.ProjectItemName = pi.ItemName;
                 pim.ProjectID = pi.ProjectID;
@@ -26,10 +34,10 @@ namespace ProjectView.Models.Bll
         }
         public List<ProjectItemModel> GetProjectItems(int projectid)
         {
-            List<ProjectItemModel> pros = new List<ProjectItemModel>();
+            var pros = new List<ProjectItemModel>();
             foreach (ProjectItem pi in PRDB.ProjectItems.Where(pi => pi.ProjectID == projectid).OrderBy(ite => ite.ID))
             {
-                ProjectItemModel pim = new ProjectItemModel();
+                var pim = new ProjectItemModel();
                 pim.ID = pi.ID;
                 pim.ProjectItemName = pi.ItemName;
                 pim.ProjectID = pi.ProjectID;
@@ -41,10 +49,10 @@ namespace ProjectView.Models.Bll
         }
         public ProjectItemModel GetProjectItem(int id)
         {
-            ProjectItem pi = PRDB.ProjectItems.SingleOrDefault(pis => pis.ID == id);
+            var pi = PRDB.ProjectItems.SingleOrDefault(pis => pis.ID == id);
             if (pi != null)
             {
-                ProjectItemModel pim = new ProjectItemModel();
+                var pim = new ProjectItemModel();
                 pim.ID = pi.ID;
                 pim.ProjectItemName = pi.ItemName;
                 pim.ProjectID = pi.ProjectID;
@@ -59,7 +67,7 @@ namespace ProjectView.Models.Bll
         {
             try
             {
-                ProjectItem pi = new ProjectItem();
+                var pi = new ProjectItem();
                 pi.ItemName = pim.ProjectItemName;
                 pi.Grade = pim.Grade;
                 pi.ProjectID = pim.ProjectID;
@@ -76,7 +84,7 @@ namespace ProjectView.Models.Bll
         {
             try
             {
-                ProjectItem pi = PRDB.ProjectItems.SingleOrDefault(pis => pis.ID == pim.ID);
+                var pi = PRDB.ProjectItems.SingleOrDefault(pis => pis.ID == pim.ID);
                 if (pi != null)
                 {
                     pi.ItemName = pim.ProjectItemName;
@@ -99,7 +107,7 @@ namespace ProjectView.Models.Bll
         {
             try
             {
-                ProjectItem pi = PRDB.ProjectItems.SingleOrDefault(pis => pis.ID == id);
+                var pi = PRDB.ProjectItems.SingleOrDefault(pis => pis.ID == id);
                 if (pi != null)
                 {
                     PRDB.ProjectItems.Remove(pi);

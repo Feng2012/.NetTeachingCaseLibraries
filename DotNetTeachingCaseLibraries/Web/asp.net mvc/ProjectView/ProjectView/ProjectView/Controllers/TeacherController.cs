@@ -11,23 +11,41 @@ using System.Data;
 
 namespace ProjectView.Controllers
 {
+    /// <summary>
+    /// 教师
+    /// </summary>
     [TeacherLoginFilter]
     public class TeacherController : Controller
     {
-        //
-        // GET: /Teacher/
+        /// <summary>
+        /// 教师业务类
+        /// </summary>
+        TeacherBll tb;
+        /// <summary>
+        /// 评审业务类
+        /// </summary>
+        ReviewBll rb;
+        /// <summary>
+        /// 班级业务类
+        /// </summary>
+        ClassBll cb;
+        public TeacherController()
+        {
+            rb = new ReviewBll();
+            tb = new TeacherBll();
+            cb = new ClassBll();
+        }
+
         public ActionResult MainPage()
         {
-            int TeacherID = int.Parse(TeacherLoginFilter.TeacherID);
-            TeacherBll tb = new TeacherBll();
-            Teacher teacher = tb.GetTeacher(TeacherID);
-            TeacherModel tm = new TeacherModel();
+            var TeacherID = int.Parse(TeacherLoginFilter.TeacherID);
+            var teacher = tb.GetTeacher(TeacherID);
+            var tm = new TeacherModel();
             tm.ID = TeacherID;
             tm.TeacherName = teacher.TeacherName;
             return View(tm);
         }
 
-        TeacherBll tb = new TeacherBll();
 
         public ActionResult Index()
         {
@@ -56,7 +74,7 @@ namespace ProjectView.Controllers
 
         public ActionResult Edit(int id)
         {
-            TeacherModel tm = tb.GetTeacherModel(id);
+            var tm = tb.GetTeacherModel(id);
             if (tm != null)
             {
                 return View(tm);
@@ -82,7 +100,7 @@ namespace ProjectView.Controllers
 
         public ActionResult Delete(int id)
         {
-            TeacherModel tm = tb.GetTeacherModel(id);
+            var tm = tb.GetTeacherModel(id);
             if (tm != null)
             {
                 return View(tm);
@@ -107,12 +125,12 @@ namespace ProjectView.Controllers
 
         public ActionResult TeaQueryGrade(int TeacherID)
         {
-            ReviewBll rb = new ReviewBll();
+
             ViewBag.ProjectID = new SelectList(rb.GetProjects(), "ID", "ProjectName");
-            ClassBll cb = new ClassBll();
+
             ViewBag.ClassID = new SelectList(cb.GetClasses(), "ID", "ClassName");
 
-            QueryGradeModel QGM = new QueryGradeModel();
+            var QGM = new QueryGradeModel();
             QGM.DT = new DataTable();
             QGM.TeacherID = TeacherID;
             return View(QGM);
@@ -120,13 +138,11 @@ namespace ProjectView.Controllers
         [HttpPost]
         public ActionResult TeaQueryGrade(int classid, int projectid)
         {
-            ReviewBll rb = new ReviewBll();
-            ViewBag.ProjectID = new SelectList(rb.GetProjects(), "ID", "ProjectName", projectid);
-            ClassBll cb = new ClassBll();
+      
+            ViewBag.ProjectID = new SelectList(rb.GetProjects(), "ID", "ProjectName", projectid);   
             ViewBag.ClassID = new SelectList(cb.GetClasses(), "ID", "ClassName", classid);
-            
 
-            DataTable dt = new DataTable();
+            var dt = new DataTable();
             if (Request.Params["ScoreOrder"] == "false")
             {
                 dt = rb.GetSumGrade(projectid, classid);
@@ -137,7 +153,7 @@ namespace ProjectView.Controllers
                 dt = rb.GetSumGradeOrder(projectid, classid);
                 ViewBag.ScoreOrder = true;
             }
-            QueryGradeModel QGM = new QueryGradeModel();
+            var QGM = new QueryGradeModel();
             QGM.DT = dt;
             if (Request.Params["outexcel"] != null)
             {
@@ -151,7 +167,7 @@ namespace ProjectView.Controllers
         {
             System.Web.UI.WebControls.DataGrid dgExport = null;
             // 当前对话 
-            System.Web.HttpContext curContext = System.Web.HttpContext.Current;
+            var curContext = System.Web.HttpContext.Current;
             // IO用于导出并返回excel文件 
             System.IO.StringWriter strWriter = null;
             System.Web.UI.HtmlTextWriter htmlWriter = null;

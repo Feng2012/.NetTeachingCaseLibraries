@@ -9,13 +9,27 @@ using System.Web.Mvc;
 
 namespace ProjectView.Controllers
 {
+
+    /// <summary>
+    /// 班级项目类
+    /// </summary>
     [TeacherLoginFilter]
     public class ClaRevProController : Controller
     {
-        //
-        // GET: /ClaRevPro/
-
-        ClaRevProBll crpb = new ClaRevProBll();
+        /// <summary>
+        /// 项目业务类
+        /// </summary>
+        ProjectBll pb;
+        /// <summary>
+        /// 班级项目类
+        /// </summary>
+        ClaRevProBll crpb;
+        public ClaRevProController()
+        {
+            pb = new ProjectBll();
+            crpb = new ClaRevProBll();
+        }
+    
         public ActionResult Index()
         {
             return View(crpb.GetClaRevProModels());
@@ -23,10 +37,10 @@ namespace ProjectView.Controllers
 
         public ActionResult Edit(int id)
         {
-            ClaRevProModel crpm = crpb.GetCRPByID(id);
+            var crpm = crpb.GetCRPByID(id);
             if (crpm != null)
             {
-                ProjectBll pb = new ProjectBll();
+              
                 ViewBag.ProjectID = new SelectList(pb.GetProjects(), "ID", "ProjectName", crpm.ProjectID);
                 return View(crpm);
             }
@@ -44,8 +58,7 @@ namespace ProjectView.Controllers
                 return RedirectToAction("Index");
             }
             else
-            {
-                ProjectBll pb = new ProjectBll();
+            {               
                 ViewBag.ProjectID = new SelectList(pb.GetProjects(), "ID", "ProjectName", crpm.ProjectID);
                 return View(crpm);
             }

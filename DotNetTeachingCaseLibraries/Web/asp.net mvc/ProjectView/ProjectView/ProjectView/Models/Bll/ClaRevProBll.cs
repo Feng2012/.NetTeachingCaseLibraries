@@ -6,15 +6,23 @@ using System.Web;
 
 namespace ProjectView.Models.Bll
 {
+    /// <summary>
+    /// 班级评审业务类
+    /// </summary>
     public class ClaRevProBll
     {
-        ProjectReviewDBEntities PRDB = new ProjectReviewDBEntities();
+        ProjectReviewDBEntities PRDB;
+        public ClaRevProBll()
+        {
+            PRDB = new ProjectReviewDBEntities();
+        }
+
         public List<ClaRevProModel> GetClaRevProModels()
         {
-            List<ClaRevProModel> CRPMS = new List<ClaRevProModel>();
-            foreach (var v in PRDB.ClassReviewProjects.OrderBy(crp=>crp.ID))
+            var CRPMS = new List<ClaRevProModel>();
+            foreach (var v in PRDB.ClassReviewProjects.OrderBy(crp => crp.ID))
             {
-                ClaRevProModel crm = new ClaRevProModel();
+                var crm = new ClaRevProModel();
                 crm.ID = v.ID;
                 crm.ClassID = v.ClassID;
                 crm.ClassName = v.Class.ClassName;
@@ -33,7 +41,7 @@ namespace ProjectView.Models.Bll
         {
             try
             {
-                ClassReviewProject crp = PRDB.ClassReviewProjects.SingleOrDefault(cr => cr.ID == crpm.ID);
+                var crp = PRDB.ClassReviewProjects.SingleOrDefault(cr => cr.ID == crpm.ID);
                 if (crp != null)
                 {
                     crp.ClassID = crpm.ClassID;
@@ -56,10 +64,10 @@ namespace ProjectView.Models.Bll
         {
             try
             {
-                ClassReviewProject crp = PRDB.ClassReviewProjects.SingleOrDefault(cr => cr.ID == id);
+                var crp = PRDB.ClassReviewProjects.SingleOrDefault(cr => cr.ID == id);
                 if (crp != null)
                 {
-                    ClaRevProModel crm = new ClaRevProModel();
+                    var crm = new ClaRevProModel();
                     crm.ID = crp.ID;
                     crm.ClassID = crp.ClassID;
                     crm.ClassName = crp.Class.ClassName;

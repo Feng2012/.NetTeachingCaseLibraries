@@ -9,19 +9,40 @@ using System.Web.Mvc;
 
 namespace ProjectView.Controllers
 {
+    /// <summary>
+    /// 评语
+    /// </summary>
     public class RemarkController : Controller
     {
-        //
-        // GET: /Remark/
-
-        RemarkBll rb = new RemarkBll();
+        /// <summary>
+        /// 项目业务类
+        /// </summary>
+        ProjectBll pb;
+        /// <summary>
+        /// 评语业务类
+        /// </summary>
+        RemarkBll rb;
+        /// <summary>
+        /// 学生业务类
+        /// </summary>
+        StudentBll sb;
+        /// <summary>
+        /// 班级业务类
+        /// </summary>
+        ClassBll cb;
+        public RemarkController()
+        {
+            rb = new RemarkBll();
+            pb = new ProjectBll();
+            sb = new StudentBll();
+            cb = new ClassBll();
+        }
 
         [StudentLoginFilter]
         public ActionResult QueryRemark(string stuno)
         {
-            ProjectBll pb = new ProjectBll();
+
             ViewBag.ProjectID = new SelectList(pb.GetProjects(), "ID", "ProjectName");
-            StudentBll sb = new StudentBll();
             int classid = sb.GetStudentModel(stuno).ClassID;
             ViewBag.ClassID = classid;
             ViewBag.StuNo = stuno;
@@ -34,7 +55,6 @@ namespace ProjectView.Controllers
         public ActionResult QueryRemark(IEnumerable<ProjectView.Models.ViewModel.RemarkModel> rms)
         {
             int projectid = int.Parse(Request.Params["ProjectID"]);
-            ProjectBll pb = new ProjectBll();
             ViewBag.ProjectID = new SelectList(pb.GetProjects(), "ID", "ProjectName", projectid);
             int classid = int.Parse(Request.Params["ClassID"]);
             ViewBag.ClassID = classid;
@@ -42,12 +62,12 @@ namespace ProjectView.Controllers
             return View(rb.GetRemarkModels(classid, projectid));
 
         }
-        
+
         [TeacherLoginFilter]
         public ActionResult Index()
         {
-            ClassBll cb = new ClassBll();
-            List<ClassModel> cms = cb.GetClasses();
+
+            var cms = cb.GetClasses();
             ViewBag.ClassID = new SelectList(cms, "ID", "ClassName");
             if (cms.Count > 0)
             {
@@ -63,7 +83,7 @@ namespace ProjectView.Controllers
         public ActionResult Index(IEnumerable<RemarkModel> rms)
         {
             string classid = Request.Params["ClassID"];
-            ClassBll cb = new ClassBll();
+
             if (!string.IsNullOrEmpty(classid))
             {
                 ViewBag.ClassID = new SelectList(cb.GetClasses(), "ID", "ClassName", classid);
@@ -79,12 +99,10 @@ namespace ProjectView.Controllers
         [TeacherLoginFilter]
         public ActionResult Create()
         {
-            ClassBll cb = new ClassBll();
-            ProjectBll pb = new ProjectBll();
-            StudentBll sb = new StudentBll();
+
 
             ViewBag.ProjectID = new SelectList(pb.GetProjects(), "ID", "ProjectName");
-            List<ClassModel> cms = cb.GetClasses();
+            var cms = cb.GetClasses();
             ViewBag.ClassID = new SelectList(cms, "ID", "ClassName");
             if (cms.Count > 0)
             {
@@ -102,13 +120,10 @@ namespace ProjectView.Controllers
         [TeacherLoginFilter]
         public ActionResult Create(RemarkModel rm)
         {
-            ClassBll cb = new ClassBll();
-            ProjectBll pb = new ProjectBll();
-            StudentBll sb = new StudentBll();
             ViewBag.ProjectID = new SelectList(pb.GetProjects(), "ID", "ProjectName", rm.ProjectID);
 
             string ClassID = Request.Params["ClassID"];
-            List<ClassModel> cms = cb.GetClasses();
+            var cms = cb.GetClasses();
             ViewBag.ClassID = new SelectList(cms, "ID", "ClassName", ClassID);
             if (cms.Count > 0)
             {
@@ -135,7 +150,7 @@ namespace ProjectView.Controllers
         [TeacherLoginFilter]
         public JsonResult GetStudent(int id)
         {
-            StudentBll sb = new StudentBll();
+
             string con = "";
             foreach (var v in sb.GetStudentModels(id))
             {
@@ -147,14 +162,12 @@ namespace ProjectView.Controllers
         public ActionResult Edit(int id)
         {
             int classid;
-            RemarkModel rm = rb.GetReamrkModelByID(id, out classid);
+            var rm = rb.GetReamrkModelByID(id, out classid);
             if (rm != null)
             {
-                ClassBll cb = new ClassBll();
-                ProjectBll pb = new ProjectBll();
-                StudentBll sb = new StudentBll();
+
                 ViewBag.ProjectID = new SelectList(pb.GetProjects(), "ID", "ProjectName", rm.ProjectID);
-                List<ClassModel> cms = cb.GetClasses();
+               var cms = cb.GetClasses();
                 ViewBag.ClassID = new SelectList(cms, "ID", "ClassName", classid);
                 ViewBag.StuNo = new SelectList(sb.GetStudentModels(classid), "StuNo", "StuName", rm.StuNo);
 
@@ -176,12 +189,10 @@ namespace ProjectView.Controllers
             else
             {
                 ModelState.AddModelError("Error", "修改评语失败！");
-                int classid = int.Parse(Request.Params["ClassID"]);
-                ClassBll cb = new ClassBll();
-                ProjectBll pb = new ProjectBll();
-                StudentBll sb = new StudentBll();
+                var classid = int.Parse(Request.Params["ClassID"]);
+
                 ViewBag.ProjectID = new SelectList(pb.GetProjects(), "ID", "ProjectName", rm.ProjectID);
-                List<ClassModel> cms = cb.GetClasses();
+                var cms = cb.GetClasses();
                 ViewBag.ClassID = new SelectList(cms, "ID", "ClassName", classid);
                 ViewBag.StuNo = new SelectList(sb.GetStudentModels(classid), "StuNo", "StuName", rm.StuNo);
                 return View(rm);
@@ -191,9 +202,9 @@ namespace ProjectView.Controllers
         public ActionResult Details(int id)
         {
             int classid;
-            RemarkModel rm = rb.GetReamrkModelByID(id, out classid);
+            var rm = rb.GetReamrkModelByID(id, out classid);
             if (rm != null)
-            { 
+            {
                 return View(rm);
             }
             else
@@ -205,7 +216,7 @@ namespace ProjectView.Controllers
         public ActionResult Delete(int id)
         {
             int classid;
-            RemarkModel rm = rb.GetReamrkModelByID(id, out classid);
+            var rm = rb.GetReamrkModelByID(id, out classid);
             if (rm != null)
             {
                 return View(rm);

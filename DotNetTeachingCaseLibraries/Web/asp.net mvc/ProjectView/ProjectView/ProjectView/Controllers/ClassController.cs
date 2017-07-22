@@ -9,25 +9,33 @@ using System.Web.Mvc;
 
 namespace ProjectView.Controllers
 {
+    /// <summary>
+    /// 班级
+    /// </summary>
     [TeacherLoginFilter]
     public class ClassController : Controller
     {
-        //
-        // GET: /Class/
-        ClassBll cb = new ClassBll();
+        /// <summary>
+        /// 班级业务类
+        /// </summary>
+        ClassBll cb;
+        public ClassController()
+        {
+            cb = new ClassBll();
+        }
 
         public ActionResult Index()
         {
 
-            List<ClassModel> cms = cb.GetClasses();
+            var cms = cb.GetClasses();
             return View(cms);
         }
- 
+
         public ActionResult Create()
         {
             return View();
         }
-    
+
         [HttpPost]
         public ActionResult Create(ClassModel cm)
         {
@@ -40,10 +48,10 @@ namespace ProjectView.Controllers
                 return View();
             }
         }
-    
+
         public ActionResult Edit(int id)
         {
-            ClassModel cm = cb.GetClassByID(id);
+            var cm = cb.GetClassByID(id);
             if (cm != null)
             {
                 return View(cm);
@@ -66,10 +74,10 @@ namespace ProjectView.Controllers
                 return View(cm);
             }
         }
-  
+
         public ActionResult Delete(int id)
         {
-            ClassModel cm = cb.GetClassByID(id);
+            var cm = cb.GetClassByID(id);
             if (cm != null)
             {
                 return View(cm);
@@ -79,7 +87,7 @@ namespace ProjectView.Controllers
                 return RedirectToAction("Index");
             }
         }
-  
+
         [HttpPost]
         public ActionResult Delete(ClassModel cm)
         {

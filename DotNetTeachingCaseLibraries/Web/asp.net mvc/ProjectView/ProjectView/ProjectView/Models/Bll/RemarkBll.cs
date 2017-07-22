@@ -6,15 +6,22 @@ using System.Web;
 
 namespace ProjectView.Models.Bll
 {
+    /// <summary>
+    /// 评语业务类
+    /// </summary>
     public class RemarkBll
     {
-        ProjectReviewDBEntities PRDB = new ProjectReviewDBEntities();
+        ProjectReviewDBEntities PRDB ;
+        public RemarkBll()
+        {
+            PRDB = new ProjectReviewDBEntities();
+        }
         public List<RemarkModel> GetRemarkModels()
         {
-            List<RemarkModel> cms = new List<RemarkModel>();
-            foreach (TeacherRemark tr in PRDB.TeacherRemarks.OrderBy(tr=>tr.ID))
+            var cms = new List<RemarkModel>();
+            foreach (var tr in PRDB.TeacherRemarks.OrderBy(tr=>tr.ID))
             {
-                RemarkModel rm = new RemarkModel();
+                var rm = new RemarkModel();
                 rm.ID = tr.ID;
                 rm.ProjectID = tr.ProjectID;
                 rm.ProjectName = tr.Project.ProjectName;
@@ -35,10 +42,10 @@ namespace ProjectView.Models.Bll
         }
         public List<RemarkModel> GetRemarkModels(int classid)
         {
-            List<RemarkModel> cms = new List<RemarkModel>();
-            foreach (TeacherRemark tr in PRDB.TeacherRemarks.Where(rem => rem.Student.ClassID == classid).OrderBy(tr=>tr.ID))
+            var cms = new List<RemarkModel>();
+            foreach (var tr in PRDB.TeacherRemarks.Where(rem => rem.Student.ClassID == classid).OrderBy(tr=>tr.ID))
             {
-                RemarkModel rm = new RemarkModel();
+                var rm = new RemarkModel();
                 rm.ID = tr.ID;
                 rm.ProjectID = tr.ProjectID;
                 rm.ProjectName = tr.Project.ProjectName;
@@ -60,10 +67,10 @@ namespace ProjectView.Models.Bll
 
         public List<RemarkModel> GetRemarkModels(int classid, int projectid)
         {
-            List<RemarkModel> cms = new List<RemarkModel>();
-            foreach (TeacherRemark tr in PRDB.TeacherRemarks.Where(rem => rem.Student.ClassID == classid && rem.ProjectID == projectid))
+            var cms = new List<RemarkModel>();
+            foreach (var tr in PRDB.TeacherRemarks.Where(rem => rem.Student.ClassID == classid && rem.ProjectID == projectid))
             {
-                RemarkModel rm = new RemarkModel();
+                var rm = new RemarkModel();
                 rm.ID = tr.ID;
                 rm.ProjectID = tr.ProjectID;
                 rm.ProjectName = tr.Project.ProjectName;
@@ -87,7 +94,7 @@ namespace ProjectView.Models.Bll
         {
             try
             {
-                TeacherRemark tr = new TeacherRemark();
+                var tr = new TeacherRemark();
                 tr.ProjectID = rm.ProjectID;
                 tr.StuNo = rm.StuNo;
                 tr.Remark = rm.Remark;
@@ -109,7 +116,7 @@ namespace ProjectView.Models.Bll
         {
             try
             {
-                TeacherRemark tr = PRDB.TeacherRemarks.SingleOrDefault(tre => tre.ID == rm.ID);
+                var tr = PRDB.TeacherRemarks.SingleOrDefault(tre => tre.ID == rm.ID);
                 if (tr != null)
                 {
                     tr.ProjectID = rm.ProjectID;
@@ -136,7 +143,7 @@ namespace ProjectView.Models.Bll
         {
             try
             {
-                TeacherRemark tr = PRDB.TeacherRemarks.SingleOrDefault(tre => tre.ID == rm.ID);
+                var tr = PRDB.TeacherRemarks.SingleOrDefault(tre => tre.ID == rm.ID);
                 if (tr != null)
                 {
                     PRDB.TeacherRemarks.Remove(tr);
@@ -158,10 +165,10 @@ namespace ProjectView.Models.Bll
         {
             try
             {
-                TeacherRemark TR = PRDB.TeacherRemarks.SingleOrDefault(tr => tr.ID == id);
+                var TR = PRDB.TeacherRemarks.SingleOrDefault(tr => tr.ID == id);
                 if (TR != null)
                 {
-                    RemarkModel RM = new RemarkModel();
+                    var RM = new RemarkModel();
                     RM.ID = TR.ID;
                     RM.ProjectID = TR.ProjectID;
                     RM.ProjectName = TR.Project.ProjectName;

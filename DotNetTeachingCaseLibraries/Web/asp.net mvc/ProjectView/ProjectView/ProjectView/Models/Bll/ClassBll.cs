@@ -7,15 +7,24 @@ using ProjectView.Models;
 
 namespace ProjectView.Models.Bll
 {
+    /// <summary>
+    /// 班级业务顺
+    /// </summary>
     public class ClassBll
     {
-        ProjectReviewDBEntities PRDB = new ProjectReviewDBEntities();
+
+        ProjectReviewDBEntities PRDB;
+        public ClassBll()
+        {
+            PRDB = new ProjectReviewDBEntities();
+        }
+
         public List<ClassModel> GetClasses()
         {
-            List<ClassModel> cms = new List<ClassModel>();
-            foreach (Class cla in PRDB.Classes.OrderBy(cla=>cla.ID))
+            var cms = new List<ClassModel>();
+            foreach (Class cla in PRDB.Classes.OrderBy(cla => cla.ID))
             {
-                ClassModel cm = new ClassModel();
+                var cm = new ClassModel();
                 cm.ID = cla.ID;
                 cm.ClassName = cla.ClassName;
                 cm.Describe = cla.Describe;
@@ -27,12 +36,12 @@ namespace ProjectView.Models.Bll
         {
             try
             {
-                Class cla = new Class();
+                var cla = new Class();
                 cla.ClassName = cm.ClassName;
                 cla.Describe = cm.Describe;
                 PRDB.Classes.Add(cla);
                 PRDB.SaveChanges();
-                return true ;
+                return true;
             }
             catch
             {
@@ -43,10 +52,10 @@ namespace ProjectView.Models.Bll
         {
             try
             {
-                Class cla = PRDB.Classes.SingleOrDefault(clas => clas.ID == id);
+                var cla = PRDB.Classes.SingleOrDefault(clas => clas.ID == id);
                 if (cla != null)
                 {
-                    ClassModel cm = new ClassModel();
+                    var cm = new ClassModel();
                     cm.ID = cla.ID;
                     cm.ClassName = cla.ClassName;
                     cm.Describe = cla.Describe;
@@ -66,7 +75,7 @@ namespace ProjectView.Models.Bll
         {
             try
             {
-                Class cla = PRDB.Classes.SingleOrDefault(clas => clas.ID == cm.ID);
+                var cla = PRDB.Classes.SingleOrDefault(clas => clas.ID == cm.ID);
                 if (cla != null)
                 {
                     cla.ClassName = cm.ClassName;
@@ -88,7 +97,7 @@ namespace ProjectView.Models.Bll
         {
             try
             {
-                Class cla = PRDB.Classes.SingleOrDefault(clas => clas.ID == cm.ID);
+                var cla = PRDB.Classes.SingleOrDefault(clas => clas.ID == cm.ID);
                 if (cla != null)
                 {
                     PRDB.Classes.Remove(cla);

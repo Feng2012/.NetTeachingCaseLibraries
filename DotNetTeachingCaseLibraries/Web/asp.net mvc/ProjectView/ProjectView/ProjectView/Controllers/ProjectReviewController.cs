@@ -10,16 +10,25 @@ using ProjectView.App_Start;
 
 namespace ProjectView.Controllers
 {
+    /// <summary>
+    /// 项目评审
+    /// </summary>
     [StudentLoginFilter]
     public class ProjectReviewController : Controller
     {
-        //
-        // GET: /ProjectReview/
+        /// <summary>
+        /// 评审业务类
+        /// </summary>
+        ReviewBll rb;
+
+        public ProjectReviewController()
+        {
+            rb = new ReviewBll();
+        }
 
         public ActionResult Review(string stuno)
-        {
-            ReviewBll rb = new ReviewBll();
-            ReviewModel rm = rb.GetReview(stuno);
+        {           
+            var rm = rb.GetReview(stuno);
             ViewBag.ReviewStuNo = new SelectList(rb.GetStudents(stuno), "StuNo", "StuName");
             return View(rm);
         }
@@ -27,11 +36,11 @@ namespace ProjectView.Controllers
         [HttpPost]
         public ActionResult Review(string stuno, string ReviewStuNo)
         {
-            ReviewBll rb = new ReviewBll();
+
             ViewBag.ReviewStuNo = new SelectList(rb.GetStudents(stuno), "StuNo", "StuName", ReviewStuNo);
 
-            ReviewModel rm = rb.GetReview(stuno);
-            List<ProjectItemModel> projectitems = new List<ProjectItemModel>();
+            var rm = rb.GetReview(stuno);
+            var projectitems = new List<ProjectItemModel>();
             foreach (ProjectView.Models.ViewModel.ProjectItemModel item in rm.Items)
             {
                 string gradevalue = Request.Params[item.ID.ToString()];
@@ -51,9 +60,8 @@ namespace ProjectView.Controllers
 
         public ActionResult StuQueryGrade(string reviewstuno)
         {
-            ReviewBll rb = new ReviewBll();
             ViewBag.ProjectID = new SelectList(rb.GetProjects(), "ID", "ProjectName");
-            QueryGradeModel QGM = new QueryGradeModel();
+            var QGM = new QueryGradeModel();
             QGM.DT = new DataTable();
             QGM.StuNo = reviewstuno;
             return View(QGM);
@@ -61,15 +69,14 @@ namespace ProjectView.Controllers
         [HttpPost]
         public ActionResult StuQueryGrade(string reviewstuno, string projectid)
         {
-            ReviewBll rb = new ReviewBll();
             ViewBag.ProjectID = new SelectList(rb.GetProjects(), "ID", "ProjectName", projectid);
-            DataTable dt = new DataTable();
+            var dt = new DataTable();
             if (!string.IsNullOrEmpty(projectid) && !string.IsNullOrEmpty(reviewstuno))
             {
                 int proid = int.Parse(projectid);
                 dt = rb.GetSumGrade(proid, reviewstuno);
             }
-            QueryGradeModel QGM = new QueryGradeModel();
+            var QGM = new QueryGradeModel();
             QGM.DT = dt;
             QGM.StuNo = reviewstuno;
             return View(QGM);

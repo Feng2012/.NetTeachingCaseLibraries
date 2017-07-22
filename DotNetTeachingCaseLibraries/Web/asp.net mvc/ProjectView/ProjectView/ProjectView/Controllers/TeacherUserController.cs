@@ -9,15 +9,25 @@ using System.Web.Mvc;
 
 namespace ProjectView.Controllers
 {
+    /// <summary>
+    /// 教师用户
+    /// </summary>
     [TeacherLoginFilter]
     public class TeacherUserController : Controller
     {
 
-      
-        TeacherUserBll tub = new TeacherUserBll();
+        /// <summary>
+        /// 教师业务类
+        /// </summary>
+        TeacherUserBll tub;
+        public TeacherUserController()
+        {
+            tub = new TeacherUserBll();
+        }
+
         public ActionResult Index()
         {
-            List<TeacherUserModel> tums = tub.GetTeacherModels();
+            var tums = tub.GetTeacherModels();
             return View(tums);
         }
 
@@ -46,10 +56,10 @@ namespace ProjectView.Controllers
 
         public ActionResult Edit(string UserName)
         {
-            TeacherUserModel tum = tub.GetTeacherUserModel(UserName);
+            var tum = tub.GetTeacherUserModel(UserName);
             if (tum != null)
             {
-                ViewBag.TeacherID = new SelectList(tb.GetTeachers(), "ID", "TeacherName",tum.TeacherID);
+                ViewBag.TeacherID = new SelectList(tb.GetTeachers(), "ID", "TeacherName", tum.TeacherID);
                 return View(tum);
             }
             else
@@ -67,16 +77,16 @@ namespace ProjectView.Controllers
             }
             else
             {
-                ViewBag.TeacherID = new SelectList(tb.GetTeachers(), "ID", "TeacherName",tum.TeacherID);
+                ViewBag.TeacherID = new SelectList(tb.GetTeachers(), "ID", "TeacherName", tum.TeacherID);
                 ModelState.AddModelError("Error", "修改教师用户信息失败!");
                 return View(tum);
             }
         }
         public ActionResult Delete(string UserName)
         {
-            TeacherUserModel tum = tub.GetTeacherUserModel(UserName);
+            var tum = tub.GetTeacherUserModel(UserName);
             if (tum != null)
-            {               
+            {
                 return View(tum);
             }
             else
@@ -92,7 +102,7 @@ namespace ProjectView.Controllers
                 return RedirectToAction("Index");
             }
             else
-            {        
+            {
                 ModelState.AddModelError("Error", "删除教师用户信息失败!");
                 return View(tum);
             }
