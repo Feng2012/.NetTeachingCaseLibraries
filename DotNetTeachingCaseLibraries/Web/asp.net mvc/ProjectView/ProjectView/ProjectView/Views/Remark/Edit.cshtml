@@ -1,0 +1,66 @@
+﻿@model ProjectView.Models.ViewModel.RemarkModel
+
+@{
+    ViewBag.Title = "修改评语";
+}
+
+<h2>评语信息</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>修改评语</legend>
+
+        @Html.HiddenFor(model => model.ID)
+
+        <table width="100%">
+            <tr>
+                <td style="width: 200px;">班级名称：@Html.DropDownList("ClassID", (IEnumerable<SelectListItem>)ViewBag.ClassID, new { AutoPostBack = "true", onchange = "MyChange()" })
+                </td>
+                <td style="width: 200px;">
+                    @Html.LabelFor(model => model.StuName)：@Html.DropDownList("StuNo")</td>
+                <td>
+                    @Html.LabelFor(model => model.ProjectName)： @Html.DropDownList("ProjectID")
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    @Html.LabelFor(model => model.Remark)：
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    @Html.TextAreaFor(model => model.Remark, new { Class = "TA" })
+                </td>
+            </tr>
+            <tr style="text-align: right;">
+                <td colspan="3">
+                    <input type="submit" value="保存" class="SubmitBut" /></td>
+            </tr>
+        </table>
+        @Html.ValidationMessageFor(model => model.Remark)
+        @Html.ValidationMessage("Error")
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("详细列表", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function MyChange() {
+            $.getJSON("/Remark/GetStudent/" + $("#ClassID").val(), function (result) {
+                $("#StuNo").html(result);
+            })
+        }
+    </script>
+    <style>
+        .TA {
+            width: 100%;
+        }
+    </style>
+}

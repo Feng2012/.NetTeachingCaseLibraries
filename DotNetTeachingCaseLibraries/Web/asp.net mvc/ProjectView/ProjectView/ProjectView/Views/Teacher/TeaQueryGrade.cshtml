@@ -1,0 +1,112 @@
+﻿@model ProjectView.Models.ViewModel.QueryGradeModel
+@{
+    ViewBag.Title = "班级成绩查询"; 
+}
+
+@using (Html.BeginForm())
+{
+    <table width="100%">
+        <tr>
+            <td style="height: 50px; width: 350px;">选择项目：
+                @Html.DropDownList("projectid")
+            </td>
+            <td style="height: 50px; width: 350px;">选择班级：
+                @Html.DropDownList("classid")
+            </td>
+            <td style="height: 50px; width: 350px;">按总分排序：
+                @Html.CheckBox("ScoreOrder")
+            </td>
+            <td style="text-align: match-parent;">
+                <input id="query"  name="query"  type="submit" class="SubmitBut" value="查　询" />
+            </td>
+            <td style="text-align: match-parent;">
+                <input id="outexcel" name="outexcel" type="submit" class="SubmitBut" value="导出Excel" />
+            </td>
+        </tr>
+    </table>
+}
+<table width="100%" class="myListTable">
+    <tr style="background-color: #c4bfbf; font-size: 12px;">
+       @for (int i = 0; i < Model.DT.Columns.Count; i++)
+        {
+            if (i == 1)
+            { <th style="width: 50px">
+                @Model.DT.Columns[i].ColumnName
+            </th>
+            }
+            else
+            { 
+            <th>
+                @Model.DT.Columns[i].ColumnName
+            </th>
+            }
+        }
+    </tr>
+    @for (int i = 0; i < Model.DT.Rows.Count - 1; i++)
+    {
+        var stugrade = Model.DT.Rows[i];
+        if (i % 2 == 0)
+        {
+        <tr>
+            @for (int j = 0; j < stugrade.ItemArray.Length; j++)
+            {
+                if (j == stugrade.ItemArray.Length - 1)
+                {
+                <td style="background-color: #c4bfbf; font-weight: 600; font-size: 12px;">
+                    @stugrade.ItemArray[j].ToString()
+                </td>     
+                }
+                else
+                {
+                <td style="font-size: 12px;">@stugrade.ItemArray[j].ToString()</td>     
+                }
+            }
+        </tr>
+        }
+        else
+        {
+        <tr style="background-color: #E6E6E6; font-size: 12px;">
+            @for (int j = 0; j < stugrade.ItemArray.Length; j++)
+            {
+                if (j == stugrade.ItemArray.Length - 1)
+                {
+                <td style="background-color: #c4bfbf; font-weight: 600">
+                    @stugrade.ItemArray[j].ToString()
+                </td>     
+                }
+                else
+                {
+                <td>@stugrade.ItemArray[j].ToString()</td>     
+                }
+            }
+        </tr>
+        }
+    }
+    <tr style="background-color: #c4bfbf; font-weight: 600; font-size: 12px;">
+
+        @if (Model.DT.Rows.Count - 1 > 0)
+        {
+            foreach (object obj in Model.DT.Rows[Model.DT.Rows.Count - 1].ItemArray)
+            { 
+            <td>@obj.ToString()</td>         
+            }
+        }
+    </tr>
+
+</table>
+<br />
+@Html.ActionLink("首页", "MainPage", "Teacher", new { teacherid = Model.TeacherID }, null)
+
+@section Scripts {
+    <style>
+        select {
+            border: 1px solid #e2e2e2;
+            background: #fff;
+            color: #333;
+            font-size: 13px;
+            margin: 0 0 0 0;
+            padding: 0px;
+            height: 23px;
+        }
+    </style>
+}

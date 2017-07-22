@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1b8313d46c704c059d1d756d4217e3eb" Name="关系图1">
+        <EntityTypeShape EntityType="ProjectReviewDBModel.Class" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectReviewDBModel.ClassReviewProject" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectReviewDBModel.ProjectGrade" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectReviewDBModel.ProjectItem" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectReviewDBModel.Project" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectReviewDBModel.Student" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectReviewDBModel.StudentUser" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectReviewDBModel.TeacherRemark" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectReviewDBModel.Teacher" Width="1.5" PointX="2.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectReviewDBModel.TeacherUser" Width="1.5" PointX="5" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="ProjectReviewDBModel.FK_ClassReviewProjects_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectReviewDBModel.FK_Students_Classes" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectReviewDBModel.FK_ClassReviewProjects_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectReviewDBModel.FK_ProjectGrades_ProjectItemID" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectReviewDBModel.FK_ProjectGrades_ReviewStuNo" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectReviewDBModel.FK_ProjectGrades_StuNo" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectReviewDBModel.FK_ProjectItems_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectReviewDBModel.FK_TeacherRemarks_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectReviewDBModel.FK_StudentUsers_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectReviewDBModel.FK_TeacherRemarks_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectReviewDBModel.FK_TeacherUsers_Teachers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,724 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProjectReviewDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ProjectReviewDBModelStoreContainer">
+          <EntitySet Name="Classes" EntityType="ProjectReviewDBModel.Store.Classes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ClassReviewProjects" EntityType="ProjectReviewDBModel.Store.ClassReviewProjects" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProjectGrades" EntityType="ProjectReviewDBModel.Store.ProjectGrades" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProjectItems" EntityType="ProjectReviewDBModel.Store.ProjectItems" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Projects" EntityType="ProjectReviewDBModel.Store.Projects" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Students" EntityType="ProjectReviewDBModel.Store.Students" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StudentUsers" EntityType="ProjectReviewDBModel.Store.StudentUsers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TeacherRemarks" EntityType="ProjectReviewDBModel.Store.TeacherRemarks" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Teachers" EntityType="ProjectReviewDBModel.Store.Teachers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TeacherUsers" EntityType="ProjectReviewDBModel.Store.TeacherUsers" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ClassReviewProjects_Class" Association="ProjectReviewDBModel.Store.FK_ClassReviewProjects_Class">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="ClassReviewProjects" EntitySet="ClassReviewProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClassReviewProjects_Projects" Association="ProjectReviewDBModel.Store.FK_ClassReviewProjects_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ClassReviewProjects" EntitySet="ClassReviewProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectGrades_ProjectItemID" Association="ProjectReviewDBModel.Store.FK_ProjectGrades_ProjectItemID">
+            <End Role="ProjectItems" EntitySet="ProjectItems" />
+            <End Role="ProjectGrades" EntitySet="ProjectGrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectGrades_ReviewStuNo" Association="ProjectReviewDBModel.Store.FK_ProjectGrades_ReviewStuNo">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="ProjectGrades" EntitySet="ProjectGrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectGrades_StuNo" Association="ProjectReviewDBModel.Store.FK_ProjectGrades_StuNo">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="ProjectGrades" EntitySet="ProjectGrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectItems_Projects" Association="ProjectReviewDBModel.Store.FK_ProjectItems_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProjectItems" EntitySet="ProjectItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Classes" Association="ProjectReviewDBModel.Store.FK_Students_Classes">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentUsers_Student" Association="ProjectReviewDBModel.Store.FK_StudentUsers_Student">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="StudentUsers" EntitySet="StudentUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeacherRemarks_Projects" Association="ProjectReviewDBModel.Store.FK_TeacherRemarks_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="TeacherRemarks" EntitySet="TeacherRemarks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeacherRemarks_Students" Association="ProjectReviewDBModel.Store.FK_TeacherRemarks_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="TeacherRemarks" EntitySet="TeacherRemarks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeacherUsers_Teachers" Association="ProjectReviewDBModel.Store.FK_TeacherUsers_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="TeacherUsers" EntitySet="TeacherUsers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Classes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClassName" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Describe" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="ClassReviewProjects">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClassID" Type="int" Nullable="false" />
+          <Property Name="ProjectID" Type="int" />
+        </EntityType>
+        <EntityType Name="ProjectGrades">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StuNo" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Grade" Type="int" Nullable="false" />
+          <Property Name="ProjectItemID" Type="int" Nullable="false" />
+          <Property Name="GradeDT" Type="datetime" Nullable="false" />
+          <Property Name="ReviewStuNo" Type="varchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ProjectItems">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="Grade" Type="int" Nullable="false" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Describe" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="StuNo" />
+          </Key>
+          <Property Name="StuNo" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="StuName" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Sex" Type="bit" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="Contact" Type="varchar" MaxLength="15" />
+          <Property Name="PersonID" Type="varchar" MaxLength="18" />
+          <Property Name="ClassID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudentUsers">
+          <Key>
+            <PropertyRef Name="StuNoUserName" />
+          </Key>
+          <Property Name="StuNoUserName" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="TeacherRemarks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StuNo" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="Remark" Type="text" Nullable="false" />
+          <Property Name="RemarkDT" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TeacherName" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Sex" Type="bit" />
+        </EntityType>
+        <EntityType Name="TeacherUsers">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="16" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="16" />
+          <Property Name="TeacherID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ClassReviewProjects_Class">
+          <End Role="Classes" Type="ProjectReviewDBModel.Store.Classes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ClassReviewProjects" Type="ProjectReviewDBModel.Store.ClassReviewProjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ClassReviewProjects">
+              <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClassReviewProjects_Projects">
+          <End Role="Projects" Type="ProjectReviewDBModel.Store.Projects" Multiplicity="0..1" />
+          <End Role="ClassReviewProjects" Type="ProjectReviewDBModel.Store.ClassReviewProjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ClassReviewProjects">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectGrades_ProjectItemID">
+          <End Role="ProjectItems" Type="ProjectReviewDBModel.Store.ProjectItems" Multiplicity="1" />
+          <End Role="ProjectGrades" Type="ProjectReviewDBModel.Store.ProjectGrades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectItems">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectGrades">
+              <PropertyRef Name="ProjectItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectGrades_ReviewStuNo">
+          <End Role="Students" Type="ProjectReviewDBModel.Store.Students" Multiplicity="1" />
+          <End Role="ProjectGrades" Type="ProjectReviewDBModel.Store.ProjectGrades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StuNo" />
+            </Principal>
+            <Dependent Role="ProjectGrades">
+              <PropertyRef Name="ReviewStuNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectGrades_StuNo">
+          <End Role="Students" Type="ProjectReviewDBModel.Store.Students" Multiplicity="1" />
+          <End Role="ProjectGrades" Type="ProjectReviewDBModel.Store.ProjectGrades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StuNo" />
+            </Principal>
+            <Dependent Role="ProjectGrades">
+              <PropertyRef Name="StuNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectItems_Projects">
+          <End Role="Projects" Type="ProjectReviewDBModel.Store.Projects" Multiplicity="1" />
+          <End Role="ProjectItems" Type="ProjectReviewDBModel.Store.ProjectItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectItems">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Classes">
+          <End Role="Classes" Type="ProjectReviewDBModel.Store.Classes" Multiplicity="1" />
+          <End Role="Students" Type="ProjectReviewDBModel.Store.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentUsers_Student">
+          <End Role="Students" Type="ProjectReviewDBModel.Store.Students" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StudentUsers" Type="ProjectReviewDBModel.Store.StudentUsers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StuNo" />
+            </Principal>
+            <Dependent Role="StudentUsers">
+              <PropertyRef Name="StuNoUserName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeacherRemarks_Projects">
+          <End Role="Projects" Type="ProjectReviewDBModel.Store.Projects" Multiplicity="1" />
+          <End Role="TeacherRemarks" Type="ProjectReviewDBModel.Store.TeacherRemarks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeacherRemarks">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeacherRemarks_Students">
+          <End Role="Students" Type="ProjectReviewDBModel.Store.Students" Multiplicity="1" />
+          <End Role="TeacherRemarks" Type="ProjectReviewDBModel.Store.TeacherRemarks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StuNo" />
+            </Principal>
+            <Dependent Role="TeacherRemarks">
+              <PropertyRef Name="StuNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeacherUsers_Teachers">
+          <End Role="Teachers" Type="ProjectReviewDBModel.Store.Teachers" Multiplicity="1" />
+          <End Role="TeacherUsers" Type="ProjectReviewDBModel.Store.TeacherUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeacherUsers">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjectReviewDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ProjectReviewDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Classes" EntityType="ProjectReviewDBModel.Class" />
+          <EntitySet Name="ClassReviewProjects" EntityType="ProjectReviewDBModel.ClassReviewProject" />
+          <EntitySet Name="ProjectGrades" EntityType="ProjectReviewDBModel.ProjectGrade" />
+          <EntitySet Name="ProjectItems" EntityType="ProjectReviewDBModel.ProjectItem" />
+          <EntitySet Name="Projects" EntityType="ProjectReviewDBModel.Project" />
+          <EntitySet Name="Students" EntityType="ProjectReviewDBModel.Student" />
+          <EntitySet Name="StudentUsers" EntityType="ProjectReviewDBModel.StudentUser" />
+          <EntitySet Name="TeacherRemarks" EntityType="ProjectReviewDBModel.TeacherRemark" />
+          <EntitySet Name="Teachers" EntityType="ProjectReviewDBModel.Teacher" />
+          <EntitySet Name="TeacherUsers" EntityType="ProjectReviewDBModel.TeacherUser" />
+          <AssociationSet Name="FK_ClassReviewProjects_Class" Association="ProjectReviewDBModel.FK_ClassReviewProjects_Class">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="ClassReviewProjects" EntitySet="ClassReviewProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Classes" Association="ProjectReviewDBModel.FK_Students_Classes">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClassReviewProjects_Projects" Association="ProjectReviewDBModel.FK_ClassReviewProjects_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ClassReviewProjects" EntitySet="ClassReviewProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectGrades_ProjectItemID" Association="ProjectReviewDBModel.FK_ProjectGrades_ProjectItemID">
+            <End Role="ProjectItems" EntitySet="ProjectItems" />
+            <End Role="ProjectGrades" EntitySet="ProjectGrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectGrades_ReviewStuNo" Association="ProjectReviewDBModel.FK_ProjectGrades_ReviewStuNo">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="ProjectGrades" EntitySet="ProjectGrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectGrades_StuNo" Association="ProjectReviewDBModel.FK_ProjectGrades_StuNo">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="ProjectGrades" EntitySet="ProjectGrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectItems_Projects" Association="ProjectReviewDBModel.FK_ProjectItems_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProjectItems" EntitySet="ProjectItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeacherRemarks_Projects" Association="ProjectReviewDBModel.FK_TeacherRemarks_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="TeacherRemarks" EntitySet="TeacherRemarks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentUsers_Student" Association="ProjectReviewDBModel.FK_StudentUsers_Student">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="StudentUsers" EntitySet="StudentUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeacherRemarks_Students" Association="ProjectReviewDBModel.FK_TeacherRemarks_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="TeacherRemarks" EntitySet="TeacherRemarks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeacherUsers_Teachers" Association="ProjectReviewDBModel.FK_TeacherUsers_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="TeacherUsers" EntitySet="TeacherUsers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassName" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Describe" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="ClassReviewProjects" Relationship="ProjectReviewDBModel.FK_ClassReviewProjects_Class" FromRole="Classes" ToRole="ClassReviewProjects" />
+          <NavigationProperty Name="Students" Relationship="ProjectReviewDBModel.FK_Students_Classes" FromRole="Classes" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="ClassReviewProject">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassID" Type="Int32" Nullable="false" />
+          <Property Name="ProjectID" Type="Int32" />
+          <NavigationProperty Name="Class" Relationship="ProjectReviewDBModel.FK_ClassReviewProjects_Class" FromRole="ClassReviewProjects" ToRole="Classes" />
+          <NavigationProperty Name="Project" Relationship="ProjectReviewDBModel.FK_ClassReviewProjects_Projects" FromRole="ClassReviewProjects" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="ProjectGrade">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="StuNo" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Grade" Type="Int32" Nullable="false" />
+          <Property Name="ProjectItemID" Type="Int32" Nullable="false" />
+          <Property Name="GradeDT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReviewStuNo" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="ProjectItem" Relationship="ProjectReviewDBModel.FK_ProjectGrades_ProjectItemID" FromRole="ProjectGrades" ToRole="ProjectItems" />
+          <NavigationProperty Name="Student" Relationship="ProjectReviewDBModel.FK_ProjectGrades_ReviewStuNo" FromRole="ProjectGrades" ToRole="Students" />
+          <NavigationProperty Name="Student1" Relationship="ProjectReviewDBModel.FK_ProjectGrades_StuNo" FromRole="ProjectGrades" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="ProjectItem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Grade" Type="Int32" Nullable="false" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProjectGrades" Relationship="ProjectReviewDBModel.FK_ProjectGrades_ProjectItemID" FromRole="ProjectItems" ToRole="ProjectGrades" />
+          <NavigationProperty Name="Project" Relationship="ProjectReviewDBModel.FK_ProjectItems_Projects" FromRole="ProjectItems" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Describe" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ClassReviewProjects" Relationship="ProjectReviewDBModel.FK_ClassReviewProjects_Projects" FromRole="Projects" ToRole="ClassReviewProjects" />
+          <NavigationProperty Name="ProjectItems" Relationship="ProjectReviewDBModel.FK_ProjectItems_Projects" FromRole="Projects" ToRole="ProjectItems" />
+          <NavigationProperty Name="TeacherRemarks" Relationship="ProjectReviewDBModel.FK_TeacherRemarks_Projects" FromRole="Projects" ToRole="TeacherRemarks" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StuNo" />
+          </Key>
+          <Property Name="StuNo" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="StuName" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Sex" Type="Boolean" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
+          <Property Name="Contact" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="PersonID" Type="String" MaxLength="18" Unicode="false" FixedLength="false" />
+          <Property Name="ClassID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Class" Relationship="ProjectReviewDBModel.FK_Students_Classes" FromRole="Students" ToRole="Classes" />
+          <NavigationProperty Name="ProjectGrades" Relationship="ProjectReviewDBModel.FK_ProjectGrades_ReviewStuNo" FromRole="Students" ToRole="ProjectGrades" />
+          <NavigationProperty Name="ProjectGrades1" Relationship="ProjectReviewDBModel.FK_ProjectGrades_StuNo" FromRole="Students" ToRole="ProjectGrades" />
+          <NavigationProperty Name="StudentUser" Relationship="ProjectReviewDBModel.FK_StudentUsers_Student" FromRole="Students" ToRole="StudentUsers" />
+          <NavigationProperty Name="TeacherRemarks" Relationship="ProjectReviewDBModel.FK_TeacherRemarks_Students" FromRole="Students" ToRole="TeacherRemarks" />
+        </EntityType>
+        <EntityType Name="StudentUser">
+          <Key>
+            <PropertyRef Name="StuNoUserName" />
+          </Key>
+          <Property Name="StuNoUserName" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Student" Relationship="ProjectReviewDBModel.FK_StudentUsers_Student" FromRole="StudentUsers" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="TeacherRemark">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="StuNo" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="Remark" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="RemarkDT" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Project" Relationship="ProjectReviewDBModel.FK_TeacherRemarks_Projects" FromRole="TeacherRemarks" ToRole="Projects" />
+          <NavigationProperty Name="Student" Relationship="ProjectReviewDBModel.FK_TeacherRemarks_Students" FromRole="TeacherRemarks" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TeacherName" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Sex" Type="Boolean" />
+          <NavigationProperty Name="TeacherUsers" Relationship="ProjectReviewDBModel.FK_TeacherUsers_Teachers" FromRole="Teachers" ToRole="TeacherUsers" />
+        </EntityType>
+        <EntityType Name="TeacherUser">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+          <Property Name="TeacherID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Teacher" Relationship="ProjectReviewDBModel.FK_TeacherUsers_Teachers" FromRole="TeacherUsers" ToRole="Teachers" />
+        </EntityType>
+        <Association Name="FK_ClassReviewProjects_Class">
+          <End Role="Classes" Type="ProjectReviewDBModel.Class" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ClassReviewProjects" Type="ProjectReviewDBModel.ClassReviewProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ClassReviewProjects">
+              <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Classes">
+          <End Role="Classes" Type="ProjectReviewDBModel.Class" Multiplicity="1" />
+          <End Role="Students" Type="ProjectReviewDBModel.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClassReviewProjects_Projects">
+          <End Role="Projects" Type="ProjectReviewDBModel.Project" Multiplicity="0..1" />
+          <End Role="ClassReviewProjects" Type="ProjectReviewDBModel.ClassReviewProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ClassReviewProjects">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectGrades_ProjectItemID">
+          <End Role="ProjectItems" Type="ProjectReviewDBModel.ProjectItem" Multiplicity="1" />
+          <End Role="ProjectGrades" Type="ProjectReviewDBModel.ProjectGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectItems">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectGrades">
+              <PropertyRef Name="ProjectItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectGrades_ReviewStuNo">
+          <End Role="Students" Type="ProjectReviewDBModel.Student" Multiplicity="1" />
+          <End Role="ProjectGrades" Type="ProjectReviewDBModel.ProjectGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StuNo" />
+            </Principal>
+            <Dependent Role="ProjectGrades">
+              <PropertyRef Name="ReviewStuNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectGrades_StuNo">
+          <End Role="Students" Type="ProjectReviewDBModel.Student" Multiplicity="1" />
+          <End Role="ProjectGrades" Type="ProjectReviewDBModel.ProjectGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StuNo" />
+            </Principal>
+            <Dependent Role="ProjectGrades">
+              <PropertyRef Name="StuNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectItems_Projects">
+          <End Role="Projects" Type="ProjectReviewDBModel.Project" Multiplicity="1" />
+          <End Role="ProjectItems" Type="ProjectReviewDBModel.ProjectItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectItems">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeacherRemarks_Projects">
+          <End Role="Projects" Type="ProjectReviewDBModel.Project" Multiplicity="1" />
+          <End Role="TeacherRemarks" Type="ProjectReviewDBModel.TeacherRemark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeacherRemarks">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentUsers_Student">
+          <End Role="Students" Type="ProjectReviewDBModel.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StudentUsers" Type="ProjectReviewDBModel.StudentUser" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StuNo" />
+            </Principal>
+            <Dependent Role="StudentUsers">
+              <PropertyRef Name="StuNoUserName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeacherRemarks_Students">
+          <End Role="Students" Type="ProjectReviewDBModel.Student" Multiplicity="1" />
+          <End Role="TeacherRemarks" Type="ProjectReviewDBModel.TeacherRemark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StuNo" />
+            </Principal>
+            <Dependent Role="TeacherRemarks">
+              <PropertyRef Name="StuNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeacherUsers_Teachers">
+          <End Role="Teachers" Type="ProjectReviewDBModel.Teacher" Multiplicity="1" />
+          <End Role="TeacherUsers" Type="ProjectReviewDBModel.TeacherUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeacherUsers">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjectReviewDBModelStoreContainer" CdmEntityContainer="ProjectReviewDBEntities">
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="ProjectReviewDBModel.Class">
+              <MappingFragment StoreEntitySet="Classes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassReviewProjects">
+            <EntityTypeMapping TypeName="ProjectReviewDBModel.ClassReviewProject">
+              <MappingFragment StoreEntitySet="ClassReviewProjects">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectGrades">
+            <EntityTypeMapping TypeName="ProjectReviewDBModel.ProjectGrade">
+              <MappingFragment StoreEntitySet="ProjectGrades">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StuNo" ColumnName="StuNo" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="ProjectItemID" ColumnName="ProjectItemID" />
+                <ScalarProperty Name="GradeDT" ColumnName="GradeDT" />
+                <ScalarProperty Name="ReviewStuNo" ColumnName="ReviewStuNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectItems">
+            <EntityTypeMapping TypeName="ProjectReviewDBModel.ProjectItem">
+              <MappingFragment StoreEntitySet="ProjectItems">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="ProjectReviewDBModel.Project">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="ProjectReviewDBModel.Student">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="StuNo" ColumnName="StuNo" />
+                <ScalarProperty Name="StuName" ColumnName="StuName" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentUsers">
+            <EntityTypeMapping TypeName="ProjectReviewDBModel.StudentUser">
+              <MappingFragment StoreEntitySet="StudentUsers">
+                <ScalarProperty Name="StuNoUserName" ColumnName="StuNoUserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherRemarks">
+            <EntityTypeMapping TypeName="ProjectReviewDBModel.TeacherRemark">
+              <MappingFragment StoreEntitySet="TeacherRemarks">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StuNo" ColumnName="StuNo" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="RemarkDT" ColumnName="RemarkDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="ProjectReviewDBModel.Teacher">
+              <MappingFragment StoreEntitySet="Teachers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherUsers">
+            <EntityTypeMapping TypeName="ProjectReviewDBModel.TeacherUser">
+              <MappingFragment StoreEntitySet="TeacherUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

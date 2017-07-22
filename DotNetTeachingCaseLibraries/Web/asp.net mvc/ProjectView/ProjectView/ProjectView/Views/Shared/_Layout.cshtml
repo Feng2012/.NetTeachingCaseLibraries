@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/myself.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.5.3.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.8.20.js"></script>
+    <script src="~/Scripts/jquery-ui-1.8.20.min.js"></script>
+
+    <link href="~/Content/themes/base/jquery.ui.theme.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery.ui.autocomplete.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery.ui.base.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery.ui.core.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery.ui.datepicker.css" rel="stylesheet" />
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .two {
+            margin: 10px auto 0 auto;
+            width: 900px;
+        }
+    </style>
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <div class="two">
+        <table style="width: 900px; border: 1px solid #cccccc;">
+            <tr>
+                <td>
+                    <img src="~/Content/Images/top.png" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="margin: 0 30px 0 30px;">
+                        @RenderBody()
+                    </div>
+
+                </td>
+            </tr>
+            <tr style="text-align: center; background-color: #e1dfdf">
+                <td>
+                    <br />
+                    <p>
+                        <b>设计思想胜于编程技术，领域见识决定专业高度</b>
+                        <br />
+                        赛高科技  版权所有 © 2012
+                        
+                    </p>
+                    <br />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+</body>
+
+</html>

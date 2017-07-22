@@ -1,0 +1,101 @@
+﻿@model ProjectView.Models.ViewModel.StudentModel
+
+@{
+    ViewBag.Title = "修改改学生信息";
+}
+<style>
+    .Rad {
+        border: none 0px #808080;
+        background-color: rgba(0, 0, 0, 0.00);
+        width: 60px;
+    }
+</style>
+<h2>修改学生信息</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>学生信息</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ClassID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ClassID")
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StuNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StuNo)
+            @Html.ValidationMessageFor(model => model.StuNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StuName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StuName)
+            @Html.ValidationMessageFor(model => model.StuName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sex)
+        </div>
+        <div class="editor-field">
+            @Html.RadioButton("Sex", "男", true, new { Class = "Rad" })男
+        @Html.RadioButton("Sex", "女", new { Class = "Rad" })女             
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Birthday)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Birthday)
+            @Html.ValidationMessageFor(model => model.Birthday)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contact)
+            @Html.ValidationMessageFor(model => model.Contact)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PersonID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PersonID)
+            @Html.ValidationMessageFor(model => model.PersonID)
+        </div>
+
+        <br />
+
+        <p>
+            <input type="submit" value="保存" class="SubmitBut" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("详细列表", "Index")
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $("#Birthday").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                showMonthAfterYear: true,
+                dateFormat: 'yy-mm-dd',
+                dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
+                monthNames: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+                monthNamesShort: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+
+            });
+        });
+    </script>
+}

@@ -1,0 +1,50 @@
+﻿@model ProjectView.Models.ViewModel.ProjectItemModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>添加子项目信息</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>子项目</legend>
+
+        <div class="editor-label">
+              @Html.LabelFor(model => model.ProjectName)
+        </div>
+        <div class="editor-field">
+          @Html.DropDownList("ProjectID")
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProjectItemName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProjectItemName)
+            @Html.ValidationMessageFor(model => model.ProjectItemName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Grade)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Grade)
+            @Html.ValidationMessageFor(model => model.Grade)
+        </div>
+        <br />
+        <p>
+            <input type="submit" value="添加"  class="SubmitBut" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("详细列表", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

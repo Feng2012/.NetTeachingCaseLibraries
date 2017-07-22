@@ -1,0 +1,87 @@
+﻿@model ProjectView.Models.ViewModel.ReviewModel
+@{
+    ViewBag.Title = "项目评分";  
+}
+<style>
+    .Rad {
+        border: none 0px #808080;
+        background-color: rgba(0, 0, 0, 0.00);
+        width: 20px;
+    }
+</style>
+@using (Html.BeginForm())
+{      
+    <table width="100%" class="myListTable">
+
+        <tr style="text-align: center; vertical-align: middle">
+            <td style="height: 40px;">
+                <h2>
+                    @Html.LabelFor(pa => pa.ProjectName)：@Model.ProjectName
+
+                </h2>
+            </td>
+        </tr>
+        <tr>
+            <td style="height: 35px;">
+                <table width="100%"  style="white-space:normal;overflow:hidden;"  class="myinnerListTable">
+                    <tr>
+                        <td style="width: 40%;">学生姓名： @Html.DropDownList("ReviewStuNo")
+                        </td>
+                        <td style="width: 40%;">
+                            @Html.ValidationMessage("error")
+                        </td>
+                        <td style="text-align: right;">
+                            <span style="margin-right: 10px;">
+                                @Html.ActionLink("成绩查询", "StuQueryGrade", new { reviewstuno = Model.StuNo })
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+        <tr style="background-color: #c4bfbf; height: 30px;">
+            <td style="font-weight: 700;">
+                @Html.LabelFor(pa => pa.Items)
+            </td>
+        </tr>
+        @foreach (var item in Model.Items)
+        {        
+            <tr style="background-color: #E6E6E6;">
+                <td>
+                    @item.Number 、
+                    @item.ProjectItemName
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.Items.First().Grade)：
+                    <br />
+
+                    &nbsp;&nbsp;&nbsp;
+                    @for (int i = 0; i <= item.Grade; i++)
+                    {
+                        if (i == 0)
+                        {
+                        @Html.RadioButton(item.ID.ToString(), i.ToString(), true, new { Class = "Rad" })
+                        }
+                        else
+                        {
+                        @Html.RadioButton(item.ID.ToString(), i.ToString(), false, new { Class = "Rad" })
+                        }                        
+                        @Html.Label(" " + i.ToString())
+                        <span>&nbsp; &nbsp;</span>
+                        
+                    }
+                </td>
+            </tr>
+        }
+        <tr>
+            <td style="text-align: center; height: 35px;">
+                <input type="submit" class="SubmitBut" value="提交" />
+            </td>
+        </tr>
+    </table>       
+    <br />
+    @Html.ActionLink("首页", "MainPage", "Student")
+}

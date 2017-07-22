@@ -1,0 +1,208 @@
+﻿@model ProjectView.Models.ViewModel.TeacherModel
+@{
+    ViewBag.Title = "教师主页";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .blo {
+        text-align: left;
+        width: 200px;
+        height: 200px;
+    }
+
+    a:link {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    a:active {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    .pdl {
+        font-size: xx-large;
+        margin: 10px 10px 10px 10px;
+    }
+
+    .zpdl {
+        margin: 10px 10px 10px 10px;
+    }
+
+    .CImg {
+        width: 50px;
+        height: 50px;
+        border: none;
+        margin: 10px 10px 10px 10px;
+    }
+</style>
+<table style="width: 100%;">
+    <tr>
+        <td style="text-align: right;" colspan="4">
+            <img src="~/Content/Images/User_image.png" style="width: 18px; height: 18px;" />当前用户：@Model.TeacherName
+
+        </td>
+    </tr>
+    <tr style="height: 200px;">
+        <td style="width: 25%; height: 100px;" align="left">
+            <a href="~/Teacher/TeaQueryGrade?teacherid=@Model.ID">
+                <div class="blo" style="background-color: #00ff90; margin: 0 0 0 0;">
+                    <p class="pdl">成绩查询</p>
+                    <p class="zpdl">可以查询不同班级不同项目的所有学生子项目的平均成绩。</p>
+                    <table style="width: 100%; height: 100px; text-align: right; vertical-align: bottom;">
+                        <tr>
+                            <td>
+                                <img class="CImg" src="~/Content/Images/search.png" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </a>
+        </td>
+        <td style="width: 25%" align="center">
+            <a href="~/Remark/Index">
+                <div class="blo" align="left" style="background-color: #b200ff">
+                    <p class="pdl">评语管理</p>
+                    <p class="zpdl">教师可以给评审项目的班级学生增加评语。</p>
+                    <table style="width: 100%; height: 100px; text-align: right; vertical-align: bottom;">
+                        <tr>
+                            <td>
+                                <img class="CImg" src="~/Content/Images/edit.png" />
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </a>
+
+        </td>
+        <td style="width: 25%" align="center">
+            <a href="~/ProjectItem/index">
+                <div class="blo" align="left" style="background-color: #ffd800">
+                    <p class="pdl">子项管理</p>
+                    <p class="zpdl">子项管理是负责给项目添加了项目的模块。</p>
+                    <table style="width: 100%; height: 100px; text-align: right; vertical-align: bottom;">
+                        <tr>
+                            <td>
+                                <img class="CImg" src="~/Content/Images/edit.png" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </a>
+        </td>
+        <td style="width: 25%;" align="right">
+            <a href="~/Class/Index">
+                <div class="blo" align="left" style="background-color: #4800ff">
+                    <p class="pdl">班级管理</p>
+                    <p class="zpdl">班级管理是添加修改删除班级信息的模块。</p>
+                    <table style="width: 100%; height: 100px; text-align: right; vertical-align: bottom;">
+                        <tr>
+                            <td>
+                                <img class="CImg" src="~/Content/Images/edit.png" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </a>
+        </td>
+
+    </tr>
+    <tr style="height: 200px;">
+        <td style="width: 25%">
+            <a href="~/Teacher/Index">
+                <div class="blo" align="left" style="background-color: #b200ff">
+                    <p class="pdl">教师管理</p>
+                    <p class="zpdl">是增加修改删除教师信息的模块。</p>
+                    <table style="width: 100%; height: 100px; text-align: right; vertical-align: bottom;">
+                        <tr>
+                            <td>
+                                <img class="CImg" src="~/Content/Images/edit.png" />
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </a>
+        </td>
+        <td style="width: 25%" align="center">
+            <a href="~/TeacherUser/index">
+                <div class="blo" align="left" style="background-color: #0ff">
+                    <p class="pdl">用户管理</p>
+                    <p class="zpdl">用户管理是设置教师用户用户名和密码的模块。</p>
+                    <table style="width: 100%; height: 100px; text-align: right; vertical-align: bottom;">
+                        <tr>
+                            <td>
+                                <img class="CImg" src="~/Content/Images/edit.png" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </a>
+        </td>
+        <td style="width: 25%;" align="center">
+            <a href="~/student/Index">
+                <div class="blo" align="left" style="background-color: #ff006e">
+                    <p class="pdl">学生管理</p>
+                    <p class="zpdl">是增加修改删除学生信息的模块。</p>
+                    <table style="width: 100%; height: 100px; text-align: right; vertical-align: bottom;">
+                        <tr>
+                            <td>
+                                <img class="CImg" src="~/Content/Images/edit.png" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </a>
+        </td>
+        <td style="width: 25%;" align="right">
+            <a href="~/ClaRevPro/Index">
+                <div class="blo" align="left" style="background-color: #459fa8">
+                    <p class="pdl">班级与项目</p>
+                    <p class="zpdl">这里是供教师设置各个班级当前评审的是那个项目的模块。</p>
+                    <table style="width: 100%; height: 100px; text-align: right; vertical-align: bottom;">
+                        <tr>
+                            <td>
+                                <img class="CImg" src="~/Content/Images/edit.png" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </a>
+        </td>
+    </tr>
+
+    @* 第三行*@
+    <tr style="height: 200px;">
+        <td style="width: 25%">
+            <a href="~/Project/Index">
+                <div class="blo" align="left" style="background-color: #ff6a00">
+                    <p class="pdl">项目管理</p>
+                    <p class="zpdl">项目评审是综合衡量学生学习水平的模块。</p>
+                    <table style="width: 100%; height: 100px; text-align: right; vertical-align: bottom;">
+                        <tr>
+                            <td>
+                                <img class="CImg" src="~/Content/Images/edit.png" />
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </a>
+        </td>
+        <td style="width: 25%" align="center"></td>
+        <td style="width: 25%;" align="center"></td>
+        <td style="width: 25%;" align="right"></td>
+    </tr>
+</table>

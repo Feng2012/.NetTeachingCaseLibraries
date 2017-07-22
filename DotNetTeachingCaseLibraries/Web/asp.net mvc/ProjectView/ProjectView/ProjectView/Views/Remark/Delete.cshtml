@@ -1,0 +1,51 @@
+﻿@model ProjectView.Models.ViewModel.RemarkModel
+
+@{
+    ViewBag.Title = "删除评语";
+}
+
+<h2>删除评语</h2>
+
+<h3>你确定要删除这个评语吗?</h3>
+<fieldset>
+    <legend>评语信息</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.StuNo)
+    </div>
+    <div class="DeleteSpan">
+        @Html.DisplayFor(model => model.StuNo)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.StuName)
+    </div>
+    <div class="DeleteSpan">
+        @Html.DisplayFor(model => model.StuName)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ProjectName)
+    </div>
+    <div class="DeleteSpan">
+        @Html.DisplayFor(model => model.ProjectName)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Remark)
+    </div>
+    <div class="DeleteSpan">
+        @Html.DisplayFor(model => model.Remark)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.RemarkDT)
+    </div>
+    <div class="DeleteSpan">
+        @Html.DisplayFor(model => model.RemarkDT)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="删除" class="SubmitBut" />
+        |
+        @Html.ActionLink("详细信息", "Index")
+    </p>
+}

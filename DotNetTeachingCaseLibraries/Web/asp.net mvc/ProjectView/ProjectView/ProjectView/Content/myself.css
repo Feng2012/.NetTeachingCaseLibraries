@@ -1,0 +1,23 @@
+﻿body {
+}
+
+.SubmitBut {
+    width: 80px;
+    height: 25px;
+    font-size:12px;
+}
+
+.myListTable, .myListTable td, .myListTable th {
+    border: 1px solid #cccccc;
+    border-collapse: collapse;
+    border-color: black;
+}
+
+.myinnerListTable, .myinnerListTable td {
+    border: 0px none #fff;
+}
+
+.DeleteSpan {
+    font-size: 20px;
+    font-weight:700;
+}

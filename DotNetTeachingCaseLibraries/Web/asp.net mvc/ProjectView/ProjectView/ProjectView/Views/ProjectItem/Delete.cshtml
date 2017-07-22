@@ -1,0 +1,39 @@
+﻿@model ProjectView.Models.ViewModel.ProjectItemModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>删除子项信息</h2>
+
+<h3>你确定要删除这个子项吗?</h3>
+<fieldset>
+    <legend>子项信息</legend>
+    
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProjectName)：
+    </div>
+    <div class="DeleteSpan">
+        @Html.DisplayFor(model => model.ProjectName)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProjectItemName)：
+    </div>
+    <div class="DeleteSpan">
+        @Html.DisplayFor(model => model.ProjectItemName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Grade)：
+    </div>
+    <div class="DeleteSpan">
+        @Html.DisplayFor(model => model.Grade)
+    </div> 
+
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="删除"  class="SubmitBut" /> |
+        @Html.ActionLink("详细列表", "Index")
+    </p>
+}

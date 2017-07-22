@@ -1,0 +1,53 @@
+﻿@model ProjectView.Models.ViewModel.TeacherModel
+
+@{
+    ViewBag.Title = "修改教师信息";
+}
+<style>
+    .Rad {
+        border: none 0px #808080;
+        background-color: rgba(0, 0, 0, 0.00);
+        width: 60px;
+    }
+</style>
+<h2>修改教师信息</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>教师信息</legend>
+
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TeacherName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TeacherName)
+            @Html.ValidationMessageFor(model => model.TeacherName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sex)
+        </div>
+        <div class="editor-field">
+            @Html.RadioButton("Sex", "男", true, new { Class = "Rad" })男
+        @Html.RadioButton("Sex", "女", new { Class = "Rad" })女    
+        </div>
+        <br />
+        <p>
+            <input type="submit" class="SubmitBut" value="保存" />
+        </p>
+        @Html.ValidationMessage("Error")
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("详细列表", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,32 @@
+﻿@model ProjectView.Models.ViewModel.ClassModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>删除班级信息</h2>
+
+<h3>你确定要删除本班级信息吗?</h3>
+<fieldset>
+    <legend>班给信息</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ClassName)：
+    </div>
+    <div class="DeleteSpan">
+        @Html.DisplayFor(model => model.ClassName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Describe)：
+    </div>
+    <div class="DeleteSpan">
+        @Html.DisplayFor(model => model.Describe)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="删除"  class="SubmitBut" /> |
+        @Html.ActionLink("详细列表", "Index")
+    </p>
+}

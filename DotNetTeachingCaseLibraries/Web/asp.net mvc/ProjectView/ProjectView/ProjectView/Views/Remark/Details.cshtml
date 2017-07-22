@@ -1,0 +1,49 @@
+﻿@model ProjectView.Models.ViewModel.RemarkModel
+
+@{
+    ViewBag.Title = "详细信息";
+}
+
+<h2>详细信息</h2>
+
+<fieldset>
+    <legend>评语详细信息</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StuNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StuNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StuName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StuName)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProjectName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Remark)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Remark)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RemarkDT)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RemarkDT)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("修改", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("详细列表", "Index")
+</p>

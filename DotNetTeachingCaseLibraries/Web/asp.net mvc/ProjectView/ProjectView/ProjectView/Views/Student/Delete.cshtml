@@ -1,0 +1,71 @@
+﻿@model ProjectView.Models.ViewModel.StudentModel
+
+@{
+    ViewBag.Title = "删除学生信息";
+}
+
+<h2>删除学生信息</h2>
+
+<h3>你确定要删除这个学生的信息吗?</h3>
+<fieldset>
+    <legend>学生信息</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.StuNo)：
+    </div>
+    <div class="DeleteSpan">
+        @Html.DisplayFor(model => model.StuNo)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.StuName)：
+    </div>
+    <div class="DeleteSpan">
+        @Html.DisplayFor(model => model.StuName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Sex)：
+    </div>
+    <div class="DeleteSpan">
+        @Html.DisplayFor(model => model.Sex)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Birthday)：
+    </div>
+    <div class="DeleteSpan">
+
+        @Html.DisplayFor(model => model.Birthday)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Contact)：
+    </div>
+    <div class="DeleteSpan">
+        @Html.DisplayFor(model => model.Contact)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PersonID)：
+    </div>
+    <div class="DeleteSpan">
+        @Html.DisplayFor(model => model.PersonID)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ClassName)：
+    </div>
+    <div class="DeleteSpan">
+        @Html.DisplayFor(model => model.ClassName)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="删除" class="SubmitBut" />
+        |
+        @Html.ActionLink("详细列表", "Index")
+    </p>
+    @Html.ValidationMessage("Error")
+}

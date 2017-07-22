@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ProjectView.Models.ViewModel.ClassModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>班级列表信息</h2>
+
+<p>
+    @Html.ActionLink("添加", "Create")
+</p>
+<table  width="100%" class="myListTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ClassName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Describe)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClassName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Describe)
+        </td>
+        <td style="width:100px;">
+            @Html.ActionLink("修改", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("删除", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+@Html.ActionLink("首页", "MainPage", "Teacher")

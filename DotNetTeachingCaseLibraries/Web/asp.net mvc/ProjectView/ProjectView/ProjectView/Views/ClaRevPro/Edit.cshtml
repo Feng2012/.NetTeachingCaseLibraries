@@ -1,0 +1,46 @@
+﻿@model ProjectView.Models.ViewModel.ClaRevProModel
+
+@{
+    ViewBag.Title = "班级项目设置";
+}
+
+<h2>班级项目设置</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>班级项目设置</legend>
+
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.ClassID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ClassName)
+        </div>
+        <div class="editor-field">
+            @Model.ClassName
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProjectName)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ProjectID")
+        </div>
+
+
+        <br />
+        <p>
+            <input type="submit" value="保存" class="SubmitBut" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("详细列表", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

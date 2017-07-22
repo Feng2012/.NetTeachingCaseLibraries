@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ProjectView.Models.ViewModel.ClaRevProModel>
+
+@{
+    ViewBag.Title = "管理班级评审项目";
+}
+
+<h2>管理班级评审项目</h2>
+
+
+<table width="100%" class="myListTable">
+    <tr>   
+        <th>
+            @Html.DisplayNameFor(model => model.ClassName)
+        </th>   
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>       
+        <td>
+            @Html.DisplayFor(modelItem => item.ClassName)
+        </td>  
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectName)
+        </td>
+        <td style="width:10%;">
+            @Html.ActionLink("设置班级项目", "Edit", new { id=item.ID })          
+        </td>
+    </tr>
+}
+</table>
+@Html.ActionLink("首页", "MainPage", "Teacher")

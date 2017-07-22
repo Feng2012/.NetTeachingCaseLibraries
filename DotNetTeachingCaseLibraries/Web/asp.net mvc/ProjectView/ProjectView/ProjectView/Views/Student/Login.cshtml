@@ -1,0 +1,70 @@
+﻿@model ProjectView.Models.ViewModel.UserModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>登录</title>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui-1.8.20.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#tabs").tabs();
+        });
+    </script>
+    <style type="text/css">
+        .two {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -150px 0 0 -200px;
+            width: 400px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body style="font-size: small;">
+    @using (Html.BeginForm())
+    {      
+        <div class="two">
+            <div id="tabs" style="width: 300px">
+                <ul>
+                    <li><a href="#tabs-1">登录</a></li>
+
+                </ul>
+                <div id="tabs-1">
+                    <table>
+                        <tr style="text-align: left;">
+                            <td>用户名：</td>
+                            <td>@Html.TextBoxFor(su => su.UserName)
+                            </td>
+                        </tr>
+                        <tr style="text-align: left; height: 50px;">
+                            <td>密　码：</td>
+                            <td>@Html.PasswordFor(su => su.Password)
+                            </td>
+                        </tr>
+                        <tr style="text-align: right;">
+                            <td colspan="2">
+                                <input type="submit" id="StudentSubmit" name="StudentSubmit" value="登录" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="color: red;">
+                                @Html.ValidationMessageFor(su => su.UserName)
+                                @Html.ValidationMessageFor(su => su.Password)
+                                @Html.ValidationMessage("error")
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>        
+    }
+</body>
+</html>

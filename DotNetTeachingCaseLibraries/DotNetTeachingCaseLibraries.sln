@@ -115,6 +115,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServerTools", "DeskTop\S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLTrace", "DeskTop\SQLTrace\SQLTrace\SQLTrace.csproj", "{FB3B337B-31A7-4C21-B8E2-ED9469B73ECC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectView", "ProjectView", "{7D82006B-F031-4FDE-B211-9F0B9E59F865}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectView", "Web\asp.net mvc\ProjectView\ProjectView\ProjectView\ProjectView.csproj", "{C74EE696-624B-4625-85F0-D39505183030}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -429,6 +433,18 @@ Global
 		{FB3B337B-31A7-4C21-B8E2-ED9469B73ECC}.Release|iPhone.Build.0 = Release|Any CPU
 		{FB3B337B-31A7-4C21-B8E2-ED9469B73ECC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{FB3B337B-31A7-4C21-B8E2-ED9469B73ECC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{C74EE696-624B-4625-85F0-D39505183030}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C74EE696-624B-4625-85F0-D39505183030}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C74EE696-624B-4625-85F0-D39505183030}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{C74EE696-624B-4625-85F0-D39505183030}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{C74EE696-624B-4625-85F0-D39505183030}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{C74EE696-624B-4625-85F0-D39505183030}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{C74EE696-624B-4625-85F0-D39505183030}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C74EE696-624B-4625-85F0-D39505183030}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C74EE696-624B-4625-85F0-D39505183030}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{C74EE696-624B-4625-85F0-D39505183030}.Release|iPhone.Build.0 = Release|Any CPU
+		{C74EE696-624B-4625-85F0-D39505183030}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{C74EE696-624B-4625-85F0-D39505183030}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -475,5 +491,7 @@ Global
 		{93EC5C55-84BB-4FA4-8599-A6C85841E982} = {96707C27-5BF5-4EE7-B76C-19B2C5CAA2C4}
 		{E4D68A3B-E966-4ECE-A39F-834342826A75} = {96707C27-5BF5-4EE7-B76C-19B2C5CAA2C4}
 		{FB3B337B-31A7-4C21-B8E2-ED9469B73ECC} = {96707C27-5BF5-4EE7-B76C-19B2C5CAA2C4}
+		{7D82006B-F031-4FDE-B211-9F0B9E59F865} = {7996F428-0563-406F-A512-3154BE0860CF}
+		{C74EE696-624B-4625-85F0-D39505183030} = {7D82006B-F031-4FDE-B211-9F0B9E59F865}
 	EndGlobalSection
 EndGlobal

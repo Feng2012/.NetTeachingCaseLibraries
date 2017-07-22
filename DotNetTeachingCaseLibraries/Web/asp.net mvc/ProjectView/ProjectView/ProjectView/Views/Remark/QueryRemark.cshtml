@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ProjectView.Models.ViewModel.RemarkModel>
+
+@{
+    ViewBag.Title = "查询评语";
+}
+
+<h2>查询评语</h2>
+<br />
+@using (Html.BeginForm())
+{
+    @Html.Hidden("ClassID")
+    @Html.Hidden("StuNo")
+    <table width="100%">
+        <tr>
+            <td>项目名称：@Html.DropDownList("ProjectID")
+            </td>
+            <td>
+                <input type="submit" value="查询" class="SubmitBut" />
+            </td>
+        </tr>
+    </table>
+    <table width="100%" class="myListTable">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StuNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StuName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remark)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RemarkDT)
+            </th>
+          
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StuNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StuName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectName)
+                </td>
+                <td style="width:540px;">
+                    @Html.DisplayFor(modelItem => item.FullRemark)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RemarkDT)
+                </td>
+               
+            </tr>
+        }
+    </table>
+    <br />
+    @Html.ActionLink("首页", "MainPage", "Student", new { stuno = ViewBag.StuNo }, null)
+}
