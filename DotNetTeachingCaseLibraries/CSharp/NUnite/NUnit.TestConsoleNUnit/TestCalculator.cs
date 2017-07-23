@@ -18,11 +18,12 @@ namespace NUnit.TestCalculatorManagement
         /// <summary>
         /// 测试加法
         /// </summary>
-        [Test]
-        public void TestPlus()
+        [TestCase(10,1,2,3,4)]
+        [TestCase(8, -1, 2, 3, 4)]
+        public void TestPlus(double result,double p1,double p2,double p3,double p4)
         {
             var calculator = new Calculator();
-            Assert.AreEqual(10, calculator.Plus(1, 2, 3, 4));
+            Assert.AreEqual(result, calculator.Plus(p1, p2, p3, p4));
         }
 
         /// <summary>

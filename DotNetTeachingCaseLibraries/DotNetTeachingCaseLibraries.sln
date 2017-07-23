@@ -130,6 +130,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnit.TestCalculatorManagem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorManagement", "CSharp\NUnite\CalculatorManagement\CalculatorManagement.csproj", "{32039B8F-BD9A-427D-9AD1-82A1EEE30585}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "文档", "文档", "{B8A92E17-5E2C-4D5A-A1EE-CF5E0FBFD640}"
+	ProjectSection(SolutionItems) = preProject
+		CSharp\NUnite\文档\案例说明.txt = CSharp\NUnite\文档\案例说明.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -532,5 +537,6 @@ Global
 		{B8CAE8E5-5727-4DA4-8442-422BBCCFF58B} = {32920DB2-134A-42D7-92AC-62879B219FA7}
 		{8EDF4429-251A-416D-BB68-93F227191BCF} = {B8CAE8E5-5727-4DA4-8442-422BBCCFF58B}
 		{32039B8F-BD9A-427D-9AD1-82A1EEE30585} = {B8CAE8E5-5727-4DA4-8442-422BBCCFF58B}
+		{B8A92E17-5E2C-4D5A-A1EE-CF5E0FBFD640} = {B8CAE8E5-5727-4DA4-8442-422BBCCFF58B}
 	EndGlobalSection
 EndGlobal

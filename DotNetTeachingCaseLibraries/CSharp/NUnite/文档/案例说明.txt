@@ -1,0 +1,11 @@
+﻿关键字：
+NUnit,Unit Test
+
+目标：
+用NUnit进行单元测试
+
+步骤：
+工具-扩展和更新-联机，搜索，NUnit加载NUnit 3 Test Adaper,NUnit VS Templates
+
+知识点：
+1、了解单元测试
