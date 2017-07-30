@@ -45,6 +45,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmClassSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClassSetting.Designer.cs">
+      <DependentUpon>frmClassSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCourseSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCourseSetting.Designer.cs">
+      <DependentUpon>frmCourseSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,13 +69,37 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTest.Designer.cs">
+      <DependentUpon>frmTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTestEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTestEdit.Designer.cs">
+      <DependentUpon>frmTestEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmClassSetting.resx">
+      <DependentUpon>frmClassSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCourseSetting.resx">
+      <DependentUpon>frmCourseSetting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTest.resx">
+      <DependentUpon>frmTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTestEdit.resx">
+      <DependentUpon>frmTestEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
