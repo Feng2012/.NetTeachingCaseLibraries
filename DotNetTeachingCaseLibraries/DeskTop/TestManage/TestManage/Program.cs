@@ -16,7 +16,14 @@ namespace TestManage
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+     
+            //实例化登录窗体
+            var loginForm = new frmLogin();
+            //判断登录是否成功
+            if (loginForm.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new frmMain());
+            }
         }
     }
 }
