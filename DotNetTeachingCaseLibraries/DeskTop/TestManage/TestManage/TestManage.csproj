@@ -109,6 +109,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -126,6 +127,12 @@
   <ItemGroup>
     <Folder Include="BLL\" />
     <Folder Include="DDL\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\Add.png" />
+    <Content Include="Images\Del.png" />
+    <Content Include="Images\Edit.png" />
+    <Content Include="Images\MB_0015_reload.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
