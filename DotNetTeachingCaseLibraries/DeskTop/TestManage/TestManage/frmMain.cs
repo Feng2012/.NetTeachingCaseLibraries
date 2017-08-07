@@ -12,9 +12,13 @@ namespace TestManage
 {
     public partial class frmMain : Form
     {
-        public frmMain()
+        frmClassSetting _frmClass;
+        frmTest _frmTest;
+        public frmMain(frmClassSetting frmClass,frmTest frmTest)
         {
             InitializeComponent();
+            _frmClass = frmClass;
+            _frmTest = frmTest;
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -24,8 +28,7 @@ namespace TestManage
 
         private void 班级管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var frmClass = new frmClassSetting();
-            frmClass.ShowDialog();
+            _frmClass.ShowDialog();
         }
     }
 }

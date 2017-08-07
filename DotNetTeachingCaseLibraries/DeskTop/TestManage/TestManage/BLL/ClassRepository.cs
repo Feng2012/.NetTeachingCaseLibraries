@@ -11,10 +11,7 @@ namespace TestManage.BLL
     public class ClassRepository : IClassRepository
     {
         public IDBModel _testManageDB;
-        //public ClassRepository(IDBModel testManageDB = null)
-        //{
-        //    _testManageDB = CreateInt.Create(testManageDB);
-        //}
+    
         public ClassRepository(IDBModel testManageDB)
         {
             _testManageDB = testManageDB;
@@ -26,9 +23,6 @@ namespace TestManage.BLL
             var result = _testManageDB.SaveChanges();
             return result > 0;
         }
-
-
-
 
     }
 }

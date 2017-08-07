@@ -15,10 +15,16 @@ namespace TestManage
     public partial class frmClassSetting : Form
     {
         IClassRepository _classBll;
-        public frmClassSetting(IClassRepository classBll = null)
+        //public frmClassSetting(IClassRepository classBll = null)
+        //{
+        //    InitializeComponent();
+        //    _classBll = CreateInt.Create(classBll);
+
+        //}
+        public frmClassSetting(IClassRepository classBll)
         {
             InitializeComponent();
-            _classBll = CreateInt.Create(classBll);
+            _classBll = classBll;
 
         }
 

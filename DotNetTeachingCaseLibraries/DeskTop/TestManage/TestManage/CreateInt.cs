@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace TestManage
 {
-    public class CreateInt
+    public static class InstanceFactory
     {
-        public static T Create<T>(T obj) where T:class
-        {
-            var scope = Program.container.BeginLifetimeScope();
-            return scope.Resolve<T>();
-        }
+      
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestManage.BLL;
@@ -27,28 +28,33 @@ namespace TestManage
             //{
             //    Application.Run(new frmMain());
             //}
-            LoadContioner();
-
-            Application.Run(new frmMain());
-
+            var container = CreateContioner();
+            using (var scope = container.BeginLifetimeScope())
+            {
+                var frmMain = scope.Resolve<frmMain>();
+                Application.Run(frmMain);
+            }
         }
-
-        public static IContainer container;
-        static void LoadContioner()
+        static IContainer CreateContioner()
         {
             var builder = new ContainerBuilder();
-            //注入
+            //注入数据操作
             builder.RegisterType<TestManageModel>().As<IDBModel>();
+            //注入业务仓储
+            //builder.RegisterType<ClassRepository>().As<IClassRepository>();
+            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+      .Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces();
+            //注入窗体
+            // builder.RegisterType<frmClassSetting>().As<frmClassSetting>();
+            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+       .Where(t => t.Name.StartsWith("frm")).AsSelf();
 
-            builder.RegisterType<ClassRepository>().As<IClassRepository>();
+            return builder.Build();
 
-          
 
-            container = builder.Build();
-          
- 
         }
     }
+
 
 
 }
