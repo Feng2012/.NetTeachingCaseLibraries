@@ -57,10 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\ClassBll.cs" />
+    <Compile Include="BLL\ClassRepository.cs" />
+    <Compile Include="BLL\IClassRepository.cs" />
+    <Compile Include="CreateInt.cs" />
     <Compile Include="DDL\Answer.cs" />
     <Compile Include="DDL\Class.cs" />
     <Compile Include="DDL\ClassTest.cs" />
+    <Compile Include="DDL\IDBModel.cs" />
     <Compile Include="DDL\Question.cs" />
     <Compile Include="DDL\Score.cs" />
     <Compile Include="DDL\Student.cs" />

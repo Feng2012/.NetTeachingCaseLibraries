@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestManage.BLL;
+using TestManage.DDL;
 
 namespace TestManage
 {
@@ -26,35 +28,27 @@ namespace TestManage
             //    Application.Run(new frmMain());
             //}
             LoadContioner();
-            using (var scope = container.BeginLifetimeScope())
-            {
-                var sometype = scope.Resolve<IService>();
 
-                Application.Run(new frmMain(sometype));
-            }
+            Application.Run(new frmMain());
+
         }
 
         public static IContainer container;
         static void LoadContioner()
         {
             var builder = new ContainerBuilder();
+            //注入
+            builder.RegisterType<TestManageModel>().As<IDBModel>();
 
-            // Register individual components
-            builder.RegisterType<SomeType>().As<IService>();
+            builder.RegisterType<ClassRepository>().As<IClassRepository>();
+
+          
 
             container = builder.Build();
+          
+ 
         }
     }
 
-    public interface IService
-    {
-        void F();
-    }
-    public class SomeType : IService
-    {
-        public void F()
-        {
-            MessageBox.Show("F");
-        }
-    }
+
 }

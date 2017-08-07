@@ -5,11 +5,12 @@ namespace TestManage.DDL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class TestManageModel : DbContext
+    public partial class TestManageModel : DbContext,IDBModel
     {
         public TestManageModel()
             : base("name=TestManageModel")
         {
+            var ff = 11;
         }
 
         public virtual DbSet<Answer> Answers { get; set; }
@@ -76,5 +77,6 @@ namespace TestManage.DDL
                 .Property(e => e.TestName)
                 .IsUnicode(false);
         }
+     
     }
 }

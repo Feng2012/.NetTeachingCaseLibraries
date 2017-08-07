@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,10 +8,14 @@ using TestManage.DDL;
 
 namespace TestManage.BLL
 {
-    public class ClassBll
+    public class ClassRepository : IClassRepository
     {
-        TestManageModel _testManageDB;
-        public ClassBll(TestManageModel testManageDB)
+        public IDBModel _testManageDB;
+        //public ClassRepository(IDBModel testManageDB = null)
+        //{
+        //    _testManageDB = CreateInt.Create(testManageDB);
+        //}
+        public ClassRepository(IDBModel testManageDB)
         {
             _testManageDB = testManageDB;
         }
@@ -21,6 +26,8 @@ namespace TestManage.BLL
             var result = _testManageDB.SaveChanges();
             return result > 0;
         }
+
+
 
 
     }
