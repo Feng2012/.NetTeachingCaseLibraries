@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\ClassBll.cs" />
     <Compile Include="DDL\Answer.cs" />
     <Compile Include="DDL\Class.cs" />
     <Compile Include="DDL\ClassTest.cs" />
@@ -146,9 +147,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLL\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Images\Add.png" />
     <Content Include="Images\Del.png" />
