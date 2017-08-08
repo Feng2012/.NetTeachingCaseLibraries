@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace TestManage.BLL
 
         bool ModifyClass(Class cls);
 
-        List<Class> GetClasses();
+        IList GetClasses();
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,9 +32,9 @@ namespace TestManage.BLL
         /// 查询全部班级
         /// </summary>
         /// <returns></returns>
-        public List<Class> GetClasses()
+        public IList GetClasses()
         {
-            return db.Classes.ToList();
+            return db.Classes.Select(s=>new {编号=s.ID,班级名称=s.ClassName,备注=s.Memo  }).ToList();
         }
         /// <summary>
         /// 修改班级
