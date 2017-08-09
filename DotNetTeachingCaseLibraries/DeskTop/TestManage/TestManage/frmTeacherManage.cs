@@ -12,26 +12,26 @@ using TestManage.DDL;
 
 namespace TestManage
 {
-    public partial class frmClassSetting : Form
+    public partial class frmTeacherManage : Form
     {
         /// <summary>
         /// 仓储对象
         /// </summary>
-        IClassRepository _classRepository;
+        ITeacherRepository _teacherRepository;
         /// <summary>
         /// 编辑ID
         /// </summary>
         int _selectID;
-        public frmClassSetting(IClassRepository classRepository)
+        public frmTeacherManage(ITeacherRepository teacherRepository)
         {
             InitializeComponent();
-            _classRepository = classRepository;
+            _teacherRepository = teacherRepository;
 
         }
 
         private void frmClassSetting_Load(object sender, EventArgs e)
         {
-            dgvData.DataSource = _classRepository.GetClasses();
+            dgvData.DataSource = _teacherRepository.GetTeachers();
         }
         /// <summary>
         /// 添加
@@ -42,13 +42,14 @@ namespace TestManage
         {
             try
             {
-                var cls = new Class();
-                cls.ClassName = txbClassName.Text;
-                cls.Memo = txbMemo.Text;
-                if (_classRepository.AddClass(cls))
+                var teacher = new Teacher();
+                teacher.Name = txbTeacherName.Text;
+                teacher.TeaacherNo = txbTeacherNo.Text;
+                teacher.Password = txbPassword.Text;
+                if (_teacherRepository.AddTeacher(teacher))
                 {
                     ClearData();
-                    dgvData.DataSource = _classRepository.GetClasses();
+                    dgvData.DataSource = _teacherRepository.GetTeachers();
                 }
                 else
                 {
@@ -71,14 +72,15 @@ namespace TestManage
             {
                 if (_selectID > 0)
                 {
-                    var cls = new Class();
-                    cls.ID = _selectID;
-                    cls.ClassName = txbClassName.Text;
-                    cls.Memo = txbMemo.Text;
-                    if (_classRepository.ModifyClass(cls))
+                    var teacher = new Teacher();
+                    teacher.ID = _selectID;
+                    teacher.Name = txbTeacherName.Text;
+                    teacher.TeaacherNo = txbTeacherNo.Text;
+                    teacher.Password = txbPassword.Text;
+                    if (_teacherRepository.ModifyTeacher(teacher))
                     {
                         ClearData();
-                        dgvData.DataSource = _classRepository.GetClasses();
+                        dgvData.DataSource = _teacherRepository.GetTeachers();
                     }
                     else
                     {
@@ -106,11 +108,16 @@ namespace TestManage
             if (e.RowIndex > -1)
             {
                 _selectID = Convert.ToInt32(dgvData.Rows[e.RowIndex].Cells["编号"].Value);
-                txbClassName.Text = dgvData.Rows[e.RowIndex].Cells["班级名称"].Value.ToString();
-                txbMemo.Text = dgvData.Rows[e.RowIndex].Cells["备注"].Value.ToString();
+                txbTeacherName.Text = dgvData.Rows[e.RowIndex].Cells["名称"].Value.ToString();
+                txbTeacherNo.Text = dgvData.Rows[e.RowIndex].Cells["教师编码"].Value.ToString();
+                txbPassword.Text = dgvData.Rows[e.RowIndex].Cells["密码"].Value.ToString();
             }
         }
-
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDelete_Click(object sender, EventArgs e)
         {
             try
@@ -119,10 +126,10 @@ namespace TestManage
                 {
                     if (MessageBox.Show("你确定要删除吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        if (_classRepository.RemoveClass(_selectID))
+                        if (_teacherRepository.RemoveTeacher(_selectID))
                         {
                             ClearData();
-                            dgvData.DataSource = _classRepository.GetClasses();
+                            dgvData.DataSource = _teacherRepository.GetTeachers();
                         }
                         else
                         {
@@ -146,8 +153,9 @@ namespace TestManage
         void ClearData()
         {
             _selectID = 0;
-            txbClassName.Clear();
-            txbMemo.Clear();
+            txbTeacherName.Clear();
+            txbTeacherNo.Clear();
+            txbPassword.Clear();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace TestManage.DDL
         DbSet<Student> Students { get; set; }
         DbSet<Subject> Subjects { get; set; }
         DbSet<Test> Tests { get; set; }
-
+        DbSet<Teacher> Teachers { get; set; }
         int SaveChanges();
     }
 }

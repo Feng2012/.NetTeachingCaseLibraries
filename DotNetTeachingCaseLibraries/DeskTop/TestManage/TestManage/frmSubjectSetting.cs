@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TestManage
 {
-    public partial class frmCourseSetting : Form
+    public partial class frmSubjectSetting : Form
     {
-        public frmCourseSetting()
+        public frmSubjectSetting()
         {
             InitializeComponent();
         }

@@ -57,30 +57,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\ITeacherRepository.cs" />
+    <Compile Include="DDL\Answer.cs" />
+    <Compile Include="BLL\TeacherRepository.cs" />
     <Compile Include="BLL\ClassRepository.cs" />
     <Compile Include="BLL\IClassRepository.cs" />
-    <Compile Include="CreateInt.cs" />
-    <Compile Include="DDL\Answer.cs" />
     <Compile Include="DDL\Class.cs" />
     <Compile Include="DDL\ClassTest.cs" />
     <Compile Include="DDL\IDBModel.cs" />
-    <Compile Include="DDL\Question.cs" />
-    <Compile Include="DDL\Score.cs" />
-    <Compile Include="DDL\Student.cs" />
-    <Compile Include="DDL\Subject.cs" />
-    <Compile Include="DDL\Test.cs" />
-    <Compile Include="DDL\TestManageModel.cs" />
+    <Compile Include="frmTeacherManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTeacherManage.Designer.cs">
+      <DependentUpon>frmTeacherManage.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmClassSetting.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmClassSetting.Designer.cs">
       <DependentUpon>frmClassSetting.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCourseSetting.cs">
+    <Compile Include="frmSubjectSetting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCourseSetting.Designer.cs">
-      <DependentUpon>frmCourseSetting.cs</DependentUpon>
+    <Compile Include="frmSubjectSetting.Designer.cs">
+      <DependentUpon>frmSubjectSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -108,11 +109,21 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DDL\Question.cs" />
+    <Compile Include="DDL\Score.cs" />
+    <Compile Include="DDL\Student.cs" />
+    <Compile Include="DDL\Subject.cs" />
+    <Compile Include="DDL\Teacher.cs" />
+    <Compile Include="DDL\Test.cs" />
+    <Compile Include="DDL\TestManageModel.cs" />
+    <EmbeddedResource Include="frmTeacherManage.resx">
+      <DependentUpon>frmTeacherManage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmClassSetting.resx">
       <DependentUpon>frmClassSetting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCourseSetting.resx">
-      <DependentUpon>frmCourseSetting.cs</DependentUpon>
+    <EmbeddedResource Include="frmSubjectSetting.resx">
+      <DependentUpon>frmSubjectSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

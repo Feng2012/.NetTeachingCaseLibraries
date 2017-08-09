@@ -1,6 +1,6 @@
 ﻿namespace TestManage
 {
-    partial class frmCourseSetting
+    partial class frmSubjectSetting
     {
         /// <summary>
         /// Required designer variable.

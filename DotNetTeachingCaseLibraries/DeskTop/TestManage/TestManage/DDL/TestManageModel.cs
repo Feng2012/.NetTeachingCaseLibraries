@@ -9,7 +9,7 @@ namespace TestManage.DDL
     {
         public TestManageModel()
             : base("name=TestManageModel")
-        { 
+        {
         }
 
         public virtual DbSet<Answer> Answers { get; set; }
@@ -19,6 +19,7 @@ namespace TestManage.DDL
         public virtual DbSet<Score> Scores { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
+        public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<Test> Tests { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -72,10 +73,21 @@ namespace TestManage.DDL
                 .Property(e => e.Name)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Teacher>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Teacher>()
+                .Property(e => e.TeaacherNo)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Teacher>()
+                .Property(e => e.Password)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Test>()
                 .Property(e => e.TestName)
                 .IsUnicode(false);
         }
-     
     }
 }

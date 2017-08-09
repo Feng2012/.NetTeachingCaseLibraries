@@ -14,11 +14,14 @@ namespace TestManage
     {
         frmClassSetting _frmClass;
         frmTest _frmTest;
-        public frmMain(frmClassSetting frmClass,frmTest frmTest)
+        frmTeacherManage _frmTeacher;
+        public frmMain(frmClassSetting frmClass,frmTeacherManage frmTeacher, frmTest frmTest)
         {
             InitializeComponent();
             _frmClass = frmClass;
+            _frmTeacher = frmTeacher;
             _frmTest = frmTest;
+
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -29,6 +32,11 @@ namespace TestManage
         private void 班级管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _frmClass.ShowDialog();
+        }
+
+        private void 老师管理ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _frmTeacher.ShowDialog();
         }
     }
 }
