@@ -12,7 +12,7 @@ using TestManage.DDL;
 
 namespace TestManage
 {
-    public partial class frmTeacherManage : Form
+    public partial class frmTeacherSetting : Form
     {
         /// <summary>
         /// 仓储对象
@@ -22,7 +22,7 @@ namespace TestManage
         /// 编辑ID
         /// </summary>
         int _selectID;
-        public frmTeacherManage(ITeacherRepository teacherRepository)
+        public frmTeacherSetting(ITeacherRepository teacherRepository)
         {
             InitializeComponent();
             _teacherRepository = teacherRepository;

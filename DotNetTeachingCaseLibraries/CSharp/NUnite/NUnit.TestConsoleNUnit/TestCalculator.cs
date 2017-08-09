@@ -75,6 +75,7 @@ namespace NUnit.TestCalculatorManagement
         /// 测试除法被除数为0
         /// </summary>
         [Test]
+        [Category("异常")]
         public void TestDivide_DividendIsZore_Exception()
         {
             var calculator = new Calculator();

@@ -1,6 +1,6 @@
 ﻿namespace TestManage
 {
-    partial class frmTeacherManage
+    partial class frmTeacherSetting
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTeacherManage));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTeacherSetting));
             this.panel1 = new System.Windows.Forms.Panel();
             this.txbPassword = new System.Windows.Forms.TextBox();
             this.labPassword = new System.Windows.Forms.Label();

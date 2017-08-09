@@ -57,6 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\ISubjectRepository.cs" />
+    <Compile Include="BLL\SubjectRepository.cs" />
     <Compile Include="BLL\ITeacherRepository.cs" />
     <Compile Include="DDL\Answer.cs" />
     <Compile Include="BLL\TeacherRepository.cs" />
@@ -65,23 +67,23 @@
     <Compile Include="DDL\Class.cs" />
     <Compile Include="DDL\ClassTest.cs" />
     <Compile Include="DDL\IDBModel.cs" />
-    <Compile Include="frmTeacherManage.cs">
+    <Compile Include="frmSubjectSetting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTeacherManage.Designer.cs">
-      <DependentUpon>frmTeacherManage.cs</DependentUpon>
+    <Compile Include="frmSubjectSetting.Designer.cs">
+      <DependentUpon>frmSubjectSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTeacherSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTeacherSetting.Designer.cs">
+      <DependentUpon>frmTeacherSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="frmClassSetting.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmClassSetting.Designer.cs">
       <DependentUpon>frmClassSetting.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmSubjectSetting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmSubjectSetting.Designer.cs">
-      <DependentUpon>frmSubjectSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -116,14 +118,14 @@
     <Compile Include="DDL\Teacher.cs" />
     <Compile Include="DDL\Test.cs" />
     <Compile Include="DDL\TestManageModel.cs" />
-    <EmbeddedResource Include="frmTeacherManage.resx">
-      <DependentUpon>frmTeacherManage.cs</DependentUpon>
+    <EmbeddedResource Include="frmSubjectSetting.resx">
+      <DependentUpon>frmSubjectSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTeacherSetting.resx">
+      <DependentUpon>frmTeacherSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmClassSetting.resx">
       <DependentUpon>frmClassSetting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmSubjectSetting.resx">
-      <DependentUpon>frmSubjectSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
