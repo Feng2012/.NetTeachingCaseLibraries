@@ -9,9 +9,15 @@ using TestManage.DDL;
 
 namespace TestManage.BLL
 {
+    /// <summary>
+    /// 班级业务类
+    /// </summary>
     public class ClassRepository : IClassRepository
     {
-        public IDBModel db;
+        /// <summary>
+        /// 数据操作对象
+        /// </summary>
+        IDBModel db;
 
         public ClassRepository(IDBModel testManageDB)
         {

@@ -140,6 +140,9 @@ namespace TestManage
                 MessageBox.Show(exc.Message);
             }
         }
+        /// <summary>
+        /// 清空窗体数据
+        /// </summary>
         void ClearData()
         {
             _selectID = 0;
