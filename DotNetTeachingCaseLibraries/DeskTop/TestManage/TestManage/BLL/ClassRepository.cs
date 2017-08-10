@@ -17,11 +17,11 @@ namespace TestManage.BLL
         /// <summary>
         /// 数据操作对象
         /// </summary>
-        IDBModel db;
+        IDBModel _db;
 
-        public ClassRepository(IDBModel testManageDB)
+        public ClassRepository(IDBModel db)
         {
-            db = testManageDB;
+            _db = db;
         }
         /// <summary>
         /// 添加班级
@@ -30,8 +30,8 @@ namespace TestManage.BLL
         /// <returns></returns>
         public bool AddClass(Class cls)
         {
-            db.Classes.Add(cls);
-            var result = db.SaveChanges();
+            _db.Classes.Add(cls);
+            var result = _db.SaveChanges();
             return result > 0;
         }
         /// <summary>
@@ -40,7 +40,7 @@ namespace TestManage.BLL
         /// <returns></returns>
         public IList GetClasses()
         {
-            return db.Classes.Select(s=>new {编号=s.ID,班级名称=s.ClassName,备注=s.Memo  }).ToList();
+            return _db.Classes.Select(s=>new {编号=s.ID,班级名称=s.ClassName,备注=s.Memo  }).ToList();
         }
         /// <summary>
         /// 修改班级
@@ -49,7 +49,7 @@ namespace TestManage.BLL
         /// <returns></returns>
         public bool ModifyClass(Class cls)
         {
-            var oldCls = db.Classes.SingleOrDefault(s => s.ID == cls.ID);
+            var oldCls = _db.Classes.Find(cls.ID);
             if (oldCls == null)
             {
                 throw new Exception($"查询不到ID为{cls.ID}的班级");
@@ -58,7 +58,7 @@ namespace TestManage.BLL
             {
                 oldCls.ClassName = cls.ClassName;
                 oldCls.Memo = cls.Memo;
-                var result = db.SaveChanges();
+                var result = _db.SaveChanges();
                 return result > 0;
             }
         }
@@ -69,15 +69,15 @@ namespace TestManage.BLL
         /// <returns></returns>
         public bool RemoveClass(int id)
         {
-            var oldCls = db.Classes.SingleOrDefault(s => s.ID == id);
+            var oldCls = _db.Classes.SingleOrDefault(s => s.ID == id);
             if (oldCls == null)
             {
                 throw new Exception($"查询不到ID为{id}的班级");
             }
             else
             {
-                db.Classes.Remove(oldCls);
-                var result = db.SaveChanges();
+                _db.Classes.Remove(oldCls);
+                var result = _db.SaveChanges();
                 return result > 0;
             }
 
