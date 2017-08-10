@@ -64,8 +64,33 @@ namespace TestManage.UnitTest
             _dbMock.Setup(db => db.Classes.Find()).Returns(value:null);
             var ext = Assert.Throws<Exception>(() => _classRepository.ModifyClass(new Class { ID = 111 }));
             Assert.Contains("查询不到ID为111的班级", ext.Message);
+        }
+        /// <summary>
+        /// ModifyClass异常测试
+        /// </summary>
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        public void ModifyClass_Default_ReturnTrue(int result)
+        {
+            var cls = new Class { ID = 111 };
+            _dbMock.Setup(db => db.Classes.Find(cls.ID)).Returns(value: new Class());      
+            _dbMock.Setup(db => db.SaveChanges()).Returns(value: result);
+            var backResult =_classRepository.ModifyClass(cls);
+            Assert.Equal(result == 1, backResult);
+        }
 
-        
+        /// <summary>
+        /// RemoveClass异常测试
+        /// </summary>
+        [Fact]
+        public void RemoveClass_ThrowException_Catch()
+        {
+
+           // _dbMock.SetupProperty(db => db.Classes);
+            _dbMock.Setup(db => db.Classes.SingleOrDefault(s=>s.ID==111)).Returns(value: new Class());
+            var ext = Assert.Throws<Exception>(() => _classRepository.RemoveClass(111));
+            Assert.Contains("查询不到ID为111的班级", ext.Message);
         }
     }
 }
