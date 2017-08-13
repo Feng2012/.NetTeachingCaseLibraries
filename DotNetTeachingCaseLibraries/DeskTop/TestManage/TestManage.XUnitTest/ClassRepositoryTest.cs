@@ -88,12 +88,29 @@ namespace TestManage.XUnitTest
         [Fact]
         public void RemoveClass_ThrowException_Catch()
         {
-            var data = new List<Class> { new Class { ID = 1, ClassName = "BBB" } };
+            var data = new List<Class> { new Class { ID = 1, ClassName = "测试" } };
             var clsSet = new Mock<DbSet<Class>>()
                 .SetupData(data);
             _dbMock.Setup(db => db.Classes).Returns(clsSet.Object);
             var exc = Assert.Throws<Exception>(() => _classRepository.RemoveClass(111));
             Assert.Contains("查询不到ID为111的班级", exc.Message);
+        }
+
+        /// <summary>
+        /// RemoveClass正常
+        /// </summary>
+        [Theory]
+        [InlineData(1)]
+        [InlineData(0)]
+        public void RemoveClass_Default_ReturnClass(int result)
+        {
+            var data = new List<Class> { new Class { ID = 1, ClassName = "测试班级1" } };
+            var clsSet = new Mock<DbSet<Class>>()
+                .SetupData(data);
+            _dbMock.Setup(db => db.Classes).Returns(clsSet.Object);
+            _dbMock.Setup(db => db.SaveChanges()).Returns(value: result);
+            var backResult=_classRepository.RemoveClass(1);
+            Assert.Equal(result==1,backResult);
         }
 
     }
