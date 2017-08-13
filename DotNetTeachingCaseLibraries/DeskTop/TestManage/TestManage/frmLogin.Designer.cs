@@ -37,9 +37,13 @@
             this.tabcTeacher = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cmbClass = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnTest = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txbStudentNo = new System.Windows.Forms.TextBox();
-            this.btnTest = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txbCardID = new System.Windows.Forms.TextBox();
             this.tabcTeacher.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -110,7 +114,7 @@
             this.tabcTeacher.Location = new System.Drawing.Point(0, 0);
             this.tabcTeacher.Name = "tabcTeacher";
             this.tabcTeacher.SelectedIndex = 0;
-            this.tabcTeacher.Size = new System.Drawing.Size(622, 306);
+            this.tabcTeacher.Size = new System.Drawing.Size(622, 341);
             this.tabcTeacher.TabIndex = 14;
             // 
             // tabPage1
@@ -131,22 +135,58 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.txbCardID);
+            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.cmbClass);
+            this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.btnTest);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.txbStudentNo);
             this.tabPage2.Location = new System.Drawing.Point(8, 39);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(606, 259);
+            this.tabPage2.Size = new System.Drawing.Size(606, 294);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "学生";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // cmbClass
+            // 
+            this.cmbClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbClass.Font = new System.Drawing.Font("宋体", 12F);
+            this.cmbClass.FormattingEnabled = true;
+            this.cmbClass.Location = new System.Drawing.Point(155, 23);
+            this.cmbClass.Name = "cmbClass";
+            this.cmbClass.Size = new System.Drawing.Size(362, 41);
+            this.cmbClass.TabIndex = 12;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(42, 23);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(111, 33);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "班级：";
+            // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(273, 216);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(244, 63);
+            this.btnTest.TabIndex = 10;
+            this.btnTest.Text = "开始考试";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(39, 55);
+            this.label1.Location = new System.Drawing.Point(42, 83);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 33);
@@ -156,26 +196,37 @@
             // txbStudentNo
             // 
             this.txbStudentNo.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txbStudentNo.Location = new System.Drawing.Point(152, 51);
+            this.txbStudentNo.Location = new System.Drawing.Point(155, 79);
             this.txbStudentNo.Margin = new System.Windows.Forms.Padding(6);
             this.txbStudentNo.Name = "txbStudentNo";
             this.txbStudentNo.Size = new System.Drawing.Size(362, 44);
             this.txbStudentNo.TabIndex = 9;
             // 
-            // btnTest
+            // label3
             // 
-            this.btnTest.Location = new System.Drawing.Point(204, 175);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(244, 63);
-            this.btnTest.TabIndex = 10;
-            this.btnTest.Text = "开始考试";
-            this.btnTest.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(11, 144);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(143, 33);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "身份证：";
+            // 
+            // txbCardID
+            // 
+            this.txbCardID.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txbCardID.Location = new System.Drawing.Point(155, 140);
+            this.txbCardID.Margin = new System.Windows.Forms.Padding(6);
+            this.txbCardID.Name = "txbCardID";
+            this.txbCardID.Size = new System.Drawing.Size(362, 44);
+            this.txbCardID.TabIndex = 14;
             // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 306);
+            this.ClientSize = new System.Drawing.Size(622, 341);
             this.Controls.Add(this.tabcTeacher);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -207,5 +258,9 @@
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txbStudentNo;
+        private System.Windows.Forms.ComboBox cmbClass;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txbCardID;
     }
 }
