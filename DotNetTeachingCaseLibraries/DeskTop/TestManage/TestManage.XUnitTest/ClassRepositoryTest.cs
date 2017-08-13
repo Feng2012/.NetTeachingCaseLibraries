@@ -10,7 +10,7 @@ using TestManage.BLL;
 using TestManage.DDL;
 using Xunit;
 
-namespace TestManage.UnitTest
+namespace TestManage.XUnitTest
 {
     /// <summary>
     /// ClassRepository测试类
