@@ -49,7 +49,7 @@ namespace TestManage.BLL
         /// <returns></returns>
         public bool ModifySubject(Subject subject)
         {
-            var oldSubject = db.Subjects.SingleOrDefault(s => s.ID == subject.ID);
+            var oldSubject = db.Subjects.Find(subject.ID);
             if (oldSubject == null)
             {
                 throw new Exception($"查询不到ID为{subject.ID}的科目");
@@ -68,7 +68,7 @@ namespace TestManage.BLL
         /// <returns></returns>
         public bool RemoveSubject(int id)
         {
-            var oldSubject = db.Subjects.SingleOrDefault(s => s.ID == id);
+            var oldSubject = db.Subjects.Find(id);
             if (oldSubject == null)
             {
                 throw new Exception($"查询不到ID为{id}的科目");

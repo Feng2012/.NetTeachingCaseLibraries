@@ -49,7 +49,7 @@ namespace TestManage.BLL
         /// <returns></returns>
         public bool ModifyTeacher(Teacher teacher)
         {
-            var oldTeacher = db.Teachers.SingleOrDefault(s => s.ID == teacher.ID);
+            var oldTeacher = db.Teachers.Find(teacher.ID);
             if (oldTeacher == null)
             {
                 throw new Exception($"查询不到ID为{teacher.ID}的教师");
@@ -70,7 +70,7 @@ namespace TestManage.BLL
         /// <returns></returns>
         public bool RemoveTeacher(int id)
         {
-            var oldTeacher = db.Teachers.SingleOrDefault(s => s.ID == id);
+            var oldTeacher = db.Teachers.Find(id);
             if (oldTeacher == null)
             {
                 throw new Exception($"查询不到ID为{id}的教师");

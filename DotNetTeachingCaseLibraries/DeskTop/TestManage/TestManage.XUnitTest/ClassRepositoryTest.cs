@@ -34,6 +34,20 @@ namespace TestManage.XUnitTest
             _classRepository = new ClassRepository(_dbMock.Object);
         }
         /// <summary>
+        /// 查询班级测试
+        /// </summary>
+        [Fact]
+        public void GetClasses_Default_ReturnCount()
+        {
+            var data = new List<Class> { new Class { ID = 1, ClassName = "测试1" }, new Class { ID = 2, ClassName = "测试2" } };
+            var clsSet = new Mock<DbSet<Class>>()
+                .SetupData(data);
+            _dbMock.Setup(db => db.Classes).Returns(clsSet.Object);
+            var list = _classRepository.GetClasses();
+            Assert.Equal(2, list.Count);
+        }
+
+        /// <summary>
         /// AddClass异常测试
         /// </summary>
         [Fact]
@@ -68,7 +82,7 @@ namespace TestManage.XUnitTest
             Assert.Contains("查询不到ID为111的班级", ext.Message);
         }
         /// <summary>
-        /// ModifyClass异常测试
+        /// ModifyClass正常测试
         /// </summary>
         [Theory]
         [InlineData(0)]
@@ -88,12 +102,9 @@ namespace TestManage.XUnitTest
         [Fact]
         public void RemoveClass_ThrowException_Catch()
         {
-            var data = new List<Class> { new Class { ID = 1, ClassName = "测试" } };
-            var clsSet = new Mock<DbSet<Class>>()
-                .SetupData(data);
-            _dbMock.Setup(db => db.Classes).Returns(clsSet.Object);
-            var exc = Assert.Throws<Exception>(() => _classRepository.RemoveClass(111));
-            Assert.Contains("查询不到ID为111的班级", exc.Message);
+            _dbMock.Setup(db => db.Classes.Find()).Returns(value: null);
+            var ext = Assert.Throws<Exception>(() => _classRepository.RemoveClass(111));
+            Assert.Contains("查询不到ID为111的班级", ext.Message);
         }
 
         /// <summary>
@@ -104,13 +115,11 @@ namespace TestManage.XUnitTest
         [InlineData(0)]
         public void RemoveClass_Default_ReturnClass(int result)
         {
-            var data = new List<Class> { new Class { ID = 1, ClassName = "测试班级1" } };
-            var clsSet = new Mock<DbSet<Class>>()
-                .SetupData(data);
-            _dbMock.Setup(db => db.Classes).Returns(clsSet.Object);
+            var cls = new Class { ID = 111 };
+            _dbMock.Setup(db => db.Classes.Find(cls.ID)).Returns(value: new Class());
             _dbMock.Setup(db => db.SaveChanges()).Returns(value: result);
-            var backResult=_classRepository.RemoveClass(1);
-            Assert.Equal(result==1,backResult);
+            var backResult = _classRepository.RemoveClass(111);
+            Assert.Equal(result == 1, backResult);
         }
 
     }

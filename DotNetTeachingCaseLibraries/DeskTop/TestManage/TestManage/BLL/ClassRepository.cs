@@ -69,7 +69,7 @@ namespace TestManage.BLL
         /// <returns></returns>
         public bool RemoveClass(int id)
         {
-            var oldCls = _db.Classes.SingleOrDefault(s => s.ID == id);
+            var oldCls = _db.Classes.Find(id);
             if (oldCls == null)
             {
                 throw new Exception($"查询不到ID为{id}的班级");
