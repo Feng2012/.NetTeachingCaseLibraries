@@ -42,5 +42,13 @@ namespace TestManage.BLL
         /// <returns></returns>
         bool RemoveTeacher(int id);
 
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="teacherNo">老师编号</param>
+        /// <param name="password">密码</param>
+        /// <returns></returns>
+        Teacher Login(string teacherNo, string password);
+
     }
 }

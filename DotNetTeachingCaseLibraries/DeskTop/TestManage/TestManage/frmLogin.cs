@@ -21,11 +21,17 @@ namespace TestManage
         /// 学生
         /// </summary>
         IStudentRepository _studentRepository;
-        public frmLogin(IClassTestRepository classTestRepository, IStudentRepository studentRepository)
+        /// <summary>
+        /// 教师
+        /// </summary>
+        ITeacherRepository _teacherRepository;
+
+        public frmLogin(IClassTestRepository classTestRepository, IStudentRepository studentRepository, ITeacherRepository teacherRepository)
         {
             InitializeComponent();
             _classTestRepository = classTestRepository;
             _studentRepository = studentRepository;
+            _teacherRepository = teacherRepository;
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
@@ -38,15 +44,21 @@ namespace TestManage
         private void btnTest_Click(object sender, EventArgs e)
         {
             var student = _studentRepository.GetStudent(txbStudentNo.Text, txbCardID.Text);
-            if(student!=null)
+            if (student != null)
             {
                 DialogResult = DialogResult.OK;
             }
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
+    
 
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            var teacher = _teacherRepository.Login(txbUserName.Text, txbPassword.Text);
+            if(teacher==null)
+            {
+                MessageBox.Show("用户名或密码失败！");
+            }
         }
     }
 }

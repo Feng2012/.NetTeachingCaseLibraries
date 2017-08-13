@@ -83,6 +83,16 @@ namespace TestManage.BLL
             }
 
         }
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="teacherNo">教师编号</param>
+        /// <param name="password">密码</param>
+        /// <returns></returns>
+        public Teacher Login(string teacherNo, string password)
+        {
+            return db.Teachers.SingleOrDefault(s => s.TeaacherNo == teacherNo && s.Password == password);
+        }
 
     }
 }
