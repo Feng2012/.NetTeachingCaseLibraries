@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using TestManage.BLL;
 using TestManage.DDL;
 using Xunit;
+using TestManage.XUnitTest;
+using System.Linq.Expressions;
 
 namespace TestManage.XUnitTest
 {
@@ -51,8 +53,8 @@ namespace TestManage.XUnitTest
         {
             _dbMock.Setup(db => db.Classes.Add(new Class()));
             _dbMock.Setup(db => db.SaveChanges()).Returns(value: result);
-            var backResult= _classRepository.AddClass(new Class());
-            Assert.Equal(result==1, backResult);
+            var backResult = _classRepository.AddClass(new Class());
+            Assert.Equal(result == 1, backResult);
         }
         /// <summary>
         /// ModifyClass异常测试
@@ -60,8 +62,8 @@ namespace TestManage.XUnitTest
         [Fact]
         public void ModifyClass_ThrowException_Catch()
         {
-          
-            _dbMock.Setup(db => db.Classes.Find()).Returns(value:null);
+
+            _dbMock.Setup(db => db.Classes.Find()).Returns(value: null);
             var ext = Assert.Throws<Exception>(() => _classRepository.ModifyClass(new Class { ID = 111 }));
             Assert.Contains("查询不到ID为111的班级", ext.Message);
         }
@@ -74,9 +76,9 @@ namespace TestManage.XUnitTest
         public void ModifyClass_Default_ReturnTrue(int result)
         {
             var cls = new Class { ID = 111 };
-            _dbMock.Setup(db => db.Classes.Find(cls.ID)).Returns(value: new Class());      
+            _dbMock.Setup(db => db.Classes.Find(cls.ID)).Returns(value: new Class());
             _dbMock.Setup(db => db.SaveChanges()).Returns(value: result);
-            var backResult =_classRepository.ModifyClass(cls);
+            var backResult = _classRepository.ModifyClass(cls);
             Assert.Equal(result == 1, backResult);
         }
 
@@ -87,10 +89,29 @@ namespace TestManage.XUnitTest
         public void RemoveClass_ThrowException_Catch()
         {
 
-           // _dbMock.SetupProperty(db => db.Classes);
-            _dbMock.Setup(db => db.Classes.SingleOrDefault(s=>s.ID==111)).Returns(value: new Class());
+            _dbMock.SetupProperty(db => db.Classes);
+            _dbMock.Setup(db => db.Classes.SingleOrDefault(It.IsAny<Expression<Func<Class, bool>>>())).Returns(value: new Class());
+
             var ext = Assert.Throws<Exception>(() => _classRepository.RemoveClass(111));
             Assert.Contains("查询不到ID为111的班级", ext.Message);
+
+
+
         }
     }
+
+    public static class SecurityExtensions
+    {
+        public static Mock<DbSet<T>> AsDbSetMock<T>(this IEnumerable<T> list) where T : class
+        {
+            IQueryable<T> queryableList = list.AsQueryable();
+            Mock<DbSet<T>> dbSetMock = new Mock<DbSet<T>>();
+            dbSetMock.As<IQueryable<T>>().Setup(x => x.Provider).Returns(queryableList.Provider);
+            dbSetMock.As<IQueryable<T>>().Setup(x => x.Expression).Returns(queryableList.Expression);
+            dbSetMock.As<IQueryable<T>>().Setup(x => x.ElementType).Returns(queryableList.ElementType);
+            dbSetMock.As<IQueryable<T>>().Setup(x => x.GetEnumerator()).Returns(() => queryableList.GetEnumerator());
+            return dbSetMock;
+        }
+    }
+
 }
