@@ -33,8 +33,10 @@
             this.班级管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.老师管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.科目管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.考试设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.班级考试设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.试卷管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +48,7 @@
             this.考试设置ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1076, 39);
+            this.menuStrip1.Size = new System.Drawing.Size(1076, 42);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -57,29 +59,38 @@
             this.老师管理ToolStripMenuItem,
             this.科目管理ToolStripMenuItem});
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(74, 35);
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(74, 38);
             this.设置ToolStripMenuItem.Text = "设置";
             // 
             // 班级管理ToolStripMenuItem
             // 
             this.班级管理ToolStripMenuItem.Name = "班级管理ToolStripMenuItem";
-            this.班级管理ToolStripMenuItem.Size = new System.Drawing.Size(208, 38);
+            this.班级管理ToolStripMenuItem.Size = new System.Drawing.Size(268, 38);
             this.班级管理ToolStripMenuItem.Text = "班级管理";
             this.班级管理ToolStripMenuItem.Click += new System.EventHandler(this.班级管理ToolStripMenuItem_Click);
             // 
             // 老师管理ToolStripMenuItem
             // 
             this.老师管理ToolStripMenuItem.Name = "老师管理ToolStripMenuItem";
-            this.老师管理ToolStripMenuItem.Size = new System.Drawing.Size(208, 38);
+            this.老师管理ToolStripMenuItem.Size = new System.Drawing.Size(268, 38);
             this.老师管理ToolStripMenuItem.Text = "老师管理";
             this.老师管理ToolStripMenuItem.Click += new System.EventHandler(this.老师管理ToolStripMenuItem_Click);
             // 
             // 科目管理ToolStripMenuItem
             // 
             this.科目管理ToolStripMenuItem.Name = "科目管理ToolStripMenuItem";
-            this.科目管理ToolStripMenuItem.Size = new System.Drawing.Size(208, 38);
+            this.科目管理ToolStripMenuItem.Size = new System.Drawing.Size(268, 38);
             this.科目管理ToolStripMenuItem.Text = "科目管理";
             this.科目管理ToolStripMenuItem.Click += new System.EventHandler(this.科目管理ToolStripMenuItem_Click);
+            // 
+            // 考试设置ToolStripMenuItem
+            // 
+            this.考试设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.班级考试设置ToolStripMenuItem,
+            this.试卷管理ToolStripMenuItem});
+            this.考试设置ToolStripMenuItem.Name = "考试设置ToolStripMenuItem";
+            this.考试设置ToolStripMenuItem.Size = new System.Drawing.Size(122, 38);
+            this.考试设置ToolStripMenuItem.Text = "考试设置";
             // 
             // statusStrip1
             // 
@@ -91,11 +102,19 @@
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // 考试设置ToolStripMenuItem
+            // 班级考试设置ToolStripMenuItem
             // 
-            this.考试设置ToolStripMenuItem.Name = "考试设置ToolStripMenuItem";
-            this.考试设置ToolStripMenuItem.Size = new System.Drawing.Size(122, 35);
-            this.考试设置ToolStripMenuItem.Text = "考试设置";
+            this.班级考试设置ToolStripMenuItem.Name = "班级考试设置ToolStripMenuItem";
+            this.班级考试设置ToolStripMenuItem.Size = new System.Drawing.Size(268, 38);
+            this.班级考试设置ToolStripMenuItem.Text = "班级考试设置";
+            this.班级考试设置ToolStripMenuItem.Click += new System.EventHandler(this.班级考试设置ToolStripMenuItem_Click);
+            // 
+            // 试卷管理ToolStripMenuItem
+            // 
+            this.试卷管理ToolStripMenuItem.Name = "试卷管理ToolStripMenuItem";
+            this.试卷管理ToolStripMenuItem.Size = new System.Drawing.Size(268, 38);
+            this.试卷管理ToolStripMenuItem.Text = "试卷管理";
+            this.试卷管理ToolStripMenuItem.Click += new System.EventHandler(this.试卷管理ToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -105,7 +124,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "考试系统";
@@ -126,6 +145,8 @@
         private System.Windows.Forms.ToolStripMenuItem 老师管理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 科目管理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 考试设置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 班级考试设置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 试卷管理ToolStripMenuItem;
     }
 }
 
