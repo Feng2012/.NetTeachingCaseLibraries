@@ -44,7 +44,7 @@ namespace TestManage.BLL
         /// </summary>
         /// <param name="stuNo">学号</param>
         /// <returns></returns>
-        bool RemoveClass(string stuNo);
+        bool RemoveStudent(string stuNo);
 
     }
 }

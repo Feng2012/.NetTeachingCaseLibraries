@@ -40,7 +40,7 @@ namespace TestManage.BLL
         /// <returns></returns>
         public IList GetClassTests()
         {
-            return _db.ClassTests.Where(w=>w.IsValidate==true).Select(s=>new {班级编号=s.ClassID,班级名称=s.Class.ClassName,试卷编号=s.TestID,试卷名称=s.Test.TestName  }).ToList();
+            return _db.ClassTests.Where(w=>w.IsValidate==true).Select(s=>new {班级编号=s.ClassID,班级名称=s.Class.ClassName,试卷编号=s.TestID,试卷名称=s.Test.TestName ,是否有效=s.IsValidate }).ToList();
         }
         /// <summary>
         /// 修改考试班级

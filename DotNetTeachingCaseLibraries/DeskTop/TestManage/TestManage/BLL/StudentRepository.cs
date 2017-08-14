@@ -90,7 +90,7 @@ namespace TestManage.BLL
         /// </summary>
         /// <param name="stuNo">学号</param>
         /// <returns></returns>
-        public bool RemoveClass(string stuNo)
+        public bool RemoveStudent(string stuNo)
         {
             var oldStudent = _db.Students.Find(stuNo);
             if (oldStudent == null)
