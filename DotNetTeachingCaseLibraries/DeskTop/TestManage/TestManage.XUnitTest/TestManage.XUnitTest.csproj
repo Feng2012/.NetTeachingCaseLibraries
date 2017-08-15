@@ -84,6 +84,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="SubjectRepositoryTest.cs" />
     <Compile Include="TeacherRepositoryTest.cs" />
     <Compile Include="ClassRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

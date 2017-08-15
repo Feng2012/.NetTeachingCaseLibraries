@@ -85,7 +85,7 @@ namespace TestManage.XUnitTest
         /// AddTeacher异常测试
         /// </summary>
         [Fact]
-        public void AddTeacher_ThrowException_Catch()
+        public void AddTeacher_AddNull_ThrowException()
         {
             var excetionMessage = "AddTeacher异常";
             _dbMock.Setup(db => db.Teachers.Add(null)).Throws(new Exception(excetionMessage));
@@ -109,7 +109,7 @@ namespace TestManage.XUnitTest
         /// ModifyTeacher异常测试
         /// </summary>
         [Fact]
-        public void ModifyTeacher_ThrowException_Catch()
+        public void ModifyTeacher_NotFind_ThrowException()
         {
             _dbMock.Setup(db => db.Teachers.Find()).Returns(value: null);
             var ext = Assert.Throws<Exception>(() => _teacherRepository.ModifyTeacher(new Teacher { ID = 111 }));
@@ -134,7 +134,7 @@ namespace TestManage.XUnitTest
         /// RemoveTeacher异常测试
         /// </summary>
         [Fact]
-        public void RemoveTeacher_ThrowException_Catch()
+        public void RemoveTeacher_NotFind_ThrowException()
         {
             _dbMock.Setup(db => db.Teachers.Find()).Returns(value: null);
             var ext = Assert.Throws<Exception>(() => _teacherRepository.RemoveTeacher(111));

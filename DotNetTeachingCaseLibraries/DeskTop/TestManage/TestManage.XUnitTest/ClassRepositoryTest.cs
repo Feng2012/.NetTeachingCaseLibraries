@@ -51,7 +51,7 @@ namespace TestManage.XUnitTest
         /// AddClass异常测试
         /// </summary>
         [Fact]
-        public void AddClass_ThrowException_Catch()
+        public void AddClass_AddNull_ThrowException()
         {
             _dbMock.Setup(db => db.Classes.Add(null)).Throws(new Exception("AddClass异常"));
             var ext = Assert.Throws<Exception>(() => _classRepository.AddClass(null));
@@ -74,7 +74,7 @@ namespace TestManage.XUnitTest
         /// ModifyClass异常测试
         /// </summary>
         [Fact]
-        public void ModifyClass_ThrowException_Catch()
+        public void ModifyClass_NotFind_ThrowException()
         {
 
             _dbMock.Setup(db => db.Classes.Find()).Returns(value: null);
@@ -100,7 +100,7 @@ namespace TestManage.XUnitTest
         /// RemoveClass异常测试
         /// </summary>
         [Fact]
-        public void RemoveClass_ThrowException_Catch()
+        public void RemoveClass_NotFind_ThrowException()
         {
             _dbMock.Setup(db => db.Classes.Find()).Returns(value: null);
             var ext = Assert.Throws<Exception>(() => _classRepository.RemoveClass(111));
