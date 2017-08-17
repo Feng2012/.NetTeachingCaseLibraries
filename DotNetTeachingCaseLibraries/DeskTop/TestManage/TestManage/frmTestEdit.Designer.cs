@@ -36,13 +36,21 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.labTest = new System.Windows.Forms.Label();
+            this.txbNo = new System.Windows.Forms.TextBox();
+            this.labNo = new System.Windows.Forms.Label();
+            this.txbScore = new System.Windows.Forms.TextBox();
+            this.labScore = new System.Windows.Forms.Label();
+            this.labQuestion = new System.Windows.Forms.Label();
+            this.txbQuestion = new System.Windows.Forms.TextBox();
+            this.dgvData = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.SuspendLayout();
             // 
             // labSubject
             // 
             this.labSubject.AutoSize = true;
-            this.labSubject.Location = new System.Drawing.Point(11, 13);
+            this.labSubject.Location = new System.Drawing.Point(11, 15);
             this.labSubject.Name = "labSubject";
             this.labSubject.Size = new System.Drawing.Size(65, 12);
             this.labSubject.TabIndex = 7;
@@ -50,6 +58,12 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txbQuestion);
+            this.panel1.Controls.Add(this.labQuestion);
+            this.panel1.Controls.Add(this.txbScore);
+            this.panel1.Controls.Add(this.labScore);
+            this.panel1.Controls.Add(this.txbNo);
+            this.panel1.Controls.Add(this.labNo);
             this.panel1.Controls.Add(this.cmbTest);
             this.panel1.Controls.Add(this.cmbSujbect);
             this.panel1.Controls.Add(this.labSubject);
@@ -60,7 +74,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(810, 85);
+            this.panel1.Size = new System.Drawing.Size(758, 156);
             this.panel1.TabIndex = 1;
             // 
             // cmbTest
@@ -86,7 +100,7 @@
             // btnDelete
             // 
             this.btnDelete.ImageIndex = 0;
-            this.btnDelete.Location = new System.Drawing.Point(691, 36);
+            this.btnDelete.Location = new System.Drawing.Point(681, 120);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(65, 31);
             this.btnDelete.TabIndex = 6;
@@ -97,7 +111,7 @@
             // btnEdit
             // 
             this.btnEdit.ImageIndex = 2;
-            this.btnEdit.Location = new System.Drawing.Point(622, 36);
+            this.btnEdit.Location = new System.Drawing.Point(612, 120);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(65, 31);
             this.btnEdit.TabIndex = 5;
@@ -108,7 +122,7 @@
             // btnAdd
             // 
             this.btnAdd.ImageIndex = 0;
-            this.btnAdd.Location = new System.Drawing.Point(553, 36);
+            this.btnAdd.Location = new System.Drawing.Point(543, 120);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(65, 31);
             this.btnAdd.TabIndex = 4;
@@ -119,17 +133,82 @@
             // labTest
             // 
             this.labTest.AutoSize = true;
-            this.labTest.Location = new System.Drawing.Point(405, 13);
+            this.labTest.Location = new System.Drawing.Point(402, 15);
             this.labTest.Name = "labTest";
             this.labTest.Size = new System.Drawing.Size(65, 12);
             this.labTest.TabIndex = 2;
             this.labTest.Text = "试卷名称：";
             // 
+            // txbNo
+            // 
+            this.txbNo.Location = new System.Drawing.Point(76, 37);
+            this.txbNo.Name = "txbNo";
+            this.txbNo.Size = new System.Drawing.Size(276, 21);
+            this.txbNo.TabIndex = 11;
+            // 
+            // labNo
+            // 
+            this.labNo.AutoSize = true;
+            this.labNo.Location = new System.Drawing.Point(35, 41);
+            this.labNo.Name = "labNo";
+            this.labNo.Size = new System.Drawing.Size(41, 12);
+            this.labNo.TabIndex = 12;
+            this.labNo.Text = "编号：";
+            // 
+            // txbScore
+            // 
+            this.txbScore.Location = new System.Drawing.Point(470, 37);
+            this.txbScore.Name = "txbScore";
+            this.txbScore.Size = new System.Drawing.Size(276, 21);
+            this.txbScore.TabIndex = 13;
+            // 
+            // labScore
+            // 
+            this.labScore.AutoSize = true;
+            this.labScore.Location = new System.Drawing.Point(426, 41);
+            this.labScore.Name = "labScore";
+            this.labScore.Size = new System.Drawing.Size(41, 12);
+            this.labScore.TabIndex = 14;
+            this.labScore.Text = "分值：";
+            // 
+            // labQuestion
+            // 
+            this.labQuestion.AutoSize = true;
+            this.labQuestion.Location = new System.Drawing.Point(35, 67);
+            this.labQuestion.Name = "labQuestion";
+            this.labQuestion.Size = new System.Drawing.Size(41, 12);
+            this.labQuestion.TabIndex = 15;
+            this.labQuestion.Text = "题目：";
+            // 
+            // txbQuestion
+            // 
+            this.txbQuestion.Location = new System.Drawing.Point(76, 64);
+            this.txbQuestion.Multiline = true;
+            this.txbQuestion.Name = "txbQuestion";
+            this.txbQuestion.Size = new System.Drawing.Size(670, 50);
+            this.txbQuestion.TabIndex = 16;
+            // 
+            // dgvData
+            // 
+            this.dgvData.AllowUserToAddRows = false;
+            this.dgvData.AllowUserToDeleteRows = false;
+            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvData.Location = new System.Drawing.Point(0, 156);
+            this.dgvData.MultiSelect = false;
+            this.dgvData.Name = "dgvData";
+            this.dgvData.ReadOnly = true;
+            this.dgvData.RowTemplate.Height = 23;
+            this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvData.Size = new System.Drawing.Size(758, 354);
+            this.dgvData.TabIndex = 2;
+            // 
             // frmTestEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(810, 510);
+            this.ClientSize = new System.Drawing.Size(758, 510);
+            this.Controls.Add(this.dgvData);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmTestEdit";
@@ -137,6 +216,7 @@
             this.Load += new System.EventHandler(this.frmTestEdit_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -151,5 +231,12 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label labTest;
+        private System.Windows.Forms.TextBox txbQuestion;
+        private System.Windows.Forms.Label labQuestion;
+        private System.Windows.Forms.TextBox txbScore;
+        private System.Windows.Forms.Label labScore;
+        private System.Windows.Forms.TextBox txbNo;
+        private System.Windows.Forms.Label labNo;
+        private System.Windows.Forms.DataGridView dgvData;
     }
 }

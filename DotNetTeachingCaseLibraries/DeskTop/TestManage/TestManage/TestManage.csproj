@@ -79,6 +79,12 @@
     <Compile Include="frmClassTestSetting.Designer.cs">
       <DependentUpon>frmClassTestSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAnswer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAnswer.Designer.cs">
+      <DependentUpon>frmAnswer.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSubjectSetting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +138,9 @@
     <Compile Include="DDL\TestManageModel.cs" />
     <EmbeddedResource Include="frmClassTestSetting.resx">
       <DependentUpon>frmClassTestSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAnswer.resx">
+      <DependentUpon>frmAnswer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSubjectSetting.resx">
       <DependentUpon>frmSubjectSetting.cs</DependentUpon>
