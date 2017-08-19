@@ -64,6 +64,7 @@
     <Compile Include="BLL\ClassTestRepository.cs" />
     <Compile Include="BLL\IClassTestRepository.cs" />
     <Compile Include="BLL\ISubjectRepository.cs" />
+    <Compile Include="BLL\AnswerRepository.cs" />
     <Compile Include="BLL\SubjectRepository.cs" />
     <Compile Include="BLL\ITeacherRepository.cs" />
     <Compile Include="DDL\Answer.cs" />
