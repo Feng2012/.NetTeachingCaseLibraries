@@ -12,7 +12,7 @@ namespace TestManage.BLL
     /// <summary>
     /// 答案业务类
     /// </summary>
-    public class AnswerRepository : ISubjectRepository
+    public class AnswerRepository : IAnswerRepository
     {
         /// <summary>
         /// 数据操作对象

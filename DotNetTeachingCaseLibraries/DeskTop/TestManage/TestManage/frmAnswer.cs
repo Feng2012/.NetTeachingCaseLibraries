@@ -19,13 +19,18 @@ namespace TestManage
         /// </summary>
         ISubjectRepository _subjectRepository;
         /// <summary>
+        /// 试卷对象
+        /// </summary>
+        IAnswerRepository _answerRepository;
+        /// <summary>
         /// 编辑ID
         /// </summary>
         int _selectID;
-        public frmAnswer(ISubjectRepository subjectRepository)
+        public frmAnswer(ISubjectRepository subjectRepository,IAnswerRepository answerRepository)
         {
             InitializeComponent();
             _subjectRepository = subjectRepository;
+            _answerRepository = answerRepository;
 
         }
 
