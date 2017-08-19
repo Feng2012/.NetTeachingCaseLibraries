@@ -14,10 +14,7 @@ namespace TestManage
 {
     public partial class frmAnswer : Form
     {
-        /// <summary>
-        /// 仓储对象
-        /// </summary>
-        ISubjectRepository _subjectRepository;
+
         /// <summary>
         /// 试卷对象
         /// </summary>
@@ -26,17 +23,19 @@ namespace TestManage
         /// 编辑ID
         /// </summary>
         int _selectID;
-        public frmAnswer(ISubjectRepository subjectRepository,IAnswerRepository answerRepository)
+
+        int _questionID;
+        public frmAnswer(IAnswerRepository answerRepository, int questionID)
         {
             InitializeComponent();
-            _subjectRepository = subjectRepository;
-            _answerRepository = answerRepository;
 
+            _answerRepository = answerRepository;
+            _questionID = questionID;
         }
 
         private void frmSetting_Load(object sender, EventArgs e)
         {
-            dgvData.DataSource = _subjectRepository.GetSubjects();
+            dgvData.DataSource = _answerRepository.GetAnswers(_questionID);
         }
         /// <summary>
         /// 添加
@@ -47,13 +46,15 @@ namespace TestManage
         {
             try
             {
-                var subject = new Subject();
-                subject.Name = txbAnswer.Text;
-               
-                if (_subjectRepository.AddSubject(subject))
+                var answer = new Answer();
+                answer.Answer1 = txbAnswer.Text;
+                answer.IsAnswer = chbIsAnswer.Checked;
+                answer.QuestionID = _questionID;
+
+                if (_answerRepository.AddAnswer(answer))
                 {
                     ClearData();
-                    dgvData.DataSource = _subjectRepository.GetSubjects();
+                    dgvData.DataSource = _answerRepository.GetAnswers(_questionID);
                 }
                 else
                 {
@@ -76,14 +77,15 @@ namespace TestManage
             {
                 if (_selectID > 0)
                 {
-                    var subject = new Subject();
-                    subject.ID = _selectID;
-                    subject.Name = txbAnswer.Text;
-
-                    if (_subjectRepository.ModifySubject(subject))
+                    var answer = new Answer();
+                    answer.ID = _selectID;
+                    answer.Answer1 = txbAnswer.Text;
+                    answer.IsAnswer = chbIsAnswer.Checked;
+                    answer.QuestionID = _questionID;
+                    if (_answerRepository.ModifyAnswer(answer))
                     {
                         ClearData();
-                        dgvData.DataSource = _subjectRepository.GetSubjects();
+                        dgvData.DataSource = _answerRepository.GetAnswers(_questionID);
                     }
                     else
                     {
@@ -111,7 +113,8 @@ namespace TestManage
             if (e.RowIndex > -1)
             {
                 _selectID = Convert.ToInt32(dgvData.Rows[e.RowIndex].Cells["编号"].Value);
-                txbAnswer.Text = dgvData.Rows[e.RowIndex].Cells["科目名称"].Value.ToString();              
+                txbAnswer.Text = dgvData.Rows[e.RowIndex].Cells["答案"].Value.ToString();
+                chbIsAnswer.Checked = Convert.ToBoolean(dgvData.Rows[e.RowIndex].Cells["是否正确答案"].Value);
             }
         }
 
@@ -123,10 +126,10 @@ namespace TestManage
                 {
                     if (MessageBox.Show("你确定要删除吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        if (_subjectRepository.RemoveSubject(_selectID))
+                        if (_answerRepository.RemoveAnswer(_selectID))
                         {
                             ClearData();
-                            dgvData.DataSource = _subjectRepository.GetSubjects();
+                            dgvData.DataSource = _answerRepository.GetAnswers(_questionID);
                         }
                         else
                         {
@@ -150,7 +153,7 @@ namespace TestManage
         void ClearData()
         {
             _selectID = 0;
-            txbAnswer.Clear();       
+            txbAnswer.Clear();
         }
     }
 }

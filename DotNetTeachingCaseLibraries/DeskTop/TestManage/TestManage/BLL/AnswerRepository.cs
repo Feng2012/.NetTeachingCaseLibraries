@@ -28,7 +28,7 @@ namespace TestManage.BLL
         /// </summary>
         /// <param name="answer">科目</param>
         /// <returns></returns>
-        public bool AddSubject(Answer answer)
+        public bool AddAnswer(Answer answer)
         {
             db.Answers.Add(answer);
             var result = db.SaveChanges();

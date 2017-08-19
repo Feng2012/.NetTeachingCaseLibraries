@@ -22,7 +22,7 @@ namespace TestManage.BLL
         /// </summary>
         /// <param name="answer">科目</param>
         /// <returns></returns>
-        bool AddSubject(Answer answer);
+        bool AddAnswer(Answer answer);
         /// <summary>
         /// 按问题ID查询答案
         /// </summary>
