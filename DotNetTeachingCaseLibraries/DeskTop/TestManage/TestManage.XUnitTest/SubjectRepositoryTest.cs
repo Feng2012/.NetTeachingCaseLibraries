@@ -116,8 +116,8 @@ namespace TestManage.XUnitTest
         [InlineData(0)]
         public void RemoveSubject_Default_ReturnClass(int result)
         {
-            var cls = new Class { ID = 111 };
-            _dbMock.Setup(db => db.Subjects.Find(cls.ID)).Returns(value: new Subject());
+            var subjet = new Subject { ID = 111 };
+            _dbMock.Setup(db => db.Subjects.Find(subjet.ID)).Returns(value: new Subject());
             _dbMock.Setup(db => db.SaveChanges()).Returns(value: result);
             var backResult = _subjectRepository.RemoveSubject(111);
             Assert.Equal(result == 1, backResult);

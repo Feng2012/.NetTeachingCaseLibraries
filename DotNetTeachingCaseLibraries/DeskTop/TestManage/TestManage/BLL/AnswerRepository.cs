@@ -52,7 +52,7 @@ namespace TestManage.BLL
             var oldAnswer = db.Answers.Find(answer.ID);
             if (oldAnswer == null)
             {
-                throw new Exception($"查询不到ID为{answer.ID}的科目");
+                throw new Exception($"查询不到ID为{answer.ID}的答案");
             }
             else
             {
@@ -73,7 +73,7 @@ namespace TestManage.BLL
             var oldAnswer = db.Answers.Find(id);
             if (oldAnswer == null)
             {
-                throw new Exception($"查询不到ID为{id}的科目");
+                throw new Exception($"查询不到ID为{id}的答案");
             }
             else
             {
