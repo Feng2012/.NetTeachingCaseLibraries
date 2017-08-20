@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\TestRepository.cs" />
     <Compile Include="BLL\IAnswerRepository.cs" />
     <Compile Include="BLL\ITestRepository.cs" />
     <Compile Include="BLL\IStudentRepository.cs" />

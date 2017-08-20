@@ -15,7 +15,7 @@ namespace TestManage.BLL
         /// </summary>
         /// <param name="subjectID">科目编号</param>
         /// <returns></returns>
-        List<Test> GetTests(int subjectID);
+        IList GetTests(int subjectID);
 
 
         /// <summary>
