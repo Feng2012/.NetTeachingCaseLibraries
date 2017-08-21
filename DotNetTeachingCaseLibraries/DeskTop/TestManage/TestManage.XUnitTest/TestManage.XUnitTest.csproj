@@ -85,6 +85,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AnswerRepositoryTest.cs" />
+    <Compile Include="ClassTestRepositoryTest.cs" />
     <Compile Include="TestRepositoryTest.cs" />
     <Compile Include="SubjectRepositoryTest.cs" />
     <Compile Include="TeacherRepositoryTest.cs" />
