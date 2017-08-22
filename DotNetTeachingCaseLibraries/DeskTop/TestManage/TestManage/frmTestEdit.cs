@@ -22,6 +22,8 @@ namespace TestManage
         /// 试卷对象
         /// </summary>
         ITestRepository _testRepository;
+
+       
         public frmTestEdit( ISubjectRepository subjectRepository, ITestRepository testRepository)
         {
             InitializeComponent();
@@ -31,6 +33,21 @@ namespace TestManage
         }
        
         private void frmTestEdit_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
         {
 
         }

@@ -30,18 +30,18 @@
         {
             this.labSubject = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txbQuestion = new System.Windows.Forms.TextBox();
+            this.labQuestion = new System.Windows.Forms.Label();
+            this.txbScore = new System.Windows.Forms.TextBox();
+            this.labScore = new System.Windows.Forms.Label();
+            this.txbNo = new System.Windows.Forms.TextBox();
+            this.labNo = new System.Windows.Forms.Label();
             this.cmbTest = new System.Windows.Forms.ComboBox();
             this.cmbSujbect = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.labTest = new System.Windows.Forms.Label();
-            this.txbNo = new System.Windows.Forms.TextBox();
-            this.labNo = new System.Windows.Forms.Label();
-            this.txbScore = new System.Windows.Forms.TextBox();
-            this.labScore = new System.Windows.Forms.Label();
-            this.labQuestion = new System.Windows.Forms.Label();
-            this.txbQuestion = new System.Windows.Forms.TextBox();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
@@ -77,6 +77,55 @@
             this.panel1.Size = new System.Drawing.Size(758, 156);
             this.panel1.TabIndex = 1;
             // 
+            // txbQuestion
+            // 
+            this.txbQuestion.Location = new System.Drawing.Point(76, 64);
+            this.txbQuestion.Multiline = true;
+            this.txbQuestion.Name = "txbQuestion";
+            this.txbQuestion.Size = new System.Drawing.Size(670, 50);
+            this.txbQuestion.TabIndex = 16;
+            // 
+            // labQuestion
+            // 
+            this.labQuestion.AutoSize = true;
+            this.labQuestion.Location = new System.Drawing.Point(35, 67);
+            this.labQuestion.Name = "labQuestion";
+            this.labQuestion.Size = new System.Drawing.Size(41, 12);
+            this.labQuestion.TabIndex = 15;
+            this.labQuestion.Text = "题目：";
+            // 
+            // txbScore
+            // 
+            this.txbScore.Location = new System.Drawing.Point(470, 37);
+            this.txbScore.Name = "txbScore";
+            this.txbScore.Size = new System.Drawing.Size(276, 21);
+            this.txbScore.TabIndex = 13;
+            // 
+            // labScore
+            // 
+            this.labScore.AutoSize = true;
+            this.labScore.Location = new System.Drawing.Point(426, 41);
+            this.labScore.Name = "labScore";
+            this.labScore.Size = new System.Drawing.Size(41, 12);
+            this.labScore.TabIndex = 14;
+            this.labScore.Text = "分值：";
+            // 
+            // txbNo
+            // 
+            this.txbNo.Location = new System.Drawing.Point(76, 37);
+            this.txbNo.Name = "txbNo";
+            this.txbNo.Size = new System.Drawing.Size(276, 21);
+            this.txbNo.TabIndex = 11;
+            // 
+            // labNo
+            // 
+            this.labNo.AutoSize = true;
+            this.labNo.Location = new System.Drawing.Point(35, 41);
+            this.labNo.Name = "labNo";
+            this.labNo.Size = new System.Drawing.Size(41, 12);
+            this.labNo.TabIndex = 12;
+            this.labNo.Text = "编号：";
+            // 
             // cmbTest
             // 
             this.cmbTest.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -107,6 +156,7 @@
             this.btnDelete.Text = "删除";
             this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnEdit
             // 
@@ -118,6 +168,7 @@
             this.btnEdit.Text = "修改";
             this.btnEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAdd
             // 
@@ -129,6 +180,7 @@
             this.btnAdd.Text = "添加";
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // labTest
             // 
@@ -138,55 +190,6 @@
             this.labTest.Size = new System.Drawing.Size(65, 12);
             this.labTest.TabIndex = 2;
             this.labTest.Text = "试卷名称：";
-            // 
-            // txbNo
-            // 
-            this.txbNo.Location = new System.Drawing.Point(76, 37);
-            this.txbNo.Name = "txbNo";
-            this.txbNo.Size = new System.Drawing.Size(276, 21);
-            this.txbNo.TabIndex = 11;
-            // 
-            // labNo
-            // 
-            this.labNo.AutoSize = true;
-            this.labNo.Location = new System.Drawing.Point(35, 41);
-            this.labNo.Name = "labNo";
-            this.labNo.Size = new System.Drawing.Size(41, 12);
-            this.labNo.TabIndex = 12;
-            this.labNo.Text = "编号：";
-            // 
-            // txbScore
-            // 
-            this.txbScore.Location = new System.Drawing.Point(470, 37);
-            this.txbScore.Name = "txbScore";
-            this.txbScore.Size = new System.Drawing.Size(276, 21);
-            this.txbScore.TabIndex = 13;
-            // 
-            // labScore
-            // 
-            this.labScore.AutoSize = true;
-            this.labScore.Location = new System.Drawing.Point(426, 41);
-            this.labScore.Name = "labScore";
-            this.labScore.Size = new System.Drawing.Size(41, 12);
-            this.labScore.TabIndex = 14;
-            this.labScore.Text = "分值：";
-            // 
-            // labQuestion
-            // 
-            this.labQuestion.AutoSize = true;
-            this.labQuestion.Location = new System.Drawing.Point(35, 67);
-            this.labQuestion.Name = "labQuestion";
-            this.labQuestion.Size = new System.Drawing.Size(41, 12);
-            this.labQuestion.TabIndex = 15;
-            this.labQuestion.Text = "题目：";
-            // 
-            // txbQuestion
-            // 
-            this.txbQuestion.Location = new System.Drawing.Point(76, 64);
-            this.txbQuestion.Multiline = true;
-            this.txbQuestion.Name = "txbQuestion";
-            this.txbQuestion.Size = new System.Drawing.Size(670, 50);
-            this.txbQuestion.TabIndex = 16;
             // 
             // dgvData
             // 
@@ -210,7 +213,7 @@
             this.ClientSize = new System.Drawing.Size(758, 510);
             this.Controls.Add(this.dgvData);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmTestEdit";
             this.Text = "试卷录入";
             this.Load += new System.EventHandler(this.frmTestEdit_Load);
