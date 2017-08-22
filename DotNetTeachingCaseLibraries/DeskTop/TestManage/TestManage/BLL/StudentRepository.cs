@@ -55,7 +55,7 @@ namespace TestManage.BLL
             return result > 0;
         }
         /// <summary>
-        /// 查询全部学生
+        /// 按班级ID查询全部学生
         /// </summary>
         /// <returns></returns>
         public IList GetStudentsByClsID(int clsID)
