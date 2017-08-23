@@ -35,12 +35,12 @@ namespace TestManage.BLL
             return result > 0;
         }
         /// <summary>
-        /// 查询全部题目
+        /// 按考试ID查询全部题目
         /// </summary>
         /// <returns></returns>
-        public IList GetQuestions()
+        public IList GetQuestions(int testID)
         {
-            return db.Questions.Select(s => new {ID= s.ID, 题目名称 = s.Question1,试卷编号=s.TestID,满分=s.FullScore,编号 = s.No }).ToList();
+            return db.Questions.Where(w=>w.TestID==testID).Select(s => new {ID= s.ID, 题目名称 = s.Question1, 题目编号 = s.TestID,满分=s.FullScore,编号 = s.No }).ToList();
         }
         /// <summary>
         /// 修改题目

@@ -135,6 +135,7 @@
             this.cmbTest.Name = "cmbTest";
             this.cmbTest.Size = new System.Drawing.Size(276, 20);
             this.cmbTest.TabIndex = 10;
+            this.cmbTest.SelectedIndexChanged += new System.EventHandler(this.cmbTest_SelectedIndexChanged);
             // 
             // cmbSujbect
             // 
@@ -145,6 +146,7 @@
             this.cmbSujbect.Name = "cmbSujbect";
             this.cmbSujbect.Size = new System.Drawing.Size(276, 20);
             this.cmbSujbect.TabIndex = 9;
+            this.cmbSujbect.SelectedIndexChanged += new System.EventHandler(this.cmbSujbect_SelectedIndexChanged);
             // 
             // btnDelete
             // 
@@ -205,6 +207,7 @@
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvData.Size = new System.Drawing.Size(758, 354);
             this.dgvData.TabIndex = 2;
+            this.dgvData.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellDoubleClick);
             // 
             // frmTestEdit
             // 

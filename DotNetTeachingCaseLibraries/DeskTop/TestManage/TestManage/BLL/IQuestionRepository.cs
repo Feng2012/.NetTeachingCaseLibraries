@@ -22,10 +22,10 @@ namespace TestManage.BLL
         /// <returns></returns>
         bool AddQuestion(Question question);
         /// <summary>
-        /// 查询全部题目
+        /// 按考试ID查询全部题目
         /// </summary>
         /// <returns></returns>
-        IList GetQuestions();
+        IList GetQuestions(int testID);
         /// <summary>
         /// 修改题目
         /// </summary>
