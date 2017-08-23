@@ -38,7 +38,7 @@ namespace TestManage.BLL
         /// 按考试ID查询全部题目
         /// </summary>
         /// <returns></returns>
-        public IList GetQuestions(int testID)
+        public IList GetQuestionsByTestID(int testID)
         {
             return db.Questions.Where(w=>w.TestID==testID).Select(s => new {ID= s.ID, 题目名称 = s.Question1, 题目编号 = s.TestID,满分=s.FullScore,编号 = s.No }).ToList();
         }

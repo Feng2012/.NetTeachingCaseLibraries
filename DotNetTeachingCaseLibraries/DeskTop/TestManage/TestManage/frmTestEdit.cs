@@ -62,7 +62,7 @@ namespace TestManage
                 if (_questionRepository.AddQuestion(question))
                 {
                     ClearData();
-                    dgvData.DataSource = _questionRepository.GetQuestions(Convert.ToInt32(cmbTest.SelectedValue));
+                    dgvData.DataSource = _questionRepository.GetQuestionsByTestID(Convert.ToInt32(cmbTest.SelectedValue));
                 }
                 else
                 {
@@ -96,7 +96,7 @@ namespace TestManage
                     if (_questionRepository.ModifyQuestion(question))
                     {
                         ClearData();
-                        dgvData.DataSource = _questionRepository.GetQuestions(Convert.ToInt32(cmbTest.SelectedValue));
+                        dgvData.DataSource = _questionRepository.GetQuestionsByTestID(Convert.ToInt32(cmbTest.SelectedValue));
                     }
                     else
                     {
@@ -180,7 +180,7 @@ namespace TestManage
 
         private void cmbTest_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dgvData.DataSource = _questionRepository.GetQuestions(Convert.ToInt32(cmbTest.SelectedValue));
+            dgvData.DataSource = _questionRepository.GetQuestionsByTestID(Convert.ToInt32(cmbTest.SelectedValue));
         }
     }
 }

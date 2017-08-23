@@ -25,7 +25,7 @@ namespace TestManage.BLL
         /// 按考试ID查询全部题目
         /// </summary>
         /// <returns></returns>
-        IList GetQuestions(int testID);
+        IList GetQuestionsByTestID(int testID);
         /// <summary>
         /// 修改题目
         /// </summary>
