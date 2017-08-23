@@ -17,6 +17,12 @@ namespace TestManage.BLL
         /// <returns></returns>
         IList GetTests(int subjectID);
 
+        /// <summary>
+        /// 按ID查询试卷
+        /// </summary>
+        /// <param name="id">编号</param>
+        /// <returns></returns>
+        Test GetTest(int id);
 
         /// <summary>
         /// 添加试卷

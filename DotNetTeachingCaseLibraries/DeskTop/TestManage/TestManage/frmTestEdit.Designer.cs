@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labSubject = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txbQuestion = new System.Windows.Forms.TextBox();
@@ -43,8 +44,11 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.labTest = new System.Windows.Forms.Label();
             this.dgvData = new System.Windows.Forms.DataGridView();
+            this.cmsAddAnswer = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.添加答案ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            this.cmsAddAnswer.SuspendLayout();
             this.SuspendLayout();
             // 
             // labSubject
@@ -198,6 +202,7 @@
             this.dgvData.AllowUserToAddRows = false;
             this.dgvData.AllowUserToDeleteRows = false;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvData.ContextMenuStrip = this.cmsAddAnswer;
             this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvData.Location = new System.Drawing.Point(0, 156);
             this.dgvData.MultiSelect = false;
@@ -208,6 +213,20 @@
             this.dgvData.Size = new System.Drawing.Size(758, 354);
             this.dgvData.TabIndex = 2;
             this.dgvData.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellDoubleClick);
+            // 
+            // cmsAddAnswer
+            // 
+            this.cmsAddAnswer.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.添加答案ToolStripMenuItem});
+            this.cmsAddAnswer.Name = "cmsAddAnswer";
+            this.cmsAddAnswer.Size = new System.Drawing.Size(153, 48);
+            // 
+            // 添加答案ToolStripMenuItem
+            // 
+            this.添加答案ToolStripMenuItem.Name = "添加答案ToolStripMenuItem";
+            this.添加答案ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.添加答案ToolStripMenuItem.Text = "添加答案";
+            this.添加答案ToolStripMenuItem.Click += new System.EventHandler(this.添加答案ToolStripMenuItem_Click);
             // 
             // frmTestEdit
             // 
@@ -223,6 +242,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
+            this.cmsAddAnswer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -244,5 +264,7 @@
         private System.Windows.Forms.TextBox txbNo;
         private System.Windows.Forms.Label labNo;
         private System.Windows.Forms.DataGridView dgvData;
+        private System.Windows.Forms.ContextMenuStrip cmsAddAnswer;
+        private System.Windows.Forms.ToolStripMenuItem 添加答案ToolStripMenuItem;
     }
 }

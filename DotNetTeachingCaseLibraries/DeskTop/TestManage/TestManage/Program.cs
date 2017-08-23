@@ -21,18 +21,29 @@ namespace TestManage
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            ////实例化登录窗体
-            //var loginForm = new frmLogin();
-            ////判断登录是否成功
-            //if (loginForm.ShowDialog() == DialogResult.OK)
-            //{
-            //    Application.Run(new frmMain());
-            //}
+
             var container = CreateContioner();
             using (var scope = container.BeginLifetimeScope())
             {
-                var frmMain = scope.Resolve<frmMain>();
-                Application.Run(frmMain);
+
+
+                //实例化登录窗体
+                var frmLogin = scope.Resolve<frmLogin>();
+                //判断登录是否成功
+                if (frmLogin.ShowDialog() == DialogResult.OK)
+                {
+                    if (frmLogin.Teacher != null)
+                    {
+                        var frmMain = scope.Resolve<frmMain>();
+                        Application.Run(frmMain);
+                    }
+                    else
+                    {
+                        var frmTest = scope.Resolve<frmTest>();
+                        frmTest.TestStudent = frmLogin.Student;
+                        Application.Run(frmTest);
+                    }
+                }
             }
         }
         static IContainer CreateContioner()

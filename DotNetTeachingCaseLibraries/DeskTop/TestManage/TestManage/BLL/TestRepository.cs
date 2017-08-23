@@ -40,8 +40,18 @@ namespace TestManage.BLL
         /// <returns></returns>
         public IList GetTests(int subjectID)
         {
-            return db.Tests.Where(w=>w.SubjectID== subjectID).Select(s => new { 编号 = s.ID, 试卷名称 = s.TestName, 老师编号=s.TeacherID ,教师=s.Teacher.Name,科目编号=s.SubjectID,科目名称=s.Subject.Name}).ToList();
+            return db.Tests.Where(w => w.SubjectID == subjectID).Select(s => new { 编号 = s.ID, 试卷名称 = s.TestName, 老师编号 = s.TeacherID, 教师 = s.Teacher.Name, 科目编号 = s.SubjectID, 科目名称 = s.Subject.Name }).ToList();
         }
+        /// <summary>
+        /// 按ID查询试卷
+        /// </summary>
+        /// <param name="id">编号</param>
+        /// <returns></returns>
+        public Test GetTest(int id)
+        {
+            return db.Tests.Find(id);
+        }
+
         /// <summary>
         /// 修改试卷
         /// </summary>
@@ -57,8 +67,8 @@ namespace TestManage.BLL
             else
             {
                 oldTest.TestName = test.TestName;
-                oldTest.SubjectID = test.SubjectID ;
-                oldTest.TeacherID = test.TeacherID;              
+                oldTest.SubjectID = test.SubjectID;
+                oldTest.TeacherID = test.TeacherID;
                 var result = db.SaveChanges();
                 return result > 0;
             }

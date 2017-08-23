@@ -46,7 +46,16 @@ namespace TestManage.XUnitTest
             var list = _testRepository.GetTests(1);
             Assert.Equal(2, list.Count);
         }
-
+        /// <summary>
+        /// GetTest测试
+        /// </summary>
+        [Fact]
+        public void GetTest_Default_Return()
+        {
+            _dbMock.Setup(db => db.Tests.Find(1)).Returns(value: new Test() { ID=1});
+            var test =  _testRepository.GetTest(1);
+            Assert.NotNull(test);
+        }
         /// <summary>
         /// AddTest异常测试
         /// </summary>

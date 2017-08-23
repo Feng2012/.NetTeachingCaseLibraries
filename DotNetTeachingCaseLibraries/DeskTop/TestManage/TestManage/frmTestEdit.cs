@@ -28,13 +28,18 @@ namespace TestManage
         /// 题目对象
         /// </summary>
         IQuestionRepository _questionRepository;
-        public frmTestEdit( ISubjectRepository subjectRepository, ITestRepository testRepository,IQuestionRepository questionRepository)
+        /// <summary>
+        /// 答案对象
+        /// </summary>
+        IAnswerRepository _answerRepository;
+        public frmTestEdit( ISubjectRepository subjectRepository, ITestRepository testRepository,IQuestionRepository questionRepository,IAnswerRepository answerRepository)
         {
             InitializeComponent();
         
             _subjectRepository = subjectRepository;
             _testRepository = testRepository;
             _questionRepository = questionRepository;
+            _answerRepository = answerRepository;
         }
 
         private void frmTestEdit_Load(object sender, EventArgs e)
@@ -181,6 +186,14 @@ namespace TestManage
         private void cmbTest_SelectedIndexChanged(object sender, EventArgs e)
         {
             dgvData.DataSource = _questionRepository.GetQuestionsByTestID(Convert.ToInt32(cmbTest.SelectedValue));
+        }
+
+        private void 添加答案ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var selectID = Convert.ToInt32(dgvData.SelectedRows[0].Cells["编号"].Value);
+            var frmAnswer = new frmAnswer(_answerRepository, selectID);
+            frmAnswer.ShowDialog();
+          
         }
     }
 }

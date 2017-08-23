@@ -32,11 +32,15 @@
             // 
             // frmTest
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(938, 712);
+            this.ClientSize = new System.Drawing.Size(948, 650);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmTest";
-            this.Text = "frmTest";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "考试";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmTest_Load);
             this.ResumeLayout(false);
 
         }
