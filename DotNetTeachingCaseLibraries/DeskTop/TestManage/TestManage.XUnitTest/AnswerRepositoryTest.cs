@@ -1,16 +1,12 @@
 ﻿using Moq;
 using System;
-using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestManage.BLL;
 using TestManage.DDL;
 using Xunit;
-using TestManage.XUnitTest;
-using System.Linq.Expressions;
+
 
 namespace TestManage.XUnitTest
 {
@@ -40,6 +36,7 @@ namespace TestManage.XUnitTest
         public void GetAnswer_Default_ReturnCount()
         {
             var data = new List<Answer> { new Answer { ID = 1, Answer1 = "答案1",IsAnswer=true,QuestionID=1 }, new Answer { ID = 2, Answer1 = "答案2",IsAnswer=false,QuestionID=1 } };
+
             var answerSet = new Mock<DbSet<Answer>>()
                 .SetupData(data);
             _dbMock.Setup(db => db.Answers).Returns(answerSet.Object);

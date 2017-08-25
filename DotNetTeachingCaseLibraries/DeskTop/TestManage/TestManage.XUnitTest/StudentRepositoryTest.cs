@@ -45,6 +45,17 @@ namespace TestManage.XUnitTest
             Assert.NotNull(newStuent);
         }
         /// <summary>
+        /// 查询学生测试
+        /// </summary>
+        [Fact]
+        public void GetStudent_Default_ReturnNull()
+        {
+            var student = new Student { StuNo = "SZ201701001", Name = "张三", CardID = "412214198808082526" };
+            _dbMock.Setup(db => db.Students.Find(student.StuNo)).Returns(value: student);
+            var newStuent = _studentRepository.GetStudent(student.StuNo, "412214198808082527");
+            Assert.Null(newStuent);
+        }
+        /// <summary>
         /// 查询班级全部学生测试
         /// </summary>
         [Fact]
