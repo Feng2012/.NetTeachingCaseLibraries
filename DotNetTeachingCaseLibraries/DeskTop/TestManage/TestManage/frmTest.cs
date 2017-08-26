@@ -35,6 +35,11 @@ namespace TestManage
         { get; set; }
         private void frmTest_Load(object sender, EventArgs e)
         {
+            var test = _classTestRepository.GetTestByClassID(TestStudent.ClassID.Value);
+            labTestName.Text = test.TestName;
+            labClassName.Text = TestStudent.Class.ClassName;
+            labStudentName.Text = TestStudent.Name;
+            labStudentCardID.Text = TestStudent.CardID;
 
         }
     }

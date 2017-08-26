@@ -33,5 +33,12 @@ namespace TestManage.BLL
         /// <param name="id">考试班级ID</param>
         /// <returns></returns>
         bool RemoveClassTest(int id);
+
+        /// <summary>
+        /// 按班级获取试卷
+        /// </summary>
+        /// <param name="clsID">班级ID</param>
+        /// <returns></returns>
+        Test GetTestByClassID(int clsID);
     }
 }

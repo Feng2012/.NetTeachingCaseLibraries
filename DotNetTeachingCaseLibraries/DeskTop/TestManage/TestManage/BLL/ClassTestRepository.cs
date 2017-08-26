@@ -40,8 +40,18 @@ namespace TestManage.BLL
         /// <returns></returns>
         public IList GetClassTests()
         {
-            return _db.ClassTests.Where(w=>w.IsValidate==true).Select(s=>new {班级编号=s.ClassID,班级名称=s.Class.ClassName,试卷编号=s.TestID,试卷名称=s.Test.TestName ,是否有效=s.IsValidate }).ToList();
+            return _db.ClassTests.Where(w => w.IsValidate == true).Select(s => new { 班级编号 = s.ClassID, 班级名称 = s.Class.ClassName, 试卷编号 = s.TestID, 试卷名称 = s.Test.TestName, 是否有效 = s.IsValidate }).ToList();
         }
+        /// <summary>
+        /// 按班级获取试卷
+        /// </summary>
+        /// <param name="clsID">班级ID</param>
+        /// <returns></returns>
+        public Test GetTestByClassID(int clsID)
+        {
+            return _db.ClassTests.SingleOrDefault(s => s.ClassID == clsID).Test;
+        }
+
         /// <summary>
         /// 修改考试班级
         /// </summary>
@@ -59,7 +69,7 @@ namespace TestManage.BLL
                 oldClsTest.TestID = clsTest.TestID;
                 oldClsTest.ClassID = clsTest.ClassID;
                 oldClsTest.IsValidate = clsTest.IsValidate;
-               
+
                 var result = _db.SaveChanges();
                 return result > 0;
             }
