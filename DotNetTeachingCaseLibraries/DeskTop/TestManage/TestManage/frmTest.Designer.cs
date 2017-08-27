@@ -31,16 +31,16 @@
             this.labTestName = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.labStudentCardID = new System.Windows.Forms.Label();
             this.labStudentName = new System.Windows.Forms.Label();
             this.labClassName = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.palAnswer = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.labMessage = new System.Windows.Forms.Label();
             this.butNext = new System.Windows.Forms.Button();
             this.butPrevious = new System.Windows.Forms.Button();
             this.labQuestionName = new System.Windows.Forms.Label();
-            this.labStudentCardID = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -82,6 +82,17 @@
             this.panel2.Size = new System.Drawing.Size(928, 40);
             this.panel2.TabIndex = 1;
             // 
+            // labStudentCardID
+            // 
+            this.labStudentCardID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labStudentCardID.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labStudentCardID.Location = new System.Drawing.Point(388, 10);
+            this.labStudentCardID.Name = "labStudentCardID";
+            this.labStudentCardID.Size = new System.Drawing.Size(530, 20);
+            this.labStudentCardID.TabIndex = 3;
+            this.labStudentCardID.Text = "身份证";
+            this.labStudentCardID.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // labStudentName
             // 
             this.labStudentName.Dock = System.Windows.Forms.DockStyle.Left;
@@ -106,7 +117,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.panel4);
+            this.panel3.Controls.Add(this.palAnswer);
             this.panel3.Controls.Add(this.panel5);
             this.panel3.Controls.Add(this.labQuestionName);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -116,13 +127,13 @@
             this.panel3.Size = new System.Drawing.Size(948, 573);
             this.panel3.TabIndex = 2;
             // 
-            // panel4
+            // palAnswer
             // 
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(10, 226);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(928, 278);
-            this.panel4.TabIndex = 2;
+            this.palAnswer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.palAnswer.Location = new System.Drawing.Point(10, 226);
+            this.palAnswer.Name = "palAnswer";
+            this.palAnswer.Size = new System.Drawing.Size(928, 278);
+            this.palAnswer.TabIndex = 2;
             // 
             // panel5
             // 
@@ -156,6 +167,7 @@
             this.butNext.TabIndex = 1;
             this.butNext.Text = "下一题";
             this.butNext.UseVisualStyleBackColor = true;
+            this.butNext.Click += new System.EventHandler(this.butNext_Click);
             // 
             // butPrevious
             // 
@@ -168,6 +180,7 @@
             this.butPrevious.TabIndex = 0;
             this.butPrevious.Text = "上一题";
             this.butPrevious.UseVisualStyleBackColor = true;
+            this.butPrevious.Click += new System.EventHandler(this.butPrevious_Click);
             // 
             // labQuestionName
             // 
@@ -178,18 +191,7 @@
             this.labQuestionName.Name = "labQuestionName";
             this.labQuestionName.Size = new System.Drawing.Size(928, 216);
             this.labQuestionName.TabIndex = 1;
-            this.labQuestionName.Text = "试卷名称";
-            // 
-            // labStudentCardID
-            // 
-            this.labStudentCardID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labStudentCardID.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labStudentCardID.Location = new System.Drawing.Point(388, 10);
-            this.labStudentCardID.Name = "labStudentCardID";
-            this.labStudentCardID.Size = new System.Drawing.Size(530, 20);
-            this.labStudentCardID.TabIndex = 3;
-            this.labStudentCardID.Text = "身份证";
-            this.labStudentCardID.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labQuestionName.Text = "题目名称";
             // 
             // frmTest
             // 
@@ -221,7 +223,7 @@
         private System.Windows.Forms.Label labClassName;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label labQuestionName;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel palAnswer;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label labMessage;
         private System.Windows.Forms.Button butNext;
