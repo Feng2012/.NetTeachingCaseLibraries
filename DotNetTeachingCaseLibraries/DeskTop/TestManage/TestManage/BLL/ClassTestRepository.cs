@@ -49,7 +49,7 @@ namespace TestManage.BLL
         /// <returns></returns>
         public Test GetTestByClassID(int clsID)
         {
-            return _db.ClassTests.SingleOrDefault(s => s.ClassID == clsID).Test;
+            return _db.ClassTests.SingleOrDefault(s => s.ClassID == clsID&&s.IsValidate==true)?.Test;
         }
 
         /// <summary>

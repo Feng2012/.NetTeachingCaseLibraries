@@ -46,7 +46,31 @@ namespace TestManage.XUnitTest
             var list = _classTestRepository.GetClassTests();
             Assert.Equal(2, list.Count);
         }
-
+        /// <summary>
+        /// 按班级ID查询试卷测试
+        /// </summary>
+        [Fact]
+        public void GetTestByClassID_Default_ReturnCount()
+        {
+            var data = new List<ClassTest> { new ClassTest { ID = 1, ClassID = 1, TestID = 1, IsValidate = true, Class = new Class(), Test = new Test() }, new ClassTest { ID = 2, ClassID = 1, TestID = 2, IsValidate = false, Class = new Class(), Test = new Test() } };
+            var clsTestSet = new Mock<DbSet<ClassTest>>()
+                .SetupData(data);
+            _dbMock.Setup(db => db.ClassTests).Returns(clsTestSet.Object);
+            var test = _classTestRepository.GetTestByClassID(1);
+            Assert.NotNull(test);
+        }   /// <summary>
+            /// 按班级ID查询试卷测试
+            /// </summary>
+        [Fact]
+        public void GetTestByClassID_ErrorClassID_ReturnNull()
+        {
+            var data = new List<ClassTest> { new ClassTest { ID = 1, ClassID = 1, TestID = 1, IsValidate = true, Class = new Class(), Test = new Test() }, new ClassTest { ID = 2, ClassID = 1, TestID = 2, IsValidate = false, Class = new Class(), Test = new Test() } };
+            var clsTestSet = new Mock<DbSet<ClassTest>>()
+                .SetupData(data);
+            _dbMock.Setup(db => db.ClassTests).Returns(clsTestSet.Object);
+            var test = _classTestRepository.GetTestByClassID(2);
+            Assert.Null(test);
+        }
         /// <summary>
         /// AddClassTest异常测试
         /// </summary>
