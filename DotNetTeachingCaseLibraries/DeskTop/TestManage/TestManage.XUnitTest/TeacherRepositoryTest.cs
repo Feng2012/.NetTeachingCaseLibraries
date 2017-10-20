@@ -63,7 +63,7 @@ namespace TestManage.XUnitTest
                 .SetupData(data);
             _dbMock.Setup(db => db.Teachers).Returns(teacherSet.Object);
             var backTeacher = _teacherRepository.Login("0001", "222222");
-            Assert.Equal(null, backTeacher);
+            Assert.Null(backTeacher);
         }
 
 
