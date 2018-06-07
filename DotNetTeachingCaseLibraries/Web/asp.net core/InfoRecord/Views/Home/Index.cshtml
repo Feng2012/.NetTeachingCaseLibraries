@@ -1,0 +1,131 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <style>
+        textarea {
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            border: none;
+            margin-bottom: -4px;
+            /*margin-top: -9px;
+            margin-bottom: -14px;
+            margin-left:-8px;
+            margin-right:-20px;*/
+        }
+
+        table {
+            padding: 0px;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        .mytd {
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <form action="/" method="post">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="text-align:center;margin:auto 10px;">
+                    <h1>
+                        参加者記入欄
+                    </h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="" border="1" bordercolor="black">
+                        <tr>
+                            <td style="width:30%" class="mytd">
+                                団体名または法人名または店舗名
+                            </td>
+                            <td>
+                                <textarea name="companyname" rows="5" placeholder="ここに記入してください"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mytd">
+                                業種
+                            </td>
+                            <td>
+                                <textarea name="companytype" rows="4" placeholder="ここに記入してください"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mytd">
+                                代表者様名
+
+                            </td>
+                            <td>
+                                <textarea name="principal" rows="4" placeholder="ここに記入してください"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mytd">
+                                ご住所
+
+                            </td>
+                            <td>
+                                <textarea name="address" rows="4" placeholder="ここに記入してください"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mytd">
+                                お電話番号
+
+                            </td>
+                            <td>
+                                <textarea name="tel" rows="4" placeholder="ここに記入してください"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mytd">
+                                参加者お名前
+
+                            </td>
+                            <td>
+                                <textarea name="conferee" rows="4" placeholder="ここに記入してください"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mytd">
+                                参加者様人数
+                            </td>
+                            <td>
+                                <textarea name="attendance" rows="4" placeholder="ここに記入してください"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8" style="margin-top:10px;">
+                    <span style="font-size:16px;font-weight:bold;">ご参加は、１団体につき、２名までとさせていただきます。</span>
+                
+                </div>
+                <div class="col-md-2" style="text-align:right;margin-top:10px;margin-bottom:10px;font-size:20px;">
+                    @Html.Raw(ViewBag.Message)
+                </div>
+                <div class="col-md-2" style="text-align:right;margin-top:10px;margin-bottom:10px;">
+                    <button class="btn btn-success btn-lg" type="submit" style="width:120px;">提交</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
