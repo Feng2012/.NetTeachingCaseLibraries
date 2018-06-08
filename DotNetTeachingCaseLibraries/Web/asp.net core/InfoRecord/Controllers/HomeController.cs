@@ -4,14 +4,29 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using InfoRecord.Models;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using MimeKit;
 
 namespace InfoRecord.Controllers
 {
     public class HomeController : Controller
     {
+        readonly IEmailRepository _emailRepository;
+        readonly IRecordRepository _recordRepository;
+        /// <summary>
+        /// 日志对象
+        /// </summary>
+        readonly ILogger<HomeController> _logger;
+        public HomeController(IRecordRepository recordRepository, IEmailRepository emailRepository, ILogger<HomeController> logger)
+        {
+            _recordRepository = recordRepository;
+            _emailRepository = emailRepository;
+            _logger = logger;
+        }
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -20,107 +35,31 @@ namespace InfoRecord.Controllers
         [HttpPost]
         public IActionResult Index(Record record)
         {
-            try
+            _logger.LogInformation($"添加记录：{record.ToTxt()}");
+            var dataResult = _recordRepository.AddRecord(record);
+            var emailResult = _emailRepository.SendEmail(record);
+            if(!dataResult.Result)
             {
-                SendEmail(record);
+                _logger.LogError(dataResult.Message);
+            }
+            if (!emailResult.Result)
+            {
+                _logger.LogError(emailResult.Message);
+            }
+            if (dataResult.Result || emailResult.Result)
+            {
                 ViewBag.Message = "<span style='color:green'>関連情報を提出してくれてありがとう!</span>";
+                return View();
             }
-            catch (Exception exc)
+            else
             {
-                ViewBag.Message = $"<span style='color:red'>開催者に連絡してください。Exception：{exc.Message}</span>";
+                ViewBag.Message = $"<span style='color:red'>開催者に連絡してください。DataException：{dataResult.Message}  EmailException:{emailResult.Message}</span>";
+                return View();
             }
-            return View();
         }
-        /// <summary>
-        /// 发送邮件
-        /// </summary>
-        /// <param name="content"></param>
-        void SendEmail(Record record)
-        {         
 
-                var emailBody = new StringBuilder("参加者記入欄\r\n");
-                emailBody.AppendLine(record.ToString());
-                emailBody.AppendLine($"           {DateTime.Now}");
-                var message = new MimeMessage();
-                //这里是测试邮箱，请不要发垃圾邮件，谢谢
-                message.From.Add(new MailboxAddress("gui.suwei", "gui.suwei@netstars.co.jp"));
-                message.To.Add(new MailboxAddress("lou.yue", "lou.yue@netstars.co.jp"));
-
-                message.Subject = "参加者記入欄";
-                message.Body = new TextPart("plain") { Text = emailBody.ToString() };
-                using (var client = new SmtpClient())
-                {
-                    client.ServerCertificateValidationCallback = (s, c, h, e) => true;
-                    client.Connect("sv7041.xserver.jp", 587, false);
-                    client.AuthenticationMechanisms.Remove("XOAUTH2");
-                    client.Authenticate("gui.suwei@netstars.co.jp", "");
-                    client.Send(message);
-                    client.Disconnect(true);
-                } 
-        }
 
     }
 
-    public class Record
-    {
-        /// <summary>
-        /// 団体名または法人名または店舗名
-        /// </summary>
-        public string CompanyName
-        { get; set; }
-        /// <summary>
-        ///  業種
-        /// </summary>
-        public string CompanyType
-        { get; set; }
-        /// <summary>
-        ///     代表者様名
-        /// </summary>
-        public string Principal
-        { get; set; }
-        /// <summary>
-        /// ご住所
-        /// </summary>
-        public string Address
-        { get; set; }
-        /// <summary>
-        ///  お電話番号
-        /// </summary>
-        public string Tel { get; set; }
-        /// <summary>
-        /// 参加者お名前
-        /// </summary>
-        public string Conferee { get; set; }
-        /// <summary>
-        /// 参加者様人数
-        /// </summary>
-        public string Attendance { get; set; }
 
-        public override string ToString()
-        {
-            var content = new StringBuilder();
-            content.AppendLine("団体名または法人名または店舗名：");
-            content.AppendLine(CompanyName);
-            content.AppendLine();
-            content.AppendLine("業種：");
-            content.AppendLine(CompanyType);
-            content.AppendLine();
-            content.AppendLine("代表者様名：");
-            content.AppendLine(Principal);
-            content.AppendLine();
-            content.AppendLine("ご住所：");
-            content.AppendLine(Address);
-            content.AppendLine();
-            content.AppendLine("お電話番号：");
-            content.AppendLine(Tel);
-            content.AppendLine();
-            content.AppendLine("参加者お名前：");
-            content.AppendLine(Conferee);
-            content.AppendLine();
-            content.AppendLine("参加者様人数：");
-            content.AppendLine(Attendance);
-            content.AppendLine();
-            return content.ToString();
-        }
-    }
 }

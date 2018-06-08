@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InfoRecord.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -21,21 +22,22 @@ namespace InfoRecord
 
         public IConfiguration Configuration { get; }
 
-    
-        public void ConfigureServices(IServiceCollection services)
-        {
-            //services.Configure<CookiePolicyOptions>(options =>
-            //{
-            //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-            //    options.CheckConsentNeeded = context => true;
-            //    options.MinimumSameSitePolicy = SameSiteMode.None;
-            //});
 
+        public void ConfigureServices(IServiceCollection services)
+        {      
+            var emailSetting = new EmailSetting();
+            Configuration.GetSection("EMailSetting").Bind(emailSetting);
+            services.AddSingleton(emailSetting);
+
+            var connectionString = string.Format(Configuration.GetConnectionString("DefaultConnection"), System.IO.Directory.GetCurrentDirectory());
+            services.AddSingleton(connectionString);
+            services.AddSingleton<IEmailRepository, EmailRepository>();
+            services.AddScoped<IRecordRepository, RecordRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
-     
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -47,11 +49,7 @@ namespace InfoRecord
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
-           //app.UseHttpsRedirection();
             app.UseStaticFiles();
-            //app.UseCookiePolicy();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

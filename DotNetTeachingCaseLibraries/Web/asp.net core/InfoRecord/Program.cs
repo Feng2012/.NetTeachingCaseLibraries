@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using NLog.Web;
 
 namespace InfoRecord
 {
@@ -14,11 +15,41 @@ namespace InfoRecord
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            // NLog: setup the logger first to catch all errors
+            var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+            try
+            {
+                logger.Debug("启动Main");
+                BuildWebHost(args).Run();
+            }
+            catch (Exception ex)
+            {
+                //NLog: catch setup errors
+                logger.Error(ex, "异常停止进程");
+                throw;
+            }
+            finally
+            {
+                // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
+                NLog.LogManager.Shutdown();
+            }
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        /// <summary>
+        /// 构建webhost
+        /// </summary>
+        /// <param name="args">启动参数</param>
+        /// <returns></returns>
+        public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+            .UseUrls("http://*:5656")     
+            .UseStartup<Startup>()
+            .ConfigureLogging(logging =>
+            {
+                logging.ClearProviders();
+                logging.SetMinimumLevel(LogLevel.Trace);
+            })
+            .UseNLog() // NLog: setup NLog for Dependency injectio
+            .Build();
     }
 }
