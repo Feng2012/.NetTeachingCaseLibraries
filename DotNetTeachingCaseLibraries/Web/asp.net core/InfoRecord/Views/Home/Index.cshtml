@@ -35,7 +35,7 @@
     </style>
 </head>
 <body>
-    <form action="/" method="post">
+    <form id="mainform" action="/" method="post">
         <div class="container">
             <div class="row">
                 <div class="col-md-12" style="text-align:center;margin:auto 10px;">
@@ -52,7 +52,8 @@
                                 団体名または法人名または店舗名
                             </td>
                             <td>
-                                <textarea name="companyname" rows="5" placeholder="ここに記入してください"></textarea>
+                                <textarea name="companyname" id="companyname" rows="5" placeholder="ここに記入してください"></textarea>
+                                <span style="color:red" id="companyname_span"></span>
                             </td>
                         </tr>
                         <tr>
@@ -60,7 +61,9 @@
                                 業種
                             </td>
                             <td>
-                                <textarea name="companytype" rows="4" placeholder="ここに記入してください"></textarea>
+                                <textarea name="companytype" id="companytype" rows="4" placeholder="ここに記入してください"></textarea>
+                                <span style="color:red" id="companytype_span"></span>
+
                             </td>
                         </tr>
                         <tr>
@@ -69,7 +72,8 @@
 
                             </td>
                             <td>
-                                <textarea name="principal" rows="1" placeholder="ここに記入してください"></textarea>
+                                <textarea name="principal" id="principal" rows="1" placeholder="ここに記入してください"></textarea>
+                                <span style="color:red" id="principal_span"></span>
                             </td>
                         </tr>
                         <tr>
@@ -78,7 +82,8 @@
 
                             </td>
                             <td>
-                                <textarea name="address" rows="4" placeholder="ここに記入してください"></textarea>
+                                <textarea name="address" id="address" rows="4" placeholder="ここに記入してください"></textarea>
+                                <span style="color:red" id="address_span"></span>
                             </td>
                         </tr>
                         <tr>
@@ -87,7 +92,8 @@
 
                             </td>
                             <td>
-                                <textarea name="tel" rows="1" placeholder="ここに記入してください"></textarea>
+                                <textarea name="tel" id="tel" rows="1" placeholder="ここに記入してください"></textarea>
+                                <span style="color:red" id="tel_span"></span>
                             </td>
                         </tr>
                         <tr>
@@ -96,7 +102,8 @@
 
                             </td>
                             <td>
-                                <textarea name="conferee" rows="4" placeholder="ここに記入してください"></textarea>
+                                <textarea name="conferee" id="conferee" rows="4" placeholder="ここに記入してください"></textarea>
+                                <span style="color:red" id="conferee_span"></span>
                             </td>
                         </tr>
                         <tr>
@@ -104,7 +111,8 @@
                                 参加者様人数
                             </td>
                             <td>
-                                <textarea name="attendance" rows="2" placeholder="ここに記入してください"></textarea>
+                                <textarea name="attendance" id="attendance" rows="2" placeholder="ここに記入してください"></textarea>
+                                <span style="color:red" id="attendance_span"></span>
                             </td>
                         </tr>
                     </table>
@@ -114,19 +122,70 @@
             <div class="row">
                 <div class="col-md-12">
                     <span style="font-size:16px;font-weight:bold;">ご参加は、１団体につき、２名までとさせていただきます。</span>
-                </div>               
+                </div>
             </div>
-            <div class="row">               
+            <div class="row">
                 <div class="col-md-10" style="text-align:right;margin-top:5px;font-size:20px;">
                     @Html.Raw(ViewBag.Message)
                 </div>
                 <div class="col-md-2" style="text-align:right;margin-top:10px;margin-bottom:10px;">
-                    <button class="btn btn-success btn-lg" type="submit" style="width:120px;">提交</button>
+                    <button class="btn btn-success btn-lg" onclick="sava()" type="button" style="width:100px;">提交</button>
                 </div>
             </div>
         </div>
     </form>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+        function sava() {
+            var result = true;
+            var message = "空欄がないように記入してください";
+            if ($("#companyname").val().trim() == "") {
+                $("#companyname_span").html(message);
+                result = false;
+            } else {
+                $("#companyname_span").html("");
+            }
+            if ($("#companytype").val().trim() == "") {
+                $("#companytype_span").html(message);
+                result = false;
+            } else {
+                $("#companytype_span").html("");
+            }
+            if ($("#principal").val().trim() == "") {
+                $("#principal_span").html(message);
+                result = false;
+            } else {
+                $("#principal_span").html("");
+            }
+            if ($("#address").val().trim() == "") {
+                $("#address_span").html(message);
+                result = false;
+            } else {
+                $("#address_span").html("");
+            }
+            if ($("#tel").val().trim() == "") {
+                $("#tel_span").html(message);
+                result = false;
+            } else {
+                $("#tel_span").html("");
+            }
+            if ($("#conferee").val().trim() == "") {
+                $("#conferee_span").html(message);
+                result = false;
+            } else {
+                $("#conferee_span").html("");
+            }
+            if ($("#attendance").val().trim() == "") {
+                $("#attendance_span").html(message);
+                result = false;
+            } else {
+                $("#attendance_span").html("");
+            }
+            if (result) {
+                $("#mainform").submit();
+            }
+        }
+    </script>
 </body>
 </html>
