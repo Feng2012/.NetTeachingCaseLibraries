@@ -42,7 +42,7 @@ namespace InfoRecord
         /// <returns></returns>
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-            .UseUrls("http://*:5656")     
+            .UseUrls("http://*:80")     
             .UseStartup<Startup>()
             .ConfigureLogging(logging =>
             {
