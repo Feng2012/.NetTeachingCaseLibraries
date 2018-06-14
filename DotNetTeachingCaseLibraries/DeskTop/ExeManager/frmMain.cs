@@ -92,5 +92,15 @@ namespace ExeManager
         {
             Environment.Exit(0);
         }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+        }
     }
 }

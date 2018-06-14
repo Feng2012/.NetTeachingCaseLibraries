@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.label1 = new System.Windows.Forms.Label();
             this.txbProcessName = new System.Windows.Forms.TextBox();
             this.txbExePath = new System.Windows.Forms.TextBox();
@@ -40,6 +41,11 @@
             this.btnFindExe = new System.Windows.Forms.Button();
             this.fileOpen = new System.Windows.Forms.OpenFileDialog();
             this.labMessage = new System.Windows.Forms.Label();
+            this.menuRight = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuRight.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -104,6 +110,8 @@
             // 
             // notfBar
             // 
+            this.notfBar.ContextMenuStrip = this.menuRight;
+            this.notfBar.Icon = ((System.Drawing.Icon)(resources.GetObject("notfBar.Icon")));
             this.notfBar.Text = "notifyIcon1";
             this.notfBar.Visible = true;
             // 
@@ -130,6 +138,34 @@
             this.labMessage.TabIndex = 9;
             this.labMessage.Text = "提示:";
             // 
+            // menuRight
+            // 
+            this.menuRight.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripSeparator1,
+            this.toolStripMenuItem3});
+            this.menuRight.Name = "menuRight";
+            this.menuRight.Size = new System.Drawing.Size(181, 76);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Text = "显示窗体";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem3.Text = "退出";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -144,11 +180,16 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "frmMain";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "设置";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Shown += new System.EventHandler(this.frmMain_Shown);
+            this.menuRight.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -167,6 +208,10 @@
         private System.Windows.Forms.Button btnFindExe;
         private System.Windows.Forms.OpenFileDialog fileOpen;
         private System.Windows.Forms.Label labMessage;
+        private System.Windows.Forms.ContextMenuStrip menuRight;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 
