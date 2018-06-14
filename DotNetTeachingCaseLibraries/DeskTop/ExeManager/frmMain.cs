@@ -34,8 +34,8 @@ namespace ExeManager
             {
                 var dateString = ConfigManage.GetSettingValue("date").Trim();
                 try
-                {
-                    if (!string.IsNullOrEmpty(dateString) && dateString != DateTime.Now.ToString("yyyy-MM-dd") && DateTime.Now.ToString("HH:mm") == mtxtRestartTime.Text)
+                {                  
+                    if (!string.IsNullOrEmpty(dateString) && dateString == DateTime.Now.ToString("yyyy-MM-dd") && DateTime.Now.ToString("HH:mm") == mtxtRestartTime.Text)
                     {
                         foreach (var process in Process.GetProcesses())
                         {
@@ -46,13 +46,23 @@ namespace ExeManager
                         }
                         Process.Start(txbExePath.Text);
                         var settings = new Dictionary<string, string>();
-                        settings.Add("date", DateTime.Now.ToString("yyyy-MM-dd"));
+                        settings.Add("date", DateTime.Now.AddDays(1).ToString("yyyy-MM-dd"));
                         ConfigManage.AddSetings(settings);
                     }
+
+                    this.BeginInvoke(new Action(() =>
+                    {
+                        labMessage.Text = "";
+                    }));
                 }
-                catch
+                catch (Exception exc)
                 {
-                   
+
+                    this.BeginInvoke(new Action(() =>
+                    {
+                        labMessage.Text = exc.Message;
+                    }));
+
                 }
                 finally
                 {
@@ -76,6 +86,11 @@ namespace ExeManager
             {
                 txbExePath.Text = fileOpen.FileName;
             }
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

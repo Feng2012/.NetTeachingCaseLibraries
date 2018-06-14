@@ -39,6 +39,7 @@
             this.notfBar = new System.Windows.Forms.NotifyIcon(this.components);
             this.btnFindExe = new System.Windows.Forms.Button();
             this.fileOpen = new System.Windows.Forms.OpenFileDialog();
+            this.labMessage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -93,9 +94,9 @@
             // 
             // btnSetting
             // 
-            this.btnSetting.Location = new System.Drawing.Point(220, 143);
+            this.btnSetting.Location = new System.Drawing.Point(272, 154);
             this.btnSetting.Name = "btnSetting";
-            this.btnSetting.Size = new System.Drawing.Size(118, 41);
+            this.btnSetting.Size = new System.Drawing.Size(79, 35);
             this.btnSetting.TabIndex = 6;
             this.btnSetting.Text = "设置";
             this.btnSetting.UseVisualStyleBackColor = true;
@@ -120,11 +121,21 @@
             // 
             this.fileOpen.Filter = "EXE文件|*.exe";
             // 
+            // labMessage
+            // 
+            this.labMessage.ForeColor = System.Drawing.Color.Red;
+            this.labMessage.Location = new System.Drawing.Point(2, 139);
+            this.labMessage.Name = "labMessage";
+            this.labMessage.Size = new System.Drawing.Size(264, 53);
+            this.labMessage.TabIndex = 9;
+            this.labMessage.Text = "提示:";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 201);
+            this.Controls.Add(this.labMessage);
             this.Controls.Add(this.btnFindExe);
             this.Controls.Add(this.mtxtRestartTime);
             this.Controls.Add(this.txbExePath);
@@ -136,6 +147,7 @@
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "设置";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Shown += new System.EventHandler(this.frmMain_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -154,6 +166,7 @@
         private System.Windows.Forms.NotifyIcon notfBar;
         private System.Windows.Forms.Button btnFindExe;
         private System.Windows.Forms.OpenFileDialog fileOpen;
+        private System.Windows.Forms.Label labMessage;
     }
 }
 
