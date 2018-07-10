@@ -34,7 +34,11 @@ namespace PgtableGenerateTool
             _typeDic.Add("text", "text");
             _typeDic.Add("bit", "boolean");
         }
-
+        /// <summary>
+        /// 查询库中所有表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmMain_Load(object sender, EventArgs e)
         {
             try
@@ -56,7 +60,11 @@ namespace PgtableGenerateTool
                 MessageBox.Show(exc.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        /// <summary>
+        /// 生成pg sql
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCreateSql_Click(object sender, EventArgs e)
         {
             try
@@ -81,11 +89,22 @@ select id from sysobjects where xtype='U' and name='{item.Text}') ");
                             {
                                 if (field.length != -1)
                                 {
-                                    sqlBuilder.AppendLine($"{field.name} {string.Format(_typeDic[field.typename], field.length, field.xprec, field.xscale)} {(field.isnullable == 0 ? "null" : "not null")},");
+                                    sqlBuilder.AppendLine($"{field.name} {string.Format(_typeDic[field.typename], field.length, field.xprec, field.xscale)} {(field.isnullable == 1 ? "null" : "not null")},");
                                 }
                                 else
                                 {
-                                    sqlBuilder.AppendLine($"{field.name} text {(field.isnullable == 0 ? "null" : "not null")},");
+                                    sqlBuilder.AppendLine($"{field.name} text {(field.isnullable == 1 ? "null" : "not null")},");
+                                }
+                            }
+                            //查询外键和唯一键
+                            var constraintsSql = $@"select b.column_name,a.constraint_type,b.constraint_name from information_schema.table_constraints a
+inner join information_schema.constraint_column_usage b on a.constraint_name = b.constraint_name where  a.table_name = '{item.Text}'";
+                            var constraints = con.Query<dynamic>(constraintsSql);
+                            foreach (var constraint in constraints)
+                            {
+                                if (constraint.constraint_type == "UNIQUE" || constraint.constraint_type == "PRIMARY KEY")
+                                {
+                                    sqlBuilder.AppendLine($"CONSTRAINT {constraint.constraint_name} {constraint.constraint_type} ({constraint.column_name}),");
                                 }
                             }
                             var tableSql = sqlBuilder.ToString().ToLower().TrimEnd('\r', '\n', ',') + ");";
@@ -109,16 +128,6 @@ select id from sysobjects where xtype='U' and name='{item.Text}') ");
             }
         }
 
-
-
-        class PgType
-        {
-            public string FormartName
-            { get; set; }
-            public string PgTypeString
-            { get; set; }
-
-        }
 
         private void chbAllSelect_CheckedChanged(object sender, EventArgs e)
         {
@@ -154,6 +163,11 @@ select id from sysobjects where xtype='U' and name='{item.Text}') ");
             }
         }
 
+        /// <summary>
+        /// 执行pg sql
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCreateTable_Click(object sender, EventArgs e)
         {
             try
