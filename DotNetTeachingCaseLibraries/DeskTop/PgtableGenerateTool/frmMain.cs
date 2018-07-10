@@ -141,7 +141,7 @@ select id from sysobjects where xtype='U' and name='{item.Text}') ");
             {
                 item.Checked = false;
             }
-            var tables = ConfigurationManager.AppSettings["commontable"].Split(',');
+            var tables = ConfigurationManager.AppSettings["commontable"].ToLower().Split(',');
             if (cheCommon.Checked)
             {
                 foreach (ListViewItem item in lvTable.Items)
@@ -173,7 +173,7 @@ select id from sysobjects where xtype='U' and name='{item.Text}') ");
                         }
                     }
                 }
-
+                MessageBox.Show("执行成功！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception exc)
             {
