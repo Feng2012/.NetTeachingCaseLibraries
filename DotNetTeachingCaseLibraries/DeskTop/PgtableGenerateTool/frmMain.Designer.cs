@@ -40,6 +40,7 @@
             this.chbAllSelect = new System.Windows.Forms.CheckBox();
             this.btnCreateSql = new System.Windows.Forms.Button();
             this.btnCreateTable = new System.Windows.Forms.Button();
+            this.btnMigration = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -114,6 +115,7 @@
             this.panel1.Controls.Add(this.chbAllSelect);
             this.panel1.Controls.Add(this.btnCreateSql);
             this.panel1.Controls.Add(this.btnCreateTable);
+            this.panel1.Controls.Add(this.btnMigration);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 176);
             this.panel1.Name = "panel1";
@@ -151,7 +153,7 @@
             // 
             this.btnCreateSql.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.btnCreateSql.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnCreateSql.Location = new System.Drawing.Point(854, 3);
+            this.btnCreateSql.Location = new System.Drawing.Point(639, 3);
             this.btnCreateSql.Name = "btnCreateSql";
             this.btnCreateSql.Size = new System.Drawing.Size(153, 38);
             this.btnCreateSql.TabIndex = 1;
@@ -164,13 +166,26 @@
             this.btnCreateTable.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.btnCreateTable.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnCreateTable.Enabled = false;
-            this.btnCreateTable.Location = new System.Drawing.Point(1007, 3);
+            this.btnCreateTable.Location = new System.Drawing.Point(792, 3);
             this.btnCreateTable.Name = "btnCreateTable";
             this.btnCreateTable.Size = new System.Drawing.Size(153, 38);
             this.btnCreateTable.TabIndex = 0;
             this.btnCreateTable.Text = "生成Postgre表";
             this.btnCreateTable.UseVisualStyleBackColor = true;
             this.btnCreateTable.Click += new System.EventHandler(this.btnCreateTable_Click);
+            // 
+            // btnMigration
+            // 
+            this.btnMigration.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.btnMigration.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnMigration.Enabled = false;
+            this.btnMigration.Location = new System.Drawing.Point(945, 3);
+            this.btnMigration.Name = "btnMigration";
+            this.btnMigration.Size = new System.Drawing.Size(215, 38);
+            this.btnMigration.TabIndex = 4;
+            this.btnMigration.Text = "从SQL Server导到PostgreSql";
+            this.btnMigration.UseVisualStyleBackColor = true;
+            this.btnMigration.Click += new System.EventHandler(this.btnMigration_Click);
             // 
             // frmMain
             // 
@@ -183,6 +198,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SQL Server生成PostgreSql表工具";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.groupBox1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -206,6 +222,7 @@
         private System.Windows.Forms.WebBrowser sqlWebBrowser;
         private System.Windows.Forms.CheckBox chbAllSelect;
         private System.Windows.Forms.CheckBox cheCommon;
+        private System.Windows.Forms.Button btnMigration;
     }
 }
 

@@ -11,6 +11,8 @@ using System.Text;
 using System.Windows.Forms;
 using ColorCode;
 using System.Reflection;
+using System.Threading;
+using PgtableGenerateTool.Properties;
 
 namespace PgtableGenerateTool
 {
@@ -67,51 +69,54 @@ namespace PgtableGenerateTool
         /// <param name="e"></param>
         private void btnCreateSql_Click(object sender, EventArgs e)
         {
+            if(lvTable.CheckedItems.Count==0)
+            {
+                MessageBox.Show("请选择要生成的表", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
                 var allSqlBuilder = new StringBuilder();
-                foreach (ListViewItem item in lvTable.Items)
+                foreach (ListViewItem item in lvTable.CheckedItems)
                 {
-                    if (item.Checked)
+                    allSqlBuilder.AppendLine($"--{item.Text}");
+                    using (var con = new SqlConnection(_sqlconnectionstring))
                     {
-                        allSqlBuilder.AppendLine($"--{item.Text}");
-                        using (var con = new SqlConnection(_sqlconnectionstring))
-                        {
-                            var fields = con.Query<dynamic>($@"select  st.name as 'typename',sc.name,sc.length,sc.xprec,sc.xscale,sc.isnullable
+                        var fields = con.Query<dynamic>($@"select  st.name as 'typename',sc.name,sc.length,sc.xprec,sc.xscale,sc.isnullable
 from syscolumns sc,systypes st 
 where sc.xtype=st.xtype and st.status=0
 and sc.id in(
 select id from sysobjects where xtype='U' and name='{item.Text}') ");
-                            var sqlBuilder = new StringBuilder($"drop table if exists {item.Text};");
-                            sqlBuilder.AppendLine("\r\n");
-                            sqlBuilder.AppendLine($"create table {item.Text}(");
-                            foreach (var field in fields)
+                        var sqlBuilder = new StringBuilder($"drop table if exists {item.Text};");
+                        sqlBuilder.AppendLine("\r\n");
+                        sqlBuilder.AppendLine($"create table {item.Text}(");
+                        foreach (var field in fields)
+                        {
+                            if (field.length != -1)
                             {
-                                if (field.length != -1)
-                                {
-                                    sqlBuilder.AppendLine($"{field.name} {string.Format(_typeDic[field.typename], field.length, field.xprec, field.xscale)} {(field.isnullable == 1 ? "null" : "not null")},");
-                                }
-                                else
-                                {
-                                    sqlBuilder.AppendLine($"{field.name} text {(field.isnullable == 1 ? "null" : "not null")},");
-                                }
+                                sqlBuilder.AppendLine($"{field.name} {string.Format(_typeDic[field.typename], field.length, field.xprec, field.xscale)} {(field.isnullable == 1 ? "null" : "not null")},");
                             }
-                            //查询外键和唯一键
-                            var constraintsSql = $@"select b.column_name,a.constraint_type,b.constraint_name from information_schema.table_constraints a
-inner join information_schema.constraint_column_usage b on a.constraint_name = b.constraint_name where  a.table_name = '{item.Text}'";
-                            var constraints = con.Query<dynamic>(constraintsSql);
-                            foreach (var constraint in constraints)
+                            else
                             {
-                                if (constraint.constraint_type == "UNIQUE" || constraint.constraint_type == "PRIMARY KEY")
-                                {
-                                    sqlBuilder.AppendLine($"CONSTRAINT {constraint.constraint_name} {constraint.constraint_type} ({constraint.column_name}),");
-                                }
+                                sqlBuilder.AppendLine($"{field.name} text {(field.isnullable == 1 ? "null" : "not null")},");
                             }
-                            var tableSql = sqlBuilder.ToString().ToLower().TrimEnd('\r', '\n', ',') + ");";
-                            allSqlBuilder.AppendLine(tableSql);
-                            allSqlBuilder.AppendLine();
                         }
+                        //查询外键和唯一键
+                        var constraintsSql = $@"select b.column_name,a.constraint_type,b.constraint_name from information_schema.table_constraints a
+inner join information_schema.constraint_column_usage b on a.constraint_name = b.constraint_name where  a.table_name = '{item.Text}'";
+                        var constraints = con.Query<dynamic>(constraintsSql);
+                        foreach (var constraint in constraints)
+                        {
+                            if (constraint.constraint_type == "UNIQUE" || constraint.constraint_type == "PRIMARY KEY")
+                            {
+                                sqlBuilder.AppendLine($"CONSTRAINT {constraint.constraint_name} {constraint.constraint_type} ({constraint.column_name}),");
+                            }
+                        }
+                        var tableSql = sqlBuilder.ToString().ToLower().TrimEnd('\r', '\n', ',') + ");";
+                        allSqlBuilder.AppendLine(tableSql);
+                        allSqlBuilder.AppendLine();
                     }
+
                 }
                 _pgsql = allSqlBuilder.ToString();
                 var colorizedSourceCode = new CodeColorizer().Colorize(allSqlBuilder.ToString(), Languages.Sql);
@@ -188,12 +193,87 @@ inner join information_schema.constraint_column_usage b on a.constraint_name = b
                     }
                 }
                 MessageBox.Show("执行成功！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnMigration.Enabled = true;
             }
             catch (Exception exc)
             {
                 MessageBox.Show(exc.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void btnMigration_Click(object sender, EventArgs e)
+        {
+
+            var tablenames = new List<string>();
+            foreach (ListViewItem item in lvTable.CheckedItems)
+            {
+                tablenames.Add(item.Text);
+            }
+            var frmMessage = new frmMessage();
+            var thread = new Thread(delegate ()
+              {
+                  foreach (var item in tablenames)
+                  {
+                      this.BeginInvoke(new ThreadStart(delegate ()
+                      {                         
+                          frmMessage.labMessage.Text = $"正在查询{item}表……";
+                      }));
+
+                      List<dynamic> list = null;
+                      string pgsql = null;
+                      using (var con = new SqlConnection(_sqlconnectionstring))
+                      {
+                          list = con.Query<dynamic>($@"select  * from {item}").ToList();
+                          this.BeginInvoke(new ThreadStart(delegate ()
+                          {
+                              frmMessage.labMessage.Text = $"正在搬运{item}表，总共{list.Count()}条记录……";
+                          }));
+                          var fields = con.Query<string>($@"select sc.name from syscolumns sc,systypes st where sc.xtype=st.xtype and st.status=0 and sc.id in(select id from sysobjects where xtype='U' and name='{item}')");
+                          var pgsqlField = new StringBuilder();
+                          var pgsqlPar = new StringBuilder();
+                          foreach (var field in fields)
+                          {
+                              pgsqlField.Append($"{field},");
+                              pgsqlPar.Append($"@{field},");
+                          }
+
+                          pgsql = $"insert into {item}({pgsqlField.ToString().TrimEnd(',')}) values({pgsqlPar.ToString().TrimEnd(',')})";
+                      }
+                      var index = 0;
+                      var count = 1000;
+                      using (var pgcon = new Npgsql.NpgsqlConnection(_pgconnectionstring))
+                      {
+                          while (index * count < list.Count)
+                          {
+                              this.BeginInvoke(new ThreadStart(delegate ()
+                              {
+                                  frmMessage.labMessage.Text = $"正在搬运{item}表，{index * count}/{list.Count()}……";
+                              }));
+                              var newlist = new List<dynamic>();
+                              newlist.AddRange(list.Skip(index * count).Take(count));
+                              pgcon.Execute(pgsql, newlist);
+                              index++;
+                          }
+                      }
+                  }
+                  this.BeginInvoke(new ThreadStart(delegate ()
+                  {
+                      frmMessage.picLoad.Image = Resources.migration1;
+                      frmMessage.labMessage.Text = $"全部搬运完成！";
+                      frmMessage.tmrCount.Stop();
+                  }));
+              });
+            frmMessage.MigrationThread = thread;
+            frmMessage.tmrCount.Start();
+            thread.Start();
+            frmMessage.ShowDialog();
+
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 
