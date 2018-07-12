@@ -69,7 +69,7 @@ namespace PgtableGenerateTool
         /// <param name="e"></param>
         private void btnCreateSql_Click(object sender, EventArgs e)
         {
-            if(lvTable.CheckedItems.Count==0)
+            if (lvTable.CheckedItems.Count == 0)
             {
                 MessageBox.Show("请选择要生成的表", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -216,45 +216,62 @@ inner join information_schema.constraint_column_usage b on a.constraint_name = b
                   foreach (var item in tablenames)
                   {
                       this.BeginInvoke(new ThreadStart(delegate ()
-                      {                         
+                      {
                           frmMessage.labMessage.Text = $"正在查询{item}表……";
                       }));
 
-                      List<dynamic> list = null;
-                      string pgsql = null;
-                      using (var con = new SqlConnection(_sqlconnectionstring))
+                      var pagesize = 5000;
+                      var pageindex = 1;
+                      while (true)
                       {
-                          list = con.Query<dynamic>($@"select  * from {item}").ToList();
-                          this.BeginInvoke(new ThreadStart(delegate ()
+                          List<dynamic> list = null;
+                          string pgsql = null;
+                          List<string> keyfields = null;
+                          int recordCount = 0;
+                          using (var con = new SqlConnection(_sqlconnectionstring))
                           {
-                              frmMessage.labMessage.Text = $"正在搬运{item}表，总共{list.Count()}条记录……";
-                          }));
-                          var fields = con.Query<string>($@"select sc.name from syscolumns sc,systypes st where sc.xtype=st.xtype and st.status=0 and sc.id in(select id from sysobjects where xtype='U' and name='{item}')");
-                          var pgsqlField = new StringBuilder();
-                          var pgsqlPar = new StringBuilder();
-                          foreach (var field in fields)
-                          {
-                              pgsqlField.Append($"{field},");
-                              pgsqlPar.Append($"@{field},");
+                               keyfields = con.Query<string>($@"SELECT c.name Cname FROM sys.objects T INNER JOIN sys.objects P ON t.object_id=p.parent_object_id AND t.type='U' AND p.type='PK' INNER JOIN sys.SysColumns C ON c.id=t.object_id INNER JOIN sysindexes i ON i.name=p.name INNER JOIN sysindexkeys k ON k.id=c.id AND k.colid=c.colid AND k.indid=i.indid where t.name='{item}'").ToList();
+                              if (keyfields.Count() > 0)
+                              {
+                                  list = con.Query<dynamic>($@"SELECT TOP {pagesize} * FROM (SELECT ROW_NUMBER() OVER (ORDER BY {keyfields[0]}) AS RowNo,* FROM {item})querytable WHERE RowNo > {(pageindex - 1) * pagesize} ").ToList();
+                             
+                                  if (list.Count == 0)
+                                  {
+                                      break;
+                                  }
+                              }
+                              else
+                              {
+                                  list = con.Query<dynamic>($@"SELECT * from {item}").ToList();
+                              }
+                              recordCount=con.ExecuteScalar<int>($@"SELECT count(1) as sl from {item}");
+
+                              //生成pg的insert into 语句
+                              var fields = con.Query<string>($@"select sc.name from syscolumns sc,systypes st where sc.xtype=st.xtype and st.status=0 and sc.id in(select id from sysobjects where xtype='U' and name='{item}')");
+                              var pgsqlField = new StringBuilder();
+                              var pgsqlPar = new StringBuilder();
+                              foreach (var field in fields)
+                              {
+                                  pgsqlField.Append($"{field},");
+                                  pgsqlPar.Append($"@{field},");
+                              }
+                              pgsql = $"insert into {item}({pgsqlField.ToString().TrimEnd(',')}) values({pgsqlPar.ToString().TrimEnd(',')})";
                           }
 
-                          pgsql = $"insert into {item}({pgsqlField.ToString().TrimEnd(',')}) values({pgsqlPar.ToString().TrimEnd(',')})";
-                      }
-                      var index = 0;
-                      var count = 1000;
-                      using (var pgcon = new Npgsql.NpgsqlConnection(_pgconnectionstring))
-                      {
-                          while (index * count < list.Count)
+                          using (var pgcon = new Npgsql.NpgsqlConnection(_pgconnectionstring))
                           {
                               this.BeginInvoke(new ThreadStart(delegate ()
                               {
-                                  frmMessage.labMessage.Text = $"正在搬运{item}表，{index * count}/{list.Count()}……";
+                                  frmMessage.labMessage.Text = $"正在搬运{item}表，{pageindex * pagesize}/{recordCount}条记录……";
                               }));
-                              var newlist = new List<dynamic>();
-                              newlist.AddRange(list.Skip(index * count).Take(count));
-                              pgcon.Execute(pgsql, newlist);
-                              index++;
+                              pgcon.Execute(pgsql, list);
                           }
+                          //没有关键了，就退出
+                          if (keyfields.Count() == 0)
+                          {
+                              break;
+                          }
+                          pageindex++;
                       }
                   }
                   this.BeginInvoke(new ThreadStart(delegate ()
@@ -271,6 +288,76 @@ inner join information_schema.constraint_column_usage b on a.constraint_name = b
 
         }
 
+
+
+        private void btnMigration_Click1(object sender, EventArgs e)
+        {
+
+            var tablenames = new List<string>();
+            foreach (ListViewItem item in lvTable.CheckedItems)
+            {
+                tablenames.Add(item.Text);
+            }
+            var frmMessage = new frmMessage();
+            var thread = new Thread(delegate ()
+            {
+                foreach (var item in tablenames)
+                {
+                    this.BeginInvoke(new ThreadStart(delegate ()
+                    {
+                        frmMessage.labMessage.Text = $"正在查询{item}表……";
+                    }));
+
+                    List<dynamic> list = null;
+                    string pgsql = null;
+                    using (var con = new SqlConnection(_sqlconnectionstring))
+                    {
+                        list = con.Query<dynamic>($@"select  * from {item}").ToList();
+                        this.BeginInvoke(new ThreadStart(delegate ()
+                        {
+                            frmMessage.labMessage.Text = $"正在搬运{item}表，总共{list.Count()}条记录……";
+                        }));
+                        var fields = con.Query<string>($@"select sc.name from syscolumns sc,systypes st where sc.xtype=st.xtype and st.status=0 and sc.id in(select id from sysobjects where xtype='U' and name='{item}')");
+                        var pgsqlField = new StringBuilder();
+                        var pgsqlPar = new StringBuilder();
+                        foreach (var field in fields)
+                        {
+                            pgsqlField.Append($"{field},");
+                            pgsqlPar.Append($"@{field},");
+                        }
+
+                        pgsql = $"insert into {item}({pgsqlField.ToString().TrimEnd(',')}) values({pgsqlPar.ToString().TrimEnd(',')})";
+                    }
+                    var index = 0;
+                    var count = 1000;
+                    using (var pgcon = new Npgsql.NpgsqlConnection(_pgconnectionstring))
+                    {
+                        while (index * count < list.Count)
+                        {
+                            this.BeginInvoke(new ThreadStart(delegate ()
+                            {
+                                frmMessage.labMessage.Text = $"正在搬运{item}表，{index * count}/{list.Count()}……";
+                            }));
+                            var newlist = new List<dynamic>();
+                            newlist.AddRange(list.Skip(index * count).Take(count));
+                            pgcon.Execute(pgsql, newlist);
+                            index++;
+                        }
+                    }
+                }
+                this.BeginInvoke(new ThreadStart(delegate ()
+                {
+                    frmMessage.picLoad.Image = Resources.migration1;
+                    frmMessage.labMessage.Text = $"全部搬运完成！";
+                    frmMessage.tmrCount.Stop();
+                }));
+            });
+            frmMessage.MigrationThread = thread;
+            frmMessage.tmrCount.Start();
+            thread.Start();
+            frmMessage.ShowDialog();
+
+        }
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
